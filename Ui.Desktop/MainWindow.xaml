@@ -1,0 +1,16 @@
+﻿<Window x:Class="Ui.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ui.Desktop"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="createCards" Content="Karten verwalten" HorizontalAlignment="Left" Margin="319,68,0,0" VerticalAlignment="Top" Width="182" Height="40"/>
+        <Button Content="Lernmodus" HorizontalAlignment="Left" Margin="319,133,0,0" VerticalAlignment="Top" Width="182" Height="40"/>
+        <Button Content="Prüfungsmodus" HorizontalAlignment="Left" Margin="319,200,0,0" VerticalAlignment="Top" Width="182" Height="40"/>
+        <Button Content="Beenden" HorizontalAlignment="Left" Margin="319,308,0,0" VerticalAlignment="Top" Width="182" Height="40"/>
+
+    </Grid>
+</Window>
