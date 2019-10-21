@@ -2,7 +2,7 @@
 Dies ersetzt ihr IMMER durch eigene eingaben <--abc--> (inerhalb der "klammern" steht eine <--Beschreibung-->
 Die Schritte von 1-10 müsst ihr nur genau einmal durchlaufen.
 
-1. Erstelle einen Accoutn auf Github
+1. Erstelle einen Account auf Github
 2. Schicke mir deinen Usernamen
 3. Installiere git auf deinem Rechner (ggf. muss der Pfad in den Umgebungsvariablen eingetragen werden)
 4. Öffne das Programm Powershell und gebe "git" ein um zu schauen, ob es richtig funktioniert.
