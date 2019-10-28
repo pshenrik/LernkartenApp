@@ -2,9 +2,10 @@
 
 namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
 {
-    class CardPage
-    {
-        public String text;
+    public class CardPage
+    {   
+        public String Text { get; set; }
         
+
     }
 }
