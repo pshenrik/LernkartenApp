@@ -1,0 +1,135 @@
+﻿<Window x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.Statistics"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
+        mc:Ignorable="d"
+        Title="Statistics" Height="450" Width="800">
+    <Grid>
+
+        <ProgressBar HorizontalAlignment="Left" Height="38" Value="70"  Margin="111,280,0,0" VerticalAlignment="Top" Width="225" Foreground="Red">
+            <ProgressBar.Background>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                    <GradientStop Color="#FFBABABA" Offset="0"/>
+                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
+                    <GradientStop Color="#FFBABABA" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.Background>
+            <ProgressBar.BorderBrush>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFB2B2B2"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.BorderBrush>
+        </ProgressBar>
+        <Label Content="Fortschritt Gesamt" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="215" Height="35" FontSize="20"/>
+        <Label Content="Statistik&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="47" Width="101" FontSize="24" FontWeight="Bold"/>
+        <GridSplitter HorizontalAlignment="Left" Height="322" Margin="390,98,0,0" VerticalAlignment="Top" Width="5"/>
+        <GridSplitter HorizontalAlignment="Left" Height="808" Margin="388,-309,0,-79" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.53"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="1x richtig:&#xA;" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
+        <ProgressBar HorizontalAlignment="Left" Height="38" Value="35"  Margin="111,323,0,0" VerticalAlignment="Top" Width="225" Foreground="Yellow">
+            <ProgressBar.Background>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                    <GradientStop Color="#FFBABABA" Offset="0"/>
+                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
+                    <GradientStop Color="#FFBABABA" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.Background>
+            <ProgressBar.BorderBrush>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFB2B2B2"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.BorderBrush>
+        </ProgressBar>
+        <Label Content="2x richtig:" HorizontalAlignment="Left" Margin="10,323,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
+        <ProgressBar HorizontalAlignment="Left" Height="38" Value="10"  Margin="111,366,0,0" VerticalAlignment="Top" Width="225" Foreground="Lime" ValueChanged="ProgressBar_ValueChanged">
+            <ProgressBar.Background>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                    <GradientStop Color="#FFBABABA" Offset="0"/>
+                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
+                    <GradientStop Color="#FFBABABA" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.Background>
+            <ProgressBar.BorderBrush>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFB2B2B2"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.BorderBrush>
+        </ProgressBar>
+        <Label Content="3x richtig:&#xA;" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
+        <Expander Header="Englisch" HorizontalAlignment="Left" Height="43" Margin="116,55,0,0" VerticalAlignment="Top" Width="150" FontSize="18">
+            <Grid Background="#FFE5E5E5"/>
+        </Expander>
+        <Label Content="Kategorie:&#xA;" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
+        <Label Content="Lernmodus:&#xA;" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
+        <Label Content="Prüfungsmodus:" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
+        <Label Content="1:36&#xA;" HorizontalAlignment="Left" Margin="162,168,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
+        <Label Content="0:45&#xA;" HorizontalAlignment="Left" Margin="162,215,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
+        <ProgressBar HorizontalAlignment="Left" Height="38" Value="35"  Margin="513,280,0,0" VerticalAlignment="Top" Width="225" Foreground="Red">
+            <ProgressBar.Background>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                    <GradientStop Color="#FFBABABA" Offset="0"/>
+                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
+                    <GradientStop Color="#FFBABABA" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.Background>
+            <ProgressBar.BorderBrush>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFB2B2B2"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.BorderBrush>
+        </ProgressBar>
+        <Label Content="Fortschritt Englisch" HorizontalAlignment="Left" Margin="412,103,0,0" VerticalAlignment="Top" Width="215" Height="60" FontSize="20"/>
+        <Label Content="1x richtig:&#xA;" HorizontalAlignment="Left" Margin="412,280,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
+        <ProgressBar HorizontalAlignment="Left" Height="38" Value="16"  Margin="513,323,0,0" VerticalAlignment="Top" Width="225" Foreground="Yellow">
+            <ProgressBar.Background>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                    <GradientStop Color="#FFBABABA" Offset="0"/>
+                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
+                    <GradientStop Color="#FFBABABA" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.Background>
+            <ProgressBar.BorderBrush>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFB2B2B2"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.BorderBrush>
+        </ProgressBar>
+        <Label Content="2x richtig:" HorizontalAlignment="Left" Margin="412,323,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
+        <ProgressBar HorizontalAlignment="Left" Height="38" Value="1"  Margin="513,366,0,0" VerticalAlignment="Top" Width="225" Foreground="Lime" ValueChanged="ProgressBar_ValueChanged">
+            <ProgressBar.Background>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                    <GradientStop Color="#FFBABABA" Offset="0"/>
+                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
+                    <GradientStop Color="#FFBABABA" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.Background>
+            <ProgressBar.BorderBrush>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFB2B2B2"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.BorderBrush>
+        </ProgressBar>
+        <Label Content="3x richtig:&#xA;" HorizontalAlignment="Left" Margin="412,366,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
+        <Label Content="Lernmodus:&#xA;" HorizontalAlignment="Left" Margin="412,168,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
+        <Label Content="Prüfungsmodus:" HorizontalAlignment="Left" Margin="412,215,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
+        <Label Content="0:48" HorizontalAlignment="Left" Margin="564,168,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
+        <Label Content="0:12&#xA;" HorizontalAlignment="Left" Margin="564,215,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
+
+    </Grid>
+</Window>

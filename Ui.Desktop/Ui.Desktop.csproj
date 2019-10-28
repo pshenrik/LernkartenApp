@@ -58,10 +58,28 @@
     <Compile Include="Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainMenu.xaml.cs">
+    <Page Include="Category.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+	<Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Page Include="Category.xaml">
+	 <Page Include="MainMenu.xaml">
+		<SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Prüfungsmodus.xaml.cs">
+      <DependentUpon>Prüfungsmodus.xaml</DependentUpon>
+	</Compile>
+	<Page Include="Prüfungsmodus.xaml">
+	<SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
+    </Compile>
+	<Page Include="Statistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,10 +95,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
