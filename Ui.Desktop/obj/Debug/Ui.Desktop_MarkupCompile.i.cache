@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-\\filestud01.inf.fh-flensburg.de\studdir\BRME9981\private\CSWorkspace\LernkartenApp\Ui.Desktop\obj\Debug\
+U:\private\CSWorkspace\LernkartenApp\Ui.Desktop\obj\Debug\
 De.HsFlensburg.LernkartenApp001.Ui.Desktop
 none
 false
 DEBUG;TRACE
-\\filestud01.inf.fh-flensburg.de\studdir\BRME9981\private\CSWorkspace\LernkartenApp\Ui.Desktop\App.xaml
+U:\private\CSWorkspace\LernkartenApp\Ui.Desktop\App.xaml
 21453287890
 
-71335588442
+101638911232
 131254293103
 MainWindow.xaml;Prüfungsmodus.xaml;
 
-True
+False
 
