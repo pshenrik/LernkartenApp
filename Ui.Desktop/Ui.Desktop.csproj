@@ -57,7 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Prüfungsmodus.xaml.cs">
       <DependentUpon>Prüfungsmodus.xaml</DependentUpon>
-	</Compile>
+	  </Compile>
     <Compile Include="Statistics.xaml.cs">
       <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>
@@ -69,6 +69,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CreateCard.xaml.cs">
+      <DependentUpon>CreateCard.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CreateCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="CreateCategory.xaml.cs">
+      <DependentUpon>CreateCategory.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CreateCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
