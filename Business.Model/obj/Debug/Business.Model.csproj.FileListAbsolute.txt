@@ -1,6 +1,0 @@
-c:\users\niac2273\source\repos\LernkartenApp001\Business.Model\bin\Debug\Business.Model.dll
-c:\users\niac2273\source\repos\LernkartenApp001\Business.Model\bin\Debug\Business.Model.pdb
-c:\users\niac2273\source\repos\LernkartenApp001\Business.Model\obj\Debug\Business.Model.csprojAssemblyReference.cache
-c:\users\niac2273\source\repos\LernkartenApp001\Business.Model\obj\Debug\Business.Model.csproj.CoreCompileInputs.cache
-c:\users\niac2273\source\repos\LernkartenApp001\Business.Model\obj\Debug\Business.Model.dll
-c:\users\niac2273\source\repos\LernkartenApp001\Business.Model\obj\Debug\Business.Model.pdb
