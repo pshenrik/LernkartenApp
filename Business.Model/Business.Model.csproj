@@ -48,12 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Logic.Ui\Logic.Ui.csproj">
-      <Project>{2fb7346b-ae7e-44d0-976f-b1a882a1624e}</Project>
-      <Name>Logic.Ui</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
