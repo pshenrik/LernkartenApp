@@ -67,21 +67,41 @@
     </Compile>
     <Page Include="Lernmodus.xaml">
       <SubType>Designer</SubType>
+    <Compile Include="Category.xaml.cs">
+      <DependentUpon>Category.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Category.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+	<Compile Include="MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+	 <Page Include="MainMenu.xaml">
+		<SubType>Designer</SubType>
+		<Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="Prüfungsmodus.xaml.cs">
       <DependentUpon>Prüfungsmodus.xaml</DependentUpon>
-	  </Compile>
-    <Compile Include="Statistics.xaml.cs">
-      <DependentUpon>Statistics.xaml</DependentUpon>
-    </Compile>
+	</Compile>
+	<Page Include="Prüfungsmodus.xaml">
+		<SubType>Designer</SubType>
+		<Generator>MSBuild:Compile</Generator>
+    </Page>
 	<Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainWindow.xaml">
+	<Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
+    </Compile>
+	<Page Include="Statistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
