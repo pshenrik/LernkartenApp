@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Category.xaml.cs">
+	<Compile Include="Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
     </Compile>
     <Page Include="Category.xaml">
@@ -69,7 +69,7 @@
 		<SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Prüfungsmodus.xaml.cs">
+	 <Compile Include="Prüfungsmodus.xaml.cs">
       <DependentUpon>Prüfungsmodus.xaml</DependentUpon>
 	</Compile>
 	<Page Include="Prüfungsmodus.xaml">
@@ -91,6 +91,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+	 <Compile Include="CreateCard.xaml.cs">
+      <DependentUpon>CreateCard.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CreateCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="CreateCategory.xaml.cs">
+      <DependentUpon>CreateCategory.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CreateCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -121,6 +135,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic.Ui\Logic.Ui.csproj">
+      <Project>{2fb7346b-ae7e-44d0-976f-b1a882a1624e}</Project>
+      <Name>Logic.Ui</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
