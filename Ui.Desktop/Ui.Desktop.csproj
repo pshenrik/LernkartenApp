@@ -55,19 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Export.xaml.cs">
-      <DependentUpon>Export.xaml</DependentUpon>
-    </Compile>
-	<Page Include="Export.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-	<Compile Include="Lernmodus.xaml.cs">
-      <DependentUpon>Lernmodus.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Lernmodus.xaml">
-      <SubType>Designer</SubType>
-    <Compile Include="Category.xaml.cs">
+	<Compile Include="Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
     </Compile>
     <Page Include="Category.xaml">
@@ -79,22 +67,14 @@
     </Compile>
 	 <Page Include="MainMenu.xaml">
 		<SubType>Designer</SubType>
-		<Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Prüfungsmodus.xaml.cs">
+	 <Compile Include="Prüfungsmodus.xaml.cs">
       <DependentUpon>Prüfungsmodus.xaml</DependentUpon>
 	</Compile>
 	<Page Include="Prüfungsmodus.xaml">
-		<SubType>Designer</SubType>
-		<Generator>MSBuild:Compile</Generator>
-    </Page>
-	<Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-	<Page Include="MainWindow.xaml">
+	<SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="Statistics.xaml.cs">
       <DependentUpon>Statistics.xaml</DependentUpon>
@@ -103,11 +83,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CreateCard.xaml.cs">
+	 <Compile Include="CreateCard.xaml.cs">
       <DependentUpon>CreateCard.xaml</DependentUpon>
     </Compile>
     <Page Include="CreateCard.xaml">
@@ -121,6 +105,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
