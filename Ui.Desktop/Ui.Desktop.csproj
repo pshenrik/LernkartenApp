@@ -55,31 +55,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-	<Compile Include="Category.xaml.cs">
+    <Compile Include="Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
     </Compile>
     <Page Include="Category.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	<Compile Include="MainMenu.xaml.cs">
+    <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-	 <Page Include="MainMenu.xaml">
-		<SubType>Designer</SubType>
+    <Page Include="MainMenu.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	 <Compile Include="Prüfungsmodus.xaml.cs">
+    <Compile Include="Prüfungsmodus.xaml.cs">
       <DependentUpon>Prüfungsmodus.xaml</DependentUpon>
-	</Compile>
-	<Page Include="Prüfungsmodus.xaml">
-	<SubType>Designer</SubType>
+    </Compile>
+    <Page Include="Prüfungsmodus.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="Statistics.xaml.cs">
       <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>
-	<Page Include="Statistics.xaml">
+    <Page Include="Statistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,7 +91,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-	 <Compile Include="CreateCard.xaml.cs">
+    <Compile Include="CreateCard.xaml.cs">
       <DependentUpon>CreateCard.xaml</DependentUpon>
     </Compile>
     <Page Include="CreateCard.xaml">

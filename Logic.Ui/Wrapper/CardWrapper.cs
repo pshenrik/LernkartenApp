@@ -5,19 +5,38 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
     class CardWrapper
     {
-        private Card card;
 
-        public String Name
+        public CardWrapper()
+        {
+            card = new Card();
+        }
+        public Card card;
+
+        public CardPage Front
         {
             get
             {
-                return card.Name;
+                return card.Front;
             }
 
             set
             {
-                card.Name = value;
-                OnPropertyChanged();
+                card.Front = value;
+               // OnPropertyChanged();
+            }
+        }
+
+        public CardPage Back
+        {
+            get
+            {
+                return card.Back;
+            }
+
+            set
+            {
+                card.Back = value;
+                // OnPropertyChanged();
             }
         }
     }

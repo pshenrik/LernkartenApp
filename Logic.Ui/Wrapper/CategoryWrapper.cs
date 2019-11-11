@@ -6,7 +6,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
     class CategoryWrapper
     {
-        private Category category;
+        public CategoryWrapper()
+        {
+            category = new Category();
+        }
+
+        public Category category;
         public String Name
         {
             get
@@ -16,6 +21,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             set
             {
                 category.Name = value;
+                //OnPropertyChanged();
             }
         }
     }

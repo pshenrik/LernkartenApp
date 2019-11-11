@@ -5,7 +5,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
     public class CardPage
     {   
         public String Text { get; set; }
-        
+        public String ImageSource { get; set; }
 
     }
 }
