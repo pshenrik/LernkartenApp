@@ -2,7 +2,7 @@
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    class CardPageWrapper
+    public class CardPageWrapper
     {
         public CardPage page;
 

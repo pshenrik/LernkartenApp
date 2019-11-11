@@ -7,7 +7,7 @@ using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    class ExportViewModel
+    public class ExportViewModel
     {
         private Category category;
             
