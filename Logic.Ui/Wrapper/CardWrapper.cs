@@ -3,14 +3,15 @@ using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    class CardWrapper
+    public class CardWrapper
     {
-
+        private Card card;
+        public String Name;
+        
         public CardWrapper()
         {
             card = new Card();
         }
-        public Card card;
 
         public CardPage Front
         {
@@ -25,7 +26,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                // OnPropertyChanged();
             }
         }
-
+        
         public CardPage Back
         {
             get
