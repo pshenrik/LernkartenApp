@@ -10,7 +10,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     {
         public ViewModelLocator()
         {
-            int variante = 1;
+            /*int variante = 1;
 
             if (variante == 0)
             {
@@ -32,13 +32,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 MainWindowVM = new MainWindowViewModel(svm);
                 StatisticWindowVM = new StatisticsWindowViewModel(svm);
                 #endregion
-            }
+            }*/
 
         }
         // ToDo: Inhalte für Vorlesung: Achtung: diese Properties 
         // müssen Public sein, da sie von XMAL aus referenziert werden! 
         // Compiler erwartet nur internal...
         public MainMenuViewModel MainWindowVM { get; }
-        public StatisticsWindowViewModel StatisticWindowVM { get; }
+        //public StatisticsWindowViewModel StatisticWindowVM { get; }
     }
 }
