@@ -5,55 +5,70 @@ using System.Text;
 using System.Threading.Tasks;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
+using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
+using System.Windows.Input;
+
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    public class ExammodeViewModel : AbstractViewModel
-    {
+    
 
-        private Category examCategroy;
-        private Card[] ExamCards;
-        private float time;
-        private int CardAmount;
-        private float QuestionProgress;
-        private float ExamProgress;
-        private int wrongAnswers;
-        private int correctAnswers;
-
-
-
-        public ExammodeViewModel(Category category)
+    
+        public class ExamModeViewModel : AbstractViewModel
         {
-            this.examCategroy = category;
-             
-        }
-        public void setTime(float time)
-        {
-            this.time = time;
-        }
 
-        public int CorrectAnswers
-        {
-            get
+            private Category examCategroy;
+            private Card[] ExamCards;
+            private float time;
+            private int CardAmount;
+            private float QuestionProgress;
+            private float ExamProgress;
+            private int wrongAnswers;
+            private int correctAnswers;
+            private bool examStarted;
+
+            
+            public ExamModeViewModel()
             {
-                return this.correctAnswers;
+                this.examCategroy = new Category();
+                this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
+                this.changeTimeCommand = new RelayCommand(this.SetTime, this.ReturnTrue);
             }
 
-        }
-
-        public int WrongAnswers
-        {
-            get
+            public ExamModeViewModel(Category category)
             {
-                return this.wrongAnswers;
+                this.examCategroy = category;
+
             }
+            
+            public float Time
+            {
+                get { return this.time; }
+                set { this.time += value; }
+            }
+            
+            private ICommand startExamCommand;
+            private ICommand changeTimeCommand;
+            public ICommand StartExamCommand { get { return startExamCommand; } }
+            public ICommand ChangeTimeCommand { get { return changeTimeCommand; } }
+
+
+            public void StartExam()
+            {
+            Console.WriteLine("moin");
+            }
+
+            public void SetTime()
+            {
+                
+            }
+            private bool ReturnTrue()
+            {
+                return examCategroy != null; 
+            }
+            
+
         }
+    
 
-        private bool ReturnTrue()
-        {
-            return true;
-        }
-
-
-    }
 }
