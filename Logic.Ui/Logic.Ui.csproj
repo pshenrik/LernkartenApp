@@ -47,8 +47,7 @@
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
-	<Compile Include="RelayCommand.cs" />
-    <Compile Include="ViewModels.Common\AbstractViewModel.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -58,7 +57,7 @@
     <Compile Include="ViewModels\CreateCategoryViewModel.cs" />
     <Compile Include="ViewModels\ExportViewModel.cs" />
     <Compile Include="ViewModels\LernmodusViewModel.cs" />
-	<Compile Include="ViewModels\ExammodeViewModel.cs" />
+    <Compile Include="ViewModels\ExammodeViewModel.cs" />
     <Compile Include="Wrapper\CardCollectionViewModel.cs" />
     <Compile Include="Wrapper\CardPageViewModel.cs" />
     <Compile Include="Wrapper\CardViewModel.cs" />
