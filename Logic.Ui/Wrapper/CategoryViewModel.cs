@@ -7,7 +7,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
     public class CategoryWrapper : AbstractViewModel
     {
-        private Category category;
+        public CategoryWrapper()
+        {
+            category = new Category();
+        }
+
+        public Category category;
         public String Name
         {
             get
@@ -17,6 +22,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             set
             {
                 category.Name = value;
+                //OnPropertyChanged();
             }
         }
     }
