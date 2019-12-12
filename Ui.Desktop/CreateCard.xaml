@@ -1,12 +1,16 @@
-﻿<Window
+﻿<Window x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.CreateCard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
-        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.CreateCard"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
         mc:Ignorable="d"
         Title="CreateCard" Height="450" Width="800">
+ 
+    
+    
     <Grid Background="#FFE5E3E3">
         <Border x:Name="header" BorderThickness="1" HorizontalAlignment="Left" Height="95" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" Background="#FF4094EB"/>
         <Label x:Name="newCard" Content="Neue Karte " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="79,25,0,0" Height="41" Width="250" FontFamily="Verdana" FontSize="20" FontWeight="Bold" Foreground="#FFFAFAFA"/>

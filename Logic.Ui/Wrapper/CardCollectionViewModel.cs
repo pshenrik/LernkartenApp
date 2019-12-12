@@ -15,7 +15,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         public CardCollection cards;
         private bool syncDisabled = false;
 
-        public CardCollectionWrapper()
+        public CardCollectionViewModel()
         {
             cards = new CardCollection();
 
@@ -30,11 +30,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (var card in e.NewItems.OfType<CardWrapper>().Select(v => v.Card).OfType<Card>())
+                    foreach (var card in e.NewItems.OfType<CardViewModel>().Select(v => v.Card).OfType<Card>())
                         cards.Add(card);
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (var card in e.OldItems.OfType<CardWrapper>().Select(v => v.Card).OfType<Card>())
+                    foreach (var card in e.OldItems.OfType<CardViewModel>().Select(v => v.Card).OfType<Card>())
                         cards.Remove(card);
                     break;
                 case NotifyCollectionChangedAction.Reset:
@@ -52,7 +52,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             {
                 case NotifyCollectionChangedAction.Add:
                     foreach (var card in e.NewItems.OfType<Card>())
-                        Add(new CardWrapper(card));
+                        Add(new CardViewModel(card));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var card in e.OldItems.OfType<Card>())
@@ -64,9 +64,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
             syncDisabled = false;
         }
-        private CardWrapper GetViewModelOfModel(Card card)
+        private CardViewModel GetViewModelOfModel(Card card)
         {
-            foreach (CardWrapper cvm in this)
+            foreach (CardViewModel cvm in this)
             {
                 if (cvm.Card.Equals(card)) return cvm;
             }

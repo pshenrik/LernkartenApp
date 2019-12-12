@@ -5,9 +5,14 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    public class CategoryWrapper : AbstractViewModel
+    public class CategoryViewModel : AbstractViewModel
     {
-        private Category category;
+        public CategoryViewModel()
+        {
+            category = new Category();
+        }
+
+        public Category category;
         public String Name
         {
             get
@@ -17,6 +22,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             set
             {
                 category.Name = value;
+                //OnPropertyChanged();
             }
         }
     }
