@@ -5,7 +5,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
     public class CardPageWrapper : AbstractViewModel
     {
-        public CardPage page;
+        private CardPage page;
 
         public String Text
         {

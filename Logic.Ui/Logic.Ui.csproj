@@ -47,11 +47,11 @@
     <Compile Include="ViewModels.Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\ExportViewModel.cs" />
     <Compile Include="ViewModels\LernmodusViewModel.cs" />
-    <Compile Include="ViewModels\ExammodeViewModel.cs" />
-    <Compile Include="Wrapper\CardCollectionWrapper.cs" />
-    <Compile Include="Wrapper\CardPageWrapper.cs" />
-    <Compile Include="Wrapper\CardWrapper.cs" />
-    <Compile Include="Wrapper\CategoryWrapper.cs" />
+	<Compile Include="ViewModels\ExammodeViewModel.cs" />
+    <Compile Include="Wrapper\CardCollectionViewModel.cs" />
+    <Compile Include="Wrapper\CardPageViewModel.cs" />
+    <Compile Include="Wrapper\CardViewModel.cs" />
+    <Compile Include="Wrapper\CategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    public class CardCollectionWrapper : ObservableCollection<CardWrapper>
+    public class CardCollectionViewModel : ObservableCollection<CardViewModel>
     {
         public CardCollection cards;
         private bool syncDisabled = false;
