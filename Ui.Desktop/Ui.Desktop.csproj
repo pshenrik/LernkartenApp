@@ -69,10 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Prüfungsmodus.xaml.cs">
-      <DependentUpon>Prüfungsmodus.xaml</DependentUpon>
+    <Compile Include="Exammode.xaml.cs">
+      <DependentUpon>Exammode.xaml</DependentUpon>
     </Compile>
-    <Page Include="Prüfungsmodus.xaml">
+    <Page Include="Exammode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

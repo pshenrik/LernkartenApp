@@ -1,4 +1,4 @@
-﻿
+﻿using System.ComponentModel;
 
 using System.Collections.ObjectModel;
 
@@ -16,5 +16,10 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
        // //{
        // //    this.Add(this.Card);
        // //}
+
+        public CardCollection()
+        {
+           
+        }
     }
 }
