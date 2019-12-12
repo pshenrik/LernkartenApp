@@ -5,9 +5,9 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    public class CategoryWrapper : AbstractViewModel
+    public class CategoryViewModel : AbstractViewModel
     {
-        public CategoryWrapper()
+        public CategoryViewModel()
         {
             category = new Category();
         }

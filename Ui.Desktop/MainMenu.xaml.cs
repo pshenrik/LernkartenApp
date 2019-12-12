@@ -20,12 +20,12 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
     /// </summary>
     public partial class Window1 : Window
     {
-        public Window1()
+        /*public Window1()
         {
             InitializeComponent();
             CategorysGrid.ItemsSource = MainMenuViewModel.Categories;  
         }
-        /*
+        
         private void statisticItem(object sender, RoutedEventArgs e)
         {
             Form newForm = new Statistics(); 

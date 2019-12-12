@@ -10,9 +10,7 @@
         Title="Main menu" Height="450" Width="800">
     
   
-    <Window.DataContext>
-        <viewModel:MainMenuViewModel></viewModel:MainMenuViewModel>
-    </Window.DataContext>
+   
    
     <Grid>
         <Grid Margin="0,0,0,324" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
@@ -101,11 +99,11 @@
                         <GradientStop Color="#FFF1E3B0" Offset="0.083"/>
                     </LinearGradientBrush>
                 </ListView.Background>
-                <ListViewItem Selected="exportItem" FontSize="36"/>
+                <!--<ListViewItem Selected="exportItem" FontSize="36"/>
                 <ListViewItem x:Name="exportItem" Content="Export" FontSize="36" Height="56" ></ListViewItem>
                 <ListViewItem Content="Import" FontSize="36" ></ListViewItem>
                 <ListViewItem Content="Statistik" FontSize="36" ></ListViewItem>
-                <ListViewItem Content="Prüfungsmodus" FontSize="33" Width="240" ></ListViewItem>
+                <ListViewItem Content="Prüfungsmodus" FontSize="33" Width="240" ></ListViewItem>-->
             </ListView>
         </Grid>
         <!---
@@ -135,18 +133,18 @@
             </ListView>
         -->
         <Grid Margin="252,149,0,0">
-            <DataGrid Name="CategorysGrid" AutoGenerateColumns="False" ItemsSource="{Binding Source={x:Static viewModel:MainMenuViewModel.Categories}}" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" Margin="0" >
-                <!--<DataGrid Name="CategorysGrid" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >-->
+            <!--DataGrid Name="CategorysGrid" AutoGenerateColumns="False" ItemsSource="{Binding Source={x:Static viewModel:MainMenuViewModel.Categories}}" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" Margin="0" -->
+            <!--DataGrid Name="CategorysGrid" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Catogory"/>
-                    <!--<DataGridTextColumn Binding="{Binding NumberOfCards}" Header=""/>-->
+                    <DataGridTextColumn Binding="{Binding NumberOfCards}" Header=""/>
 
                     <DataGridComboBoxColumn>
 
                     </DataGridComboBoxColumn>
 
                 </DataGrid.Columns>
-            </DataGrid>
+            </>-->
 
         </Grid>
 
