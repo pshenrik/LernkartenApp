@@ -10,11 +10,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
     public class CreateCategoryViewModel
     {
-       public CategoryViewModel Category { get; set; }
+       public ViewCategoryViewModel Category { get; set; }
 
         public CreateCategoryViewModel()
         {
-            Category = new CategoryViewModel();
+            Category = new ViewCategoryViewModel();
             //Category.Name = "Kategorienname Eingeben";
         }
 
