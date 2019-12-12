@@ -1,23 +1,22 @@
-﻿using System;
+﻿
+using System;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
+
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    public class CardPageWrapper
+    public class CategoryViewModel
     {
-        public CardPage page;
-
-        public String Text
+        private Category category;
+        public String Name
         {
             get
             {
-                return page.Text;
+                return category.Name;
             }
             set
             {
-                page.Text = value;
+                category.Name = value;
             }
         }
-
-
     }
 }
