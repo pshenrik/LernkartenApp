@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
@@ -58,10 +57,11 @@
     <Compile Include="ViewModels\ExportViewModel.cs" />
     <Compile Include="ViewModels\LernmodusViewModel.cs" />
     <Compile Include="ViewModels\ExammodeViewModel.cs" />
+    <Compile Include="ViewModels\ViewCategoryViewModel.cs" />
     <Compile Include="Wrapper\CardCollectionViewModel.cs" />
     <Compile Include="Wrapper\CardPageViewModel.cs" />
     <Compile Include="Wrapper\CardViewModel.cs" />
-    <Compile Include="Wrapper\ViewCategoryViewModel.cs" />
+    <Compile Include="Wrapper\CategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">
