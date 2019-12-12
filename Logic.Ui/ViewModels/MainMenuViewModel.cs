@@ -43,7 +43,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public void Test()
         {
 
-           
+            Console.WriteLine("HIHIHIHIHIH"); 
         }
         private bool getTrue()
         {
