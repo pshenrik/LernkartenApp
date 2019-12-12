@@ -9,9 +9,7 @@
         Title="CreateCategory" Height="450" Width="800">
 
     
-    <Window.DataContext>
-        <viewModel:CreateCategoryViewModel></viewModel:CreateCategoryViewModel>
-    </Window.DataContext>
+    
    
     <Grid>
         <Grid Background="#FFE5E3E3">

@@ -8,10 +8,9 @@
        
     mc:Ignorable="d"
         Title="MainMenu" Height="450" Width="800" Background="#FFF3F3F3">
-    <Window.DataContext>
-        <viewModel:CategoryViewModel></viewModel:CategoryViewModel>
-    </Window.DataContext>
-    <Grid>
+
+    
+           <Grid>
         <Grid Margin="0,0,0,324" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
 
             <Grid.RowDefinitions>
@@ -69,9 +68,9 @@
 
         <Grid Margin="0,149,0,0">
 
-            <DataGrid Name="CardsGrid" AutoGenerateColumns="False" ItemsSource="{Binding Source={x:Static viewModel:CategoryViewModel.cardColl}}" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >
+            <!--<DataGrid Name="CardsGrid" AutoGenerateColumns="False" ItemsSource="{Binding Source={x:Static viewModel:CategoryViewModel.cardColl}}" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >-->
 
-                <!--<DataGrid Name="CardsGrid" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >-->
+                <DataGrid Name="CardsGrid" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >
                     <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Cards"/>
                     <DataGridComboBoxColumn>

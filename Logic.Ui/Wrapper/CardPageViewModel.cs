@@ -3,10 +3,10 @@ using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    public class CardPageWrapper : AbstractViewModel
+    public class CardPageViewModel : AbstractViewModel
     {
 
-        public CardPageWrapper()
+        public CardPageViewModel()
         {
             page = new CardPage();
         }

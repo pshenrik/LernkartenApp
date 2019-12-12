@@ -12,10 +12,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     public class CategoryViewModel
     {
 
-        public static ObservableCollection<CardWrapper> cardColl; 
-        public CategoryViewModel(CardCollectionWrapper cards)
+        public static ObservableCollection<CardViewModel> cardColl; 
+        public CategoryViewModel(CardCollectionViewModel cards)
         {
-            cardColl = new ObservableCollection<CardWrapper>(cards);
+            cardColl = new ObservableCollection<CardViewModel>(cards);
            
         }
        public CategoryViewModel()

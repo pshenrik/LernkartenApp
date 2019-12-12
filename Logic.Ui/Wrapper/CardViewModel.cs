@@ -4,16 +4,16 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    public class CardWrapper : AbstractViewModel
+    public class CardViewModel : AbstractViewModel
     {
         internal Card Card { get; set; }
         
 
-        public CardWrapper (Card card)
+        public CardViewModel(Card card)
         {
             this.Card = card;
         }
-        public CardWrapper (string name)
+        public CardViewModel(string name)
         {
             this.Card = new Card(name);
         }

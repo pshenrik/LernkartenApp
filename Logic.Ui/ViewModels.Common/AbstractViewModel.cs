@@ -13,7 +13,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common
     public  abstract class AbstractViewModel : INotifyPropertyChanged
     {
         
-        public AbstractViewModel()
+      /*  public AbstractViewModel()
         {
             this.PropertyMapping = new Dictionary<string, string>();
         }
@@ -33,6 +33,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common
             {
                 OnPropertyChanged(propertyNameOut);
             }
-        }
+        }*/
     }
 }

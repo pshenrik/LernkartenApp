@@ -10,20 +10,20 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
    public class CreateCardViewModel
     {
         
-        public CardPageWrapper CardPageQuestion { set; get; }
-        public CardPageWrapper CardPageAnswer { set; get; }
+        public CardPageViewModel CardPageQuestion { set; get; }
+        public CardPageViewModel CardPageAnswer { set; get; }
         public string Question { get; set; }
         public string Answer { get; set; }
 
-        public CardCollectionWrapper cards;
+        public CardCollectionViewModel cards;
 
         
         //CardWrapper card;
 
         public CreateCardViewModel()
         {
-            CardPageQuestion = new CardPageWrapper();
-            CardPageAnswer = new CardPageWrapper();
+            CardPageQuestion = new CardPageViewModel();
+            CardPageAnswer = new CardPageViewModel();
             CardPageQuestion.Text = "Farge Eingeben";
             CardPageAnswer.Text = "Antwort Eingeben";
 
@@ -40,7 +40,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             //newCardVM.Front.Text = Answer;
             //cards.Add(newCardVM);
 
-            CardWrapper newCardVM = new CardWrapper();
+            //CardViewModel newCardVM = new CardViewModel();
             //newCardVM.Front = CardPageQuestion.Text;
             //newCardVM.= CardPageAnswer.n
             //newCardVM.Back = CardPageAnswer.Text;
