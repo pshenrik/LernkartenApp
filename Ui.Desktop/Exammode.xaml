@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
+       xmlns:viewModel="clr-namesapce: De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels"
         mc:Ignorable="d"
         Title="Prüfungsmodus" Height="450" Width="800">
+  
     <Grid>
         <Button Content="Start" HorizontalAlignment="Left" Margin="31,285,0,0" VerticalAlignment="Top" Width="118" Height="35"/>
         <Slider HorizontalAlignment="Left" Height="30" Margin="31,221,0,0" VerticalAlignment="Top" Width="118"/>
@@ -18,7 +20,7 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="94" Margin="375,141,0,0" VerticalAlignment="Top" Width="231">
             <Label Content="image" Height="35" Margin="79.2,34.2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="73"/>
         </Border>
-        <TextBox HorizontalAlignment="Left" Height="42" Margin="271,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" TextChanged="TextBox_TextChanged" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Height="42" Margin="271,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438"  FontSize="20"/>
         <Label Content="Antwort:" HorizontalAlignment="Left" Margin="271,261,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="20"/>
         <ProgressBar HorizontalAlignment="Left" Height="10" Margin="271,371,0,0" VerticalAlignment="Top" Width="438" Value="66"/>
         <TextBlock HorizontalAlignment="Left" Height="32" Margin="271,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" FontSize="20"><Run Text="Was bedeuted xyz...?"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>

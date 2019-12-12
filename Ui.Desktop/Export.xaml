@@ -14,7 +14,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="257,199,0,0" TextWrapping="Wrap" Text="Als PDF exportieren" VerticalAlignment="Top" Width="176" Height="29" FontSize="18"/>
         <Button Content="&lt;-" HorizontalAlignment="Left" Height="27" Margin="438,261,0,0" VerticalAlignment="Top" Width="96"/>
         <TextBlock HorizontalAlignment="Left" Margin="257,261,0,0" TextWrapping="Wrap" Text="XML importieren" VerticalAlignment="Top" Width="176" Height="29" FontSize="18"/>
-        <Button Content="Zurück" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="64" Height="30" Click="Button_Click"/>
+        <Button Content="Zurück" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="64" Height="30" />
 
     </Grid>
 </Window>
