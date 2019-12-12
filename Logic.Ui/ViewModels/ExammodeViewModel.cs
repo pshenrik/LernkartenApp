@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
-
+using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    public class PrüfungsmodusViewModel
+    public class ExammodeViewModel : AbstractViewModel
     {
 
         private Category examCategroy;
@@ -22,9 +22,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
 
-        public PrüfungsmodusViewModel(Category category)
+        public ExammodeViewModel(Category category)
         {
             this.examCategroy = category;
+             
         }
         public void setTime(float time)
         {
@@ -48,7 +49,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
-
+        private bool ReturnTrue()
+        {
+            return true;
+        }
 
 
     }
