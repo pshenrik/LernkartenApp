@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Ui.Desktop"
              StartupUri="MainMenu.xaml">
     <Application.Resources>
-         
+        <!--<viewModel:ViewModelLocator x:Key="ViewModelLocator">
+        </>-->
     </Application.Resources>
 </Application>
