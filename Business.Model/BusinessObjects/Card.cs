@@ -1,3 +1,4 @@
+﻿using System;
 ﻿using System.ComponentModel;
 namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
 {
@@ -7,6 +8,9 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
         public Card (string name)
         {
             this.name = name;
+            Front = new CardPage();
+            Back = new CardPage();
+
             
         }
         public CardPage Front { get; }

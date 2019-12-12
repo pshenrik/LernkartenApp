@@ -53,7 +53,7 @@
             </ProgressBar.BorderBrush>
         </ProgressBar>
         <Label Content="2x richtig:" HorizontalAlignment="Left" Margin="10,323,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <ProgressBar HorizontalAlignment="Left" Height="38" Value="10"  Margin="111,366,0,0" VerticalAlignment="Top" Width="225" Foreground="Lime" ValueChanged="ProgressBar_ValueChanged">
+        <ProgressBar HorizontalAlignment="Left" Height="38" Value="10"  Margin="111,366,0,0" VerticalAlignment="Top" Width="225" Foreground="Lime" >
             <ProgressBar.Background>
                 <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
                     <GradientStop Color="#FFBABABA" Offset="0"/>
@@ -110,7 +110,7 @@
             </ProgressBar.BorderBrush>
         </ProgressBar>
         <Label Content="2x richtig:" HorizontalAlignment="Left" Margin="412,323,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <ProgressBar HorizontalAlignment="Left" Height="38" Value="1"  Margin="513,366,0,0" VerticalAlignment="Top" Width="225" Foreground="Lime" ValueChanged="ProgressBar_ValueChanged">
+        <ProgressBar HorizontalAlignment="Left" Height="38" Value="1"  Margin="513,366,0,0" VerticalAlignment="Top" Width="225" Foreground="Lime" >
             <ProgressBar.Background>
                 <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
                     <GradientStop Color="#FFBABABA" Offset="0"/>
