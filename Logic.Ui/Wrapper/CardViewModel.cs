@@ -8,7 +8,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
     {
         internal Card Card { get; set; }
         
-
         public CardViewModel(Card card)
         {
             this.Card = card;
