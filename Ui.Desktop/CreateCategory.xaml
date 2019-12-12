@@ -8,11 +8,11 @@
         mc:Ignorable="d"
         Title="CreateCategory" Height="450" Width="800">
 
-    <!--
+    
     <Window.DataContext>
         <viewModel:CreateCategoryViewModel></viewModel:CreateCategoryViewModel>
     </Window.DataContext>
-    -->
+   
     <Grid>
         <Grid Background="#FFE5E3E3">
             <Border x:Name="header" BorderThickness="1" HorizontalAlignment="Left" Height="95" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" Background="#FF4094EB"/>

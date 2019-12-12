@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    class CreateCategoryViewModel
+    public class CreateCategoryViewModel
     {
-        CategoryWrapper Category { get; set; }
+       public CategoryWrapper Category { get; set; }
 
         public CreateCategoryViewModel()
         {

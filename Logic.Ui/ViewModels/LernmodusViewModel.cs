@@ -18,14 +18,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public int CardsLearned { get; set; }
 
-        private CardWrapper currentCard;
-        public CardWrapper CurrentCard {
-            get
-            {
-                return currentCard;
-            }
+        //private CardWrapper currentCard;
+        //public CardWrapper CurrentCard {
+        //    get
+        //    {
+        //        return currentCard;
+        //    }
                 
-        }
+        //}
 
     }
 

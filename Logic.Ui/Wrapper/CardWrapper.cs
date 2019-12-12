@@ -6,7 +6,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
     public class CardWrapper
     {
         private Card card;
-        public String Name;
+       
         
         public CardWrapper()
         {
@@ -38,6 +38,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             {
                 card.Back = value;
                 // OnPropertyChanged();
+            }
+
+  
+    }
+        public String Name
+        {
+            get
+            {
+                return card.Name;
+            }
+            set
+            {
+                card.Name = value;
             }
         }
     }
