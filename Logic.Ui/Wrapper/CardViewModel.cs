@@ -1,22 +1,33 @@
 ﻿using System;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
+using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    public class CardViewModel
+    public class CardWrapper : AbstractViewModel
     {
-        private Card card;
+        internal Card Card { get; set; }
         
+
+        public CardWrapper (Card card)
+        {
+            this.Card = card;
+        }
+        public CardWrapper (string name)
+        {
+            this.Card = new Card(name);
+        }
         public String Name
         {
             get
             {
-                return card.Name;
+                return Card.Name;
             }
 
             set
             {
-                card.Name = value;
+                Card.Name = value;
+                OnPropertyChanged();
             }
         }
 
@@ -24,7 +35,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             get
             {
-                return card.Front;
+                return Card.Front;
             }
         }
 
@@ -32,7 +43,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             get
             {
-                return card.Back;
+                return Card.Back;
             }
         }
     }
