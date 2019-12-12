@@ -3,16 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
+        xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
        
         mc:Ignorable="d"
         Title="Prüfungsmodus" Height="450" Width="800">
-    <!--
-    xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
+    
+    
     <Window.DataContext>
         <viewModel:ExamModeViewModel></viewModel:ExamModeViewModel>
-    </Window.DataContext>-->
+    </Window.DataContext>
 
     <Grid>
         <Button Content="Start" Command="{Binding StartExamCommand,Mode=OneWay}" HorizontalAlignment="Left" Margin="31,285,0,0" VerticalAlignment="Top" Width="118" Height="35"/>
