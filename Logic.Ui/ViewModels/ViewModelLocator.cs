@@ -38,7 +38,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         // ToDo: Inhalte für Vorlesung: Achtung: diese Properties 
         // müssen Public sein, da sie von XMAL aus referenziert werden! 
         // Compiler erwartet nur internal...
-        public MainWindowViewModel MainWindowVM { get; }
+        public MainMenuViewModel MainWindowVM { get; }
         public StatisticsWindowViewModel StatisticWindowVM { get; }
     }
 }

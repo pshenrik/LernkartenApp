@@ -58,6 +58,7 @@
     <Compile Include="ViewModels\ExportViewModel.cs" />
     <Compile Include="ViewModels\LernmodusViewModel.cs" />
     <Compile Include="ViewModels\ExammodeViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Wrapper\CardCollectionViewModel.cs" />
     <Compile Include="Wrapper\CardPageViewModel.cs" />
     <Compile Include="Wrapper\CardViewModel.cs" />
