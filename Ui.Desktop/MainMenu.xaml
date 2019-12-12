@@ -9,8 +9,6 @@
         mc:Ignorable="d"
         Title="Main menu" Height="450" Width="800">
     
-  
-   
    
     <Grid>
         <Grid Margin="0,0,0,324" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
