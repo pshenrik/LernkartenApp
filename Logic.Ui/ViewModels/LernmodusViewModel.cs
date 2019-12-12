@@ -13,6 +13,17 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
     /*
      * Sind die Variablen zu den Attributen so richtig?
+     * 
+     * INotifyPropertyChanged ?
+     * 
+     * learnedCardsCounter ändert sich nicht im UI
+     * 
+     * CardCollection hat kein NotifyPropertyChanged ?
+     * 
+     * 
+     * TODO
+     * x:Class="ViewModelLocator.MainWindow"
+     * in die xaml einfügen
      */
     public class LernmodusViewModel : AbstractViewModel
     {
@@ -26,6 +37,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ICommand RequestHelpCommand { get { return requestHelpCommand; } }
 
         private String answerInputText;
+
+
         public String AnswerInputText
         {
             get
@@ -38,7 +51,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
-        public int learnedCardsCounter = 0;
+        private int learnedCardsCounter = 0;
         public int LearnedCardsCounter
         {
             get
