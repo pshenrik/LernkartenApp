@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
+using System.Windows.Input;
 
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
@@ -24,11 +25,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             private float ExamProgress;
             private int wrongAnswers;
             private int correctAnswers;
+            private bool examStarted;
 
             
             public ExamModeViewModel()
             {
-
+                this.examCategroy = new Category();
+                this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
+                this.changeTimeCommand = new RelayCommand(this.SetTime, this.ReturnTrue);
             }
 
             public ExamModeViewModel(Category category)
@@ -37,33 +41,32 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             }
             
-            public void setTime(float time)
+            public float Time
             {
-                this.time = time;
+                get { return this.time; }
+                set { this.time += value; }
+            }
+            
+            private ICommand startExamCommand;
+            private ICommand changeTimeCommand;
+            public ICommand StartExamCommand { get { return startExamCommand; } }
+            public ICommand ChangeTimeCommand { get { return changeTimeCommand; } }
+
+
+            public void StartExam()
+            {
+            Console.WriteLine("moin");
             }
 
-            public int CorrectAnswers
+            public void SetTime()
             {
-                get
-                {
-                    return this.correctAnswers;
-                }
-
+                
             }
-
-            public int WrongAnswers
-            {
-                get
-                {
-                    return this.wrongAnswers;
-                }
-            }
-
             private bool ReturnTrue()
             {
-                return true;
+                return examCategroy != null; 
             }
-
+            
 
         }
     
