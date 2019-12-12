@@ -4,17 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
+        xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
         mc:Ignorable="d"
         Title="CreateCategory" Height="450" Width="800">
+
+    
+    <Window.DataContext>
+        <viewModel:CreateCategoryViewModel></viewModel:CreateCategoryViewModel>
+    </Window.DataContext>
+   
     <Grid>
         <Grid Background="#FFE5E3E3">
             <Border x:Name="header" BorderThickness="1" HorizontalAlignment="Left" Height="95" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" Background="#FF4094EB"/>
             <Label x:Name="newCategory" Content="Neue Kategorie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="79,25,0,0" Height="41" Width="250" FontFamily="Verdana" FontSize="20" FontWeight="Bold" Foreground="#FFFAFAFA"/>
             <Button x:Name="createCategory" Content="Erstellen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="651,25,0,0" Height="41"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White"/>
-            <TextBox x:Name="categoryName" HorizontalAlignment="Left" Height="56" TextWrapping="Wrap" Text="Kategoriename eingeben" VerticalAlignment="Top" Width="383" Margin="191,151,0,0" Foreground="#FF8B8787" FontSize="30" BorderBrush="#FF0040FF"/>
-            <Viewbox HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
-
-
+            <TextBox x:Name="categoryName" HorizontalAlignment="Left" Height="56" TextWrapping="Wrap" Text="{ Binding Path=Category.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="383" Margin="191,151,0,0" Foreground="#FF8B8787" FontSize="30" BorderBrush="#FF0040FF"/>
 
         </Grid>
 
