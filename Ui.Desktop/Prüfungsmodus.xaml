@@ -18,7 +18,7 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="94" Margin="375,141,0,0" VerticalAlignment="Top" Width="231">
             <Label Content="image" Height="35" Margin="79.2,34.2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="73"/>
         </Border>
-        <TextBox HorizontalAlignment="Left" Height="42" Margin="271,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" TextChanged="TextBox_TextChanged" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Height="42" Margin="271,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438"  FontSize="20"/>
         <Label Content="Antwort:" HorizontalAlignment="Left" Margin="271,261,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="20"/>
         <ProgressBar HorizontalAlignment="Left" Height="10" Margin="271,371,0,0" VerticalAlignment="Top" Width="438" Value="66"/>
         <TextBlock HorizontalAlignment="Left" Height="32" Margin="271,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" FontSize="20"><Run Text="Was bedeuted xyz...?"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>

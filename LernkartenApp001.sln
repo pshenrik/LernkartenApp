@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Shared", "_Shared", "{A1170B78-1EE3-4484-9222-F290B8D58D3E}"
 EndProject
@@ -24,6 +24,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.MediatorServiceBus", "Services.MediatorServiceBus\Services.MediatorServiceBus.csproj", "{3E24307D-A668-42B4-A5A0-1336090DB81F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.Desktop", "Ui.Desktop\Ui.Desktop.csproj", "{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E24307D-A668-42B4-A5A0-1336090DB81F} = {3E24307D-A668-42B4-A5A0-1336090DB81F}
+		{FFAAEEFB-6F81-4063-8762-EB50F8C9DFE9} = {FFAAEEFB-6F81-4063-8762-EB50F8C9DFE9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
