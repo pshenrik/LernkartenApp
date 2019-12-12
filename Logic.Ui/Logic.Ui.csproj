@@ -61,7 +61,7 @@
     <Compile Include="Wrapper\CardCollectionViewModel.cs" />
     <Compile Include="Wrapper\CardPageViewModel.cs" />
     <Compile Include="Wrapper\CardViewModel.cs" />
-    <Compile Include="Wrapper\CategoryViewModel.cs" />
+    <Compile Include="Wrapper\ViewCategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">
