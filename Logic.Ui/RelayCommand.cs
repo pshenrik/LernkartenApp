@@ -13,11 +13,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui
 
         private readonly Action WhatToExecute;
         private readonly Func<bool> WhenToExecute;
+        private Action title;
+
         public RelayCommand(Action What, Func<bool> When)
         {
             this.WhatToExecute = What;
             this.WhenToExecute = When;
         }
+
+        public RelayCommand(Action title)
+        {
+            this.title = title;
+        }
+
         public bool CanExecute(object parameter)
         {
             return WhenToExecute();
