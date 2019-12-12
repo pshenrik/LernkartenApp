@@ -59,10 +59,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Category.xaml.cs">
-      <DependentUpon>Category.xaml</DependentUpon>
+    <Compile Include="ViewCategory.xaml.cs">
+      <DependentUpon>ViewCategory.xaml</DependentUpon>
     </Compile>
-    <Page Include="Category.xaml">
+    <Page Include="ViewCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,16 +9,16 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    public class CategoryViewModel
+    public class ViewCategoryViewModel
     {
 
-        public static ObservableCollection<CardViewModel> cardColl; 
-        public CategoryViewModel(CardCollectionViewModel cards)
+        public static ObservableCollection<CardViewModel> cardColl;
+        public ViewCategoryViewModel(CardCollectionViewModel cards)
         {
             cardColl = new ObservableCollection<CardViewModel>(cards);
-           
+
         }
-       public CategoryViewModel()
+        public ViewCategoryViewModel()
         {
 
         }
@@ -26,7 +26,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             get
             {
-                return cardColl.Count + " sind vorhanden"; 
+                return cardColl.Count + " sind vorhanden";
             }
         }
 
@@ -34,7 +34,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public string getCardName(String name)
         {
 
-            return null; 
+            return null;
         }
 
         public void NameSort()
@@ -46,8 +46,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
 
         }
-    
-    
-        
+
+
+
     }
 }
+
