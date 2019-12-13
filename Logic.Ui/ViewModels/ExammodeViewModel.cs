@@ -11,64 +11,162 @@ using System.Windows.Input;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    
 
-    
-        public class ExamModeViewModel : AbstractViewModel
+
+
+    public class ExamModeViewModel : AbstractViewModel
+    {
+
+        private int cardCounter; 
+        private CardCollectionViewModel[] collections;
+        private float time;
+        private int cardAmount;
+        private bool canStart;
+        public CategoryViewModel[] CategoryList { get; set; }
+
+
+        public ExamModeViewModel()
         {
-
-            private Category examCategroy;
-            private Card[] ExamCards;
-            private float time;
-            private int CardAmount;
-            private float QuestionProgress;
-            private float ExamProgress;
-            private int wrongAnswers;
-            private int correctAnswers;
-            private bool examStarted;
-
-            
-            public ExamModeViewModel()
+            getCategorys();
+            this.cardAmount = 1;
+            this.time = 5;    
+            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnStartTrue);     
+        }
+      
+        #region Propertys
+        public CardCollectionViewModel[] Collections
+        {
+            get
             {
-                this.examCategroy = new Category();
-                this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
-                this.changeTimeCommand = new RelayCommand(this.SetTime, this.ReturnTrue);
+                return this.collections;
             }
-
-            public ExamModeViewModel(Category category)
-            {
-                this.examCategroy = category;
-
-            }
-            
-            public float Time
-            {
-                get { return this.time; }
-                set { this.time += value; }
-            }
-            
-            private ICommand startExamCommand;
-            private ICommand changeTimeCommand;
-            public ICommand StartExamCommand { get { return startExamCommand; } }
-            public ICommand ChangeTimeCommand { get { return changeTimeCommand; } }
-
-
-            public void StartExam()
-            {
-            Console.WriteLine("moin");
-            }
-
-            public void SetTime()
+            set
             {
                 
+                this.collections = value;
+                int counter = 0;
+                for (int i = 0; i < collections.Length; i++)
+                {
+                    counter += collections[i].Count;
+                }
+                this.CardCounter = counter;
+                Console.WriteLine(counter);
+                if(counter > 0)
+                {
+                    CanStart = true;
+                }else
+                {
+                    CanStart = false;
+                }
+                
             }
-            private bool ReturnTrue()
+        }
+        public float Time
+        {
+            get
             {
-                return examCategroy != null; 
+                return this.time;
+            }
+            set {
+                this.time = value;
+                Console.WriteLine(time);
+                OnPropertyChanged();
+
             }
             
+        }
+        public bool CanStart
+        {
+            get
+            {
+                return canStart;
+                
+            }
+            set
+            {
+                this.canStart = value;
+                OnPropertyChanged();
+            }
+
 
         }
-    
+        public int CardCounter
+        {
+            get
+            {
+                return this.cardCounter;
+            }
+            set
+            {
+                this.cardCounter = value;
+                this.CardAmount = value/2 +1;
+                OnPropertyChanged();
+            }
+
+        }
+        public int CardAmount
+        {
+            get
+            {
+                return this.cardAmount;
+            }
+            set
+            {
+                this.cardAmount = value;
+                Console.WriteLine(cardAmount);
+                OnPropertyChanged();
+            }
+        }
+
+        
+        #endregion
+
+        #region Command / RelayCommandStuff
+
+        private ICommand startExamCommand;
+        
+        public ICommand StartExamCommand { get { return startExamCommand; } }
+
+        public void StartExam()
+        {
+            Console.WriteLine("moin");
+        }
+        #endregion
+
+
+
+
+        #region Other
+        private bool ReturnStartTrue()
+        {
+            return true;
+        }
+
+        private CardCollectionViewModel coll;
+        private CardCollectionViewModel[] cols;
+        private void getCategorys()
+        {
+            CategoryList = new CategoryViewModel[20];
+            for (int i =0; i< CategoryList.Length; i++)  {
+                CategoryList[i] = new CategoryViewModel();
+                CategoryList[i].Name = "Moin " + (i+1);
+                cols = new CardCollectionViewModel[1];
+                coll = new CardCollectionViewModel();
+                for(int j = 0; j<i*2; j++)
+                {
+                    coll.Add(new CardViewModel("Hallo"));
+                    
+                }
+                
+                cols[0] = coll;
+                CategoryList[i].Collections = cols;
+            }
+            
+            
+        }
+        #endregion
+
+    }
+
 
 }
