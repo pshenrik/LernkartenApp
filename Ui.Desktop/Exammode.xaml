@@ -19,9 +19,9 @@
             <ColumnDefinition Width="245*"/>
             <ColumnDefinition Width="547*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Start" Command="{Binding StartExamCommand,Mode=OneWay}" HorizontalAlignment="Left" Margin="31,285,0,0" VerticalAlignment="Top" Width="118" Height="35"/>
+        <Button Content="Start" Command="{Binding StartExamCommand, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="31,285,0,0" VerticalAlignment="Top" Width="118" Height="35"/>
         <Slider Name="timeSlider" Value="{Binding Time }" HorizontalAlignment="Left" Height="30" Maximum="20" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="1" Margin="31,221,0,0" VerticalAlignment="Top" Width="118"/>
-        <Slider Name="questionSlider" Value="{Binding CardAmount}" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Maximum="50" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" Height="30" Margin="31,111,0,0" VerticalAlignment="Top" Width="118"/>
+        <Slider Name="questionSlider" Value="{Binding CardAmount}" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Maximum="{Binding CategoryCounter}" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" Height="30" Margin="31,111,0,0" VerticalAlignment="Top" Width="118"/>
         <Label Content="Anzahl Fragen:" HorizontalAlignment="Left" Height="32" Margin="31,74,0,0" VerticalAlignment="Top" Width="118" FontSize="16" FontFamily="Calibri"/>
         <Label Content="Zeit pro Frage&#xD;&#xA;(in Sekunden)" HorizontalAlignment="Left" Margin="31,162,0,0" VerticalAlignment="Top" Width="118" FontSize="16" FontFamily="Calibri" Height="54"/>
         <Button Content="Zurück" HorizontalAlignment="Left" Height="36" Margin="31,345,0,0" VerticalAlignment="Top" Width="118" FontFamily="Calibri"/>
@@ -36,8 +36,10 @@
         <TextBlock HorizontalAlignment="Left" Height="32" Margin="26,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" FontSize="20" Grid.Column="1"><Run Text="Was bedeuted xyz...?"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock Text="{Binding CardAmount, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"  HorizontalAlignment="Left" Margin="31,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="31,256,0,0" TextWrapping="Wrap" Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.078,-0.781"/>
-        <Label Content="Kategorie" HorizontalAlignment="Left" Margin="31,16,0,0" VerticalAlignment="Top" Width="118"/>
-        <ComboBox HorizontalAlignment="Left" Margin="31,47,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Kategorie" HorizontalAlignment="Left" FontSize="20" Margin="31,16,0,0" VerticalAlignment="Top" Width="118"/>
+        <ComboBox HorizontalAlignment="Left" Margin="31,47,0,0" ItemsSource="{Binding CategoryList}" DisplayMemberPath="Name" SelectedValuePath="Collections" SelectedValue="{Binding Collections}" VerticalAlignment="Top" Width="120">
+            
+        </ComboBox>
 
 
     </Grid>
