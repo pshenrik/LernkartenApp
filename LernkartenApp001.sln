@@ -24,6 +24,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.MediatorServiceBus", "Services.MediatorServiceBus\Services.MediatorServiceBus.csproj", "{3E24307D-A668-42B4-A5A0-1336090DB81F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.Desktop", "Ui.Desktop\Ui.Desktop.csproj", "{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E24307D-A668-42B4-A5A0-1336090DB81F} = {3E24307D-A668-42B4-A5A0-1336090DB81F}
+		{FFAAEEFB-6F81-4063-8762-EB50F8C9DFE9} = {FFAAEEFB-6F81-4063-8762-EB50F8C9DFE9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBus", "ServiceBus\ServiceBus.csproj", "{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +53,10 @@ Global
 		{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +66,7 @@ Global
 		{2FB7346B-AE7E-44D0-976F-B1A882A1624E} = {B43139E7-3679-47F5-8321-1536AD90D0C8}
 		{3E24307D-A668-42B4-A5A0-1336090DB81F} = {E038998A-D3BF-46E3-9F0F-0C0075D8D623}
 		{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA} = {D9E7837F-57A0-4565-A580-A0C8C84BB157}
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C} = {E038998A-D3BF-46E3-9F0F-0C0075D8D623}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F018897E-0E7E-497C-B983-B6B1578E39EA}
