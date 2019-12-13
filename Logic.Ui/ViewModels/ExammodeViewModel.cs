@@ -99,6 +99,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.cardCounter = value;
+                this.CardAmount = value/2 +1;
                 OnPropertyChanged();
             }
 
@@ -145,10 +146,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private CardCollectionViewModel[] cols;
         private void getCategorys()
         {
-            CategoryList = new CategoryViewModel[5];
+            CategoryList = new CategoryViewModel[20];
             for (int i =0; i< CategoryList.Length; i++)  {
                 CategoryList[i] = new CategoryViewModel();
-                CategoryList[i].Name = "Moin " + i+1;
+                CategoryList[i].Name = "Moin " + (i+1);
                 cols = new CardCollectionViewModel[1];
                 coll = new CardCollectionViewModel();
                 for(int j = 0; j<i*2; j++)
