@@ -43,9 +43,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public float Time
         {
-            get { return this.time; }
-            set { this.time += value; }
+            get
+            {
+                return this.time;
+            }
+            set {
+                this.time = value;
+                Console.WriteLine(time);
+            }
+            
         }
+
+
 
         private ICommand startExamCommand;
         private ICommand changeTimeCommand;

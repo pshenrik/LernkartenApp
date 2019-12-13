@@ -16,7 +16,7 @@
 
     <Grid>
         <Button Content="Start" Command="{Binding StartExamCommand,Mode=OneWay}" HorizontalAlignment="Left" Margin="31,285,0,0" VerticalAlignment="Top" Width="118" Height="35"/>
-        <Slider Name="timeSlider" HorizontalAlignment="Left" Height="30" Maximum="20" Minimum="10" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="1" Margin="31,221,0,0" VerticalAlignment="Top" Width="118"/>
+        <Slider Name="timeSlider" Value="{Binding Time, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Maximum="20" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="1" Margin="31,221,0,0" VerticalAlignment="Top" Width="118"/>
         <Slider Name="questionSlider" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Maximum="50" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" Height="30" Margin="31,111,0,0" VerticalAlignment="Top" Width="118"/>
         <Label Content="Anzahl Fragen:" HorizontalAlignment="Left" Height="32" Margin="31,74,0,0" VerticalAlignment="Top" Width="118" FontSize="16" FontFamily="Calibri"/>
         <Label Content="Zeit pro Frage&#xD;&#xA;(in Sekunden)" HorizontalAlignment="Left" Margin="31,162,0,0" VerticalAlignment="Top" Width="118" FontSize="16" FontFamily="Calibri" Height="54"/>
