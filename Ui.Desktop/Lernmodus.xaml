@@ -12,11 +12,11 @@
         <viewModel:LernmodusViewModel></viewModel:LernmodusViewModel>
     </Window.DataContext>
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="45" Margin="254,290,0,0" TextWrapping="Wrap" Text="Antwort eingeben..." VerticalAlignment="Top" Width="335"/>
-        <Button Content="Hilfe" HorizontalAlignment="Left" Margin="165,297,0,0" VerticalAlignment="Top" Width="67" Height="30" />
-        <Button Content="Makieren" HorizontalAlignment="Left" Margin="96,297,0,0" VerticalAlignment="Top" Width="64" Height="30"/>
-        <Button Content="Fertig" HorizontalAlignment="Left" Margin="613,297,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
-        <Button Content="Abbrechen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="64" Height="30"/>
+        <TextBox HorizontalAlignment="Left" Height="45" Margin="254,290,0,0" TextWrapping="Wrap" Text="{Binding Path=AnswerInputText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="335" SpellCheck.IsEnabled="True" Cursor="IBeam"/>
+        <Button Content="Hilfe" HorizontalAlignment="Left" Margin="165,297,0,0" VerticalAlignment="Top" Width="67" Height="30" Command="{Binding RequestHelpCommand, Mode=OneWay}" />
+        <Button Content="Makieren" HorizontalAlignment="Left" Margin="96,297,0,0" VerticalAlignment="Top" Width="64" Height="30" Command="{Binding MarkCardCommand, Mode=OneWay}"/>
+        <Button Content="Fertig" HorizontalAlignment="Left" Margin="613,297,0,0" VerticalAlignment="Top" Width="67" Height="30" Command="{Binding SubmitAnswerCommand, Mode=OneWay}"/>
+        <Button Content="Abbrechen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="64" Height="30" Command="{Binding CancelTrainingCommand, Mode=OneWay}"/>
         <Image HorizontalAlignment="Left" Height="183" VerticalAlignment="Top" Width="335" Margin="254,34,0,0"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="158" Stroke="Black" VerticalAlignment="Top" Width="335" Margin="254,41,0,0"/>
         <TextBlock HorizontalAlignment="Left" Margin="254,204,0,0" 
@@ -28,7 +28,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="661,15,0,0" 
                    TextWrapping="Wrap" Text="Gelernte Karten in diesem Durchlauf" VerticalAlignment="Top" FontSize="14"/>
         <TextBlock HorizontalAlignment="Left" Margin="704,57,0,0" 
-                   TextWrapping="Wrap" Text="{Binding Path=LearnedCards, UpdateSourceTrigger=PropertyChanged}" 
+                   TextWrapping="Wrap" Text="{Binding Path=LearnedCardsCounter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                    VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
 
     </Grid>

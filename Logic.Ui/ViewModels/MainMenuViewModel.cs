@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
-
+using System.Windows.Input;
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
    public class MainMenuViewModel : AbstractViewModel
@@ -27,12 +27,34 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
        
       
         public static ObservableCollection<CategoryViewModel> Categories = new ObservableCollection<CategoryViewModel>(GetCategoryWrappers());
+
+        private ICommand testMethodVar; 
+          public MainMenuViewModel() {
+            testMethodVar = new RelayCommand(this.Test, this.getTrue); 
+        }
+        
+        public ICommand TestMethode
+        {
+            get
+            {
+                return testMethodVar; 
+            }
+        }
+        public void Test()
+        {
+
+            Console.WriteLine("HIHIHIHIHIH"); 
+        }
+        private bool getTrue()
+        {
+            return true; 
+        }
+
+
         /*
         public RelayCommand ChangeModelCommand { get; }
 
-        public MainMenuViewModel() { 
-
-        }
+      
         public string NumberOfCategories
         {
             get

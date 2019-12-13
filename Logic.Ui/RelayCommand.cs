@@ -10,35 +10,37 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui
 {
     public class RelayCommand : ICommand
     {
-
-        private readonly Action WhatToExecute;
-        private readonly Func<bool> WhenToExecute;
-        private Action title;
-
-        public RelayCommand(Action What, Func<bool> When)
-        {
-            this.WhatToExecute = What;
-            this.WhenToExecute = When;
-        }
-
-        public RelayCommand(Action title)
-        {
-            this.title = title;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return WhenToExecute();
-        }
-
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add { }
+            remove { }
+        }
+        private Action methodToExecute;
+        private Func<bool> canExecuteEvaluator;
+        public RelayCommand(Action methodToExecute, Func<bool> canExecuteEvaluator)
+        {
+            this.methodToExecute = methodToExecute;
+            this.canExecuteEvaluator = canExecuteEvaluator;
+        }
+        public RelayCommand(Action methodToExecute)
+            : this(methodToExecute, null)
+        {
+        }
+        public bool CanExecute(object parameter)
+        {
+            if (this.canExecuteEvaluator == null)
+            {
+                return true;
+            }
+            else
+            {
+                bool result = this.canExecuteEvaluator.Invoke();
+                return result;
+            }
         }
         public void Execute(object parameter)
         {
-            WhatToExecute();
+            this.methodToExecute.Invoke();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29306.81
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Shared", "_Shared", "{A1170B78-1EE3-4484-9222-F290B8D58D3E}"
 EndProject
@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.Desktop", "Ui.Desktop\Ui
 		{FFAAEEFB-6F81-4063-8762-EB50F8C9DFE9} = {FFAAEEFB-6F81-4063-8762-EB50F8C9DFE9}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBus", "ServiceBus\ServiceBus.csproj", "{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{2FB7346B-AE7E-44D0-976F-B1A882A1624E} = {B43139E7-3679-47F5-8321-1536AD90D0C8}
 		{3E24307D-A668-42B4-A5A0-1336090DB81F} = {E038998A-D3BF-46E3-9F0F-0C0075D8D623}
 		{D2A2DEDE-7572-4600-9F8F-F56E48AF2DBA} = {D9E7837F-57A0-4565-A580-A0C8C84BB157}
+		{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C} = {E038998A-D3BF-46E3-9F0F-0C0075D8D623}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F018897E-0E7E-497C-B983-B6B1578E39EA}
