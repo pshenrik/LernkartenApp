@@ -17,27 +17,27 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     public class ExamModeViewModel : AbstractViewModel
     {
 
-        private Category examCategroy;
-        private Card[] ExamCards;
+        private CategoryViewModel examCategory;
+        
         private float time;
-        private int CardAmount;
-        private float QuestionProgress;
-        private float ExamProgress;
-        private int wrongAnswers;
-        private int correctAnswers;
-        private bool examStarted;
+        private int cardAmount;
+        public CategoryViewModel[] CategoryList;
 
 
         public ExamModeViewModel()
         {
-            this.examCategroy = new Category();
-            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
-            this.changeTimeCommand = new RelayCommand(this.SetTime, this.ReturnTrue);
+            getCategorys();
+
+            this.cardAmount = 1;
+            this.time = 5;
+            
+            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnStartTrue);
+            
         }
 
         public ExamModeViewModel(Category category)
         {
-            this.examCategroy = category;
+            
 
         }
 
@@ -50,16 +50,44 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set {
                 this.time = value;
                 Console.WriteLine(time);
+                OnPropertyChanged();
+
             }
             
         }
 
+        public int CardAmount
+        {
+            get
+            {
+                return this.cardAmount;
+            }
+            set
+            {
+                this.cardAmount = value;
+                Console.WriteLine(cardAmount);
+                OnPropertyChanged();
+            }
+        }
 
-
+        public CategoryViewModel ExamCategory
+        {
+            get
+            {
+                return this.examCategory;
+            }
+            set
+            {
+                this.examCategory = value;
+                
+            }
+        }
+        
         private ICommand startExamCommand;
-        private ICommand changeTimeCommand;
+        
         public ICommand StartExamCommand { get { return startExamCommand; } }
-        public ICommand ChangeTimeCommand { get { return changeTimeCommand; } }
+        
+        
 
 
         public void StartExam()
@@ -67,15 +95,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             Console.WriteLine("moin");
         }
 
-        public void SetTime()
+        
+        private bool ReturnStartTrue()
         {
-
-        }
-        private bool ReturnTrue()
-        {
-            return examCategroy != null;
+            return examCategory != null;
         }
 
+        private void getCategorys()
+        {
+            CategoryList = new CategoryViewModel[5];
+            for (int i =0; i< CategoryList.Length; i++)  {
+                CategoryList[i] = new CategoryViewModel();
+                CategoryList[i].Name = "Moin" + i;
+            }
+            
+            
+        }
 
     }
 
