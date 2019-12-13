@@ -50,8 +50,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     counter += collections[i].Count;
                 }
                 this.CardCounter = counter;
-                Console.WriteLine(collections.Length);
-                CanStart = true;
+                Console.WriteLine(counter);
+                if(counter > 0)
+                {
+                    CanStart = true;
+                }else
+                {
+                    CanStart = false;
+                }
+                
             }
         }
         public float Time
@@ -141,11 +148,17 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             CategoryList = new CategoryViewModel[5];
             for (int i =0; i< CategoryList.Length; i++)  {
                 CategoryList[i] = new CategoryViewModel();
-                CategoryList[i].Name = "Moin" + i;
+                CategoryList[i].Name = "Moin " + i+1;
+                cols = new CardCollectionViewModel[1];
                 coll = new CardCollectionViewModel();
-                coll.Add(new CardViewModel("Hallo"));
-                coll.Add(new CardViewModel("Hallo"));
+                for(int j = 0; j<i*2; j++)
+                {
+                    coll.Add(new CardViewModel("Hallo"));
+                    
+                }
                 
+                cols[0] = coll;
+                CategoryList[i].Collections = cols;
             }
             
             
