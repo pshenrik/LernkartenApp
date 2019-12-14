@@ -7,6 +7,7 @@ using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using System.Windows.Input;
+using System.Threading;
 
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
@@ -16,18 +17,27 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
     public class ExamModeViewModel : AbstractViewModel
     {
-
+        private bool enableSetting;
         private int cardCounter; 
         private CardCollectionViewModel[] collections;
-        private float time;
+        private long time;
         private int cardAmount;
         private bool canStart;
+        private float questionProgress;
+        private float examProgress;
+        private CardViewModel[] cards;
+        
+        private bool stopTask;
         public CategoryViewModel[] CategoryList { get; set; }
 
 
         public ExamModeViewModel()
         {
             getCategorys();
+            Time = 5;
+            ExamProgress = 0;
+            QuestionProgress = 0;
+            this.EnableSettings = true;
             this.cardAmount = 1;
             this.time = 5;    
             this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnStartTrue);     
@@ -44,13 +54,30 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             {
                 
                 this.collections = value;
+
+                
                 int counter = 0;
                 for (int i = 0; i < collections.Length; i++)
                 {
+                   
                     counter += collections[i].Count;
                 }
+                cards = new CardViewModel[counter];
+                counter = 0;
+                for(int i = 0; i < collections.Length; i++)
+                {
+
+
+                    for(int j = 0; j < collections[i].Count; j++)
+                    {
+                        cards[counter] = collections[i].ElementAt(j);
+                        counter++;
+                    }
+                    
+
+                }
                 this.CardCounter = counter;
-                Console.WriteLine(counter);
+                
                 if(counter > 0)
                 {
                     CanStart = true;
@@ -61,7 +88,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 
             }
         }
-        public float Time
+        public long Time
         {
             get
             {
@@ -69,7 +96,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             set {
                 this.time = value;
-                Console.WriteLine(time);
+                
                 OnPropertyChanged();
 
             }
@@ -90,6 +117,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
         }
+        public float QuestionProgress
+        {
+            get
+            {
+                return this.questionProgress;
+            }
+            set
+            {
+                this.questionProgress = value;
+                OnPropertyChanged();
+            }
+        }
         public int CardCounter
         {
             get
@@ -104,6 +143,31 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
 
         }
+        public float ExamProgress
+        {
+            get
+            {
+                return this.examProgress;
+            }
+            set
+            {
+                this.examProgress = value;
+                OnPropertyChanged();
+            }
+
+        }
+        public bool EnableSettings
+        {
+            get
+            {
+                return this.enableSetting;
+            }
+            set
+            {
+                this.enableSetting = value;
+                OnPropertyChanged();
+            }
+        }
         public int CardAmount
         {
             get
@@ -113,7 +177,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.cardAmount = value;
-                Console.WriteLine(cardAmount);
+                
                 OnPropertyChanged();
             }
         }
@@ -129,11 +193,58 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public void StartExam()
         {
-            Console.WriteLine("moin");
+            EnableSettings = false;
+            CanStart = false;
+            Thread examThread = new Thread(new ThreadStart(() => exam()));
+
+            examThread.Start();
+           
         }
         #endregion
+        private void exam()
+        {
+            
+            Console.WriteLine("moin");
 
 
+            for (int i = 0; i < CardAmount; i++)
+            {
+                QuestionProgress = 0;
+                stopTask = false;
+                Action a = new Action(() => startTime(this.time));
+                Thread progressThread = new Thread(new ThreadStart(() => startTime(this.time)));
+                progressThread.Start();
+                progressThread.Join();
+                
+                Thread.Sleep(500);
+                ExamProgress = 100f / CardAmount * (i+1);
+            }
+            QuestionProgress = 0;
+           // ExamProgress = 0;
+            EnableSettings = true;
+            CanStart = true;
+        }
+        
+        private void startTime(long timeForQuestion)
+        {
+            
+            long timeMs = timeForQuestion * 1000;
+           
+            long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            long diff = 0;
+
+            while (diff < timeMs && !stopTask)
+            {
+
+                QuestionProgress = 100f / timeMs * diff;
+                
+                diff = DateTimeOffset.Now.ToUnixTimeMilliseconds() - startTime;
+                
+                
+            }
+            
+
+        }
 
 
         #region Other
@@ -142,8 +253,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             return true;
         }
 
+
+
+
+
+
         private CardCollectionViewModel coll;
         private CardCollectionViewModel[] cols;
+
+
         private void getCategorys()
         {
             CategoryList = new CategoryViewModel[20];

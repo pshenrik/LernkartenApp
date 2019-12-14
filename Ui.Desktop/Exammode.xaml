@@ -20,8 +20,8 @@
             <ColumnDefinition Width="547*"/>
         </Grid.ColumnDefinitions>
         <Button Content="Start" Command="{Binding StartExamCommand, Mode=OneWay}" IsEnabled="{Binding CanStart, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="31,285,0,0" VerticalAlignment="Top" Width="118" Height="35"/>
-        <Slider Name="timeSlider" Value="{Binding Time }" HorizontalAlignment="Left" Height="30" Maximum="20" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="1" Margin="31,221,0,0" VerticalAlignment="Top" Width="118"/>
-        <Slider Name="questionSlider" Value="{Binding CardAmount}" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Maximum="{Binding CardCounter}" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" Height="30" Margin="31,111,0,0" VerticalAlignment="Top" Width="118"/>
+        <Slider Name="timeSlider" Value="{Binding Time }" IsEnabled="{Binding EnableSettings, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Maximum="20" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="1" Margin="31,221,0,0" VerticalAlignment="Top" Width="118"/>
+        <Slider Name="questionSlider" Value="{Binding CardAmount}" IsEnabled="{Binding EnableSettings, UpdateSourceTrigger=PropertyChanged}" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Maximum="{Binding CardCounter}" Minimum="1" TickPlacement="BottomRight" TickFrequency="1" Height="30" Margin="31,111,0,0" VerticalAlignment="Top" Width="118"/>
         <Label Content="Anzahl Fragen:" HorizontalAlignment="Left" Height="32" Margin="31,74,0,0" VerticalAlignment="Top" Width="118" FontSize="16" FontFamily="Calibri"/>
         <Label Content="Zeit pro Frage&#xD;&#xA;(in Sekunden)" HorizontalAlignment="Left" Margin="31,162,0,0" VerticalAlignment="Top" Width="118" FontSize="16" FontFamily="Calibri" Height="54"/>
         <Button Content="Zurück" HorizontalAlignment="Left" Height="36" Margin="31,345,0,0" VerticalAlignment="Top" Width="118" FontFamily="Calibri"/>
@@ -32,14 +32,15 @@
         </Border>
         <TextBox HorizontalAlignment="Left" Height="42" Margin="26,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438"  FontSize="20" Grid.Column="1"/>
         <Label Content="Antwort:" HorizontalAlignment="Left" Margin="26,261,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="20" Grid.Column="1"/>
-        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="26,371,0,0" VerticalAlignment="Top" Width="438" Value="66" Grid.Column="1"/>
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="26,360,0,0" VerticalAlignment="Top" Width="438" Value="{Binding QuestionProgress, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left" Height="32" Margin="26,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" FontSize="20" Grid.Column="1"><Run Text="Was bedeuted xyz...?"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock Text="{Binding CardAmount, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"  HorizontalAlignment="Left" Margin="31,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="31,256,0,0" TextWrapping="Wrap" Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.078,-0.781"/>
-        <Label Content="Kategorie" HorizontalAlignment="Left" FontSize="20" Margin="31,16,0,0" VerticalAlignment="Top" Width="118"/>
-        <ComboBox HorizontalAlignment="Left" Margin="31,47,0,0" ItemsSource="{Binding CategoryList}" DisplayMemberPath="Name" SelectedValuePath="Collections" SelectedValue="{Binding Collections}" VerticalAlignment="Top" Width="120">
+        <Label Content="Kategorie" HorizontalAlignment="Left" FontSize="16" Margin="31,16,0,0" VerticalAlignment="Top" Width="118"/>
+        <ComboBox HorizontalAlignment="Left" Margin="31,47,0,0" ItemsSource="{Binding CategoryList}" IsEnabled="{Binding EnableSettings, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Collections" SelectedValue="{Binding Collections}" VerticalAlignment="Top" Width="120">
             
         </ComboBox>
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="26,375,0,0" VerticalAlignment="Top" Width="438" Value="{Binding ExamProgress, UpdateSourceTrigger=PropertyChanged}" Foreground="Blue" Grid.Column="1"/>
 
 
     </Grid>
