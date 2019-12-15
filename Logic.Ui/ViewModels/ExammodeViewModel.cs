@@ -28,6 +28,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private CardViewModel[] cards;
         private string color;
         private bool stopTask;
+        private bool examStarted;
+        private string answer;
         public CategoryViewModel[] CategoryList { get; set; }
 
 
@@ -102,6 +104,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             
         }
+        public String Answer
+        {
+            get
+            {
+                return this.answer;
+            }
+            set
+            {
+                this.answer = value;
+                OnPropertyChanged();
+                Console.WriteLine(this.answer);
+            }
+        }
         public bool CanStart
         {
             get
@@ -148,10 +163,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.cardCounter = value;
-                this.CardAmount = value/2 +1;
+                this.CardAmount = value/2 ;
                 OnPropertyChanged();
             }
 
+        }
+        public bool ExamStarted
+        {
+            get
+            {
+                return this.examStarted;
+            }
+            set
+            {
+                this.examStarted = value;
+                OnPropertyChanged();
+            }
         }
         public float ExamProgress
         {
@@ -217,21 +244,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public void StartExam()
         {
+            ExamStarted = true;
             EnableSettings = false;
             CanStart = false;
             Thread examThread = new Thread(new ThreadStart(() => exam()));
-
             examThread.Start();
-           
         }
         #endregion
+
+        #region ExamMethods
         private void exam()
         {
-            
-            Console.WriteLine("moin");
-
-
-            for (int i = 0; i < CardAmount; i++)
+        for (int i = 0; i < CardAmount; i++)
             {
                 QuestionProgress = 0;
                 stopTask = false;
@@ -239,38 +263,34 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 Thread progressThread = new Thread(new ThreadStart(() => startTime(this.time)));
                 progressThread.Start();
                 progressThread.Join();
-                
+                ExamProgress = 100f / CardAmount * (i + 1);
                 Thread.Sleep(500);
-                ExamProgress = 100f / CardAmount * (i+1);
+                Answer = "";
+                
             }
             QuestionProgress = 0;
-           // ExamProgress = 0;
+            ExamProgress = 0;
             EnableSettings = true;
             CanStart = true;
+            ExamStarted = false;
         }
         
         private void startTime(long timeForQuestion)
         {
             
-            long timeMs = timeForQuestion * 1000;
-           
+            long timeMs = timeForQuestion * 1000;         
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             long diff = 0;
-
             while (diff < timeMs && !stopTask)
             {
-
-                QuestionProgress = 100f / timeMs * diff;
-                
-                diff = DateTimeOffset.Now.ToUnixTimeMilliseconds() - startTime;
-                
-                
-            }
-            
-
+                QuestionProgress = 100f / timeMs * diff;               
+                diff = DateTimeOffset.Now.ToUnixTimeMilliseconds() - startTime;                              
+            }           
         }
 
-
+        #endregion
+        
+        
         #region Other
         private bool ReturnStartTrue()
         {
@@ -298,8 +318,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 {
                     coll.Add(new CardViewModel("Hallo"));
                     
-                }
-                
+                }               
                 cols[0] = coll;
                 CategoryList[i].Collections = cols;
             }
