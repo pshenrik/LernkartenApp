@@ -32,7 +32,7 @@
         </Border>
         <TextBox HorizontalAlignment="Left" Height="42" Margin="26,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438"  FontSize="20" Grid.Column="1"/>
         <Label Content="Antwort:" HorizontalAlignment="Left" Margin="26,261,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="20" Grid.Column="1"/>
-        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="26,360,0,0" VerticalAlignment="Top" Width="438" Value="{Binding QuestionProgress, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="26,360,0,0" VerticalAlignment="Top" Width="438" Value="{Binding QuestionProgress, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Color, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left" Height="32" Margin="26,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" FontSize="20" Grid.Column="1"><Run Text="Was bedeuted xyz...?"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock Text="{Binding CardAmount, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"  HorizontalAlignment="Left" Margin="31,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="31,256,0,0" TextWrapping="Wrap" Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.078,-0.781"/>

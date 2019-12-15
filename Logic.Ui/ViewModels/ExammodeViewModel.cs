@@ -26,7 +26,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private float questionProgress;
         private float examProgress;
         private CardViewModel[] cards;
-        
+        private string color;
         private bool stopTask;
         public CategoryViewModel[] CategoryList { get; set; }
 
@@ -126,6 +126,16 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.questionProgress = value;
+                
+                if (questionProgress <= 66)
+                {
+                    this.Color = "Green";
+                }else if (questionProgress <= 90 ) {
+                    this.Color = "Orange";
+                }else
+                {
+                    this.Color = "Red";
+                }
                 OnPropertyChanged();
             }
         }
@@ -152,6 +162,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.examProgress = value;
+
+               
                 OnPropertyChanged();
             }
 
@@ -182,6 +194,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
+        public String Color
+        {
+            get
+            {
+                return this.color;
+            }
+            set
+            {
+                this.color = value;
+                OnPropertyChanged();
+            }
+        }
         
         #endregion
 
