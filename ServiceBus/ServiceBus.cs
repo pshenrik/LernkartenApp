@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace De.HsFlensburg.LernkartenApp001.Services.ServiceBus
 {
-
     public class ServiceBus : IServiceBus
     {
         private static volatile ServiceBus instance;

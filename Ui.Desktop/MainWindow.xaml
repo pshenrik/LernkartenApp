@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:Ui.Desktop"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.IsEnabled>
+        
+        <Binding Source = "{StaticResource MessageListener}" Path="BindableProperty"></Binding>
+        
+    </Window.IsEnabled>
     <Grid Margin="0,-27,3.6,3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
