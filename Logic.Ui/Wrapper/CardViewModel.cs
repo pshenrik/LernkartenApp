@@ -45,5 +45,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                 return Card.Back;
             }
         }
+
+        public bool Marked
+        {
+            get
+            {
+                return Card.Marked;
+            }
+
+            set
+            {
+                Card.Marked = value;
+            }
+        }
     }
 }

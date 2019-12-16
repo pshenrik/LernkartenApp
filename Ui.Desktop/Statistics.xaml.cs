@@ -21,7 +21,7 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
     {
         public Statistics()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
