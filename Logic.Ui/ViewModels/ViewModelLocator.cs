@@ -17,6 +17,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             MainMenuVM = new MainMenuViewModel();
             ViewCategoryVM = new ViewCategoryViewModel();
             ExportVM = new ExportViewModel();
+            StatisticsVM = new StatisticsViewModel();
            
 
         }
@@ -35,5 +36,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public ViewCategoryViewModel ViewCategoryVM { get; }
         public ExportViewModel ExportVM { get; }
+
+        public StatisticsViewModel StatisticsVM { get; }
     }
 }
