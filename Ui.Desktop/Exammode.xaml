@@ -11,7 +11,7 @@
 
 
     <Window.DataContext>
-        <viewModel:ExamModeViewModel></viewModel:ExamModeViewModel>
+        <Binding Path="ExamModeVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
 
     <Grid>
