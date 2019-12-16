@@ -60,7 +60,7 @@
             <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="search..." Margin="10,0,79,25"  Background="White" SelectionOpacity="13" FontSize="25" />
 
 
-            <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"   FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding TestMethode, Mode=OneWay}"/>
+            <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"   FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding OpenMainMenuCommand, Mode=OneWay}"/>
         </Grid>
         <Grid Margin="0,100,0,275">
             <Grid.RowDefinitions>
