@@ -44,14 +44,14 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    createCategory.Show();
                    
                });
-            //ServiceBus.Instance.Register<OpenViewCategoryWindow>(
-            //   this,
-            //   msg =>
-            //   {
-            //       Category category = new Category();
-            //       category.Show();
+            ServiceBus.Instance.Register<OpenViewCategoryWindow>(
+               this,
+               msg =>
+               {
+                   Category category = new Category();
+                   category.Show();
 
-            //   });
+               });
             ServiceBus.Instance.Register<OpenExamModeWindow>(
                this,
                msg =>
