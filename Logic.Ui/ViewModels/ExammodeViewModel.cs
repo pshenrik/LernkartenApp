@@ -270,6 +270,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 Action a = new Action(() => startTime(this.time));
                 Thread progressThread = new Thread(new ThreadStart(() => startTime(this.time)));
                 progressThread.Start();
+
+                //TODO: AbfrageAlgorithmus
+
                 progressThread.Join();
                 ExamProgress = 100f / CardAmount * (i + 1);
                 Thread.Sleep(500);
