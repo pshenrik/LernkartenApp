@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messages\OpenExamModeWindow.cs" />
+    <Compile Include="Messages\OpenMainMenuWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\ExamModeViewModel.cs" />

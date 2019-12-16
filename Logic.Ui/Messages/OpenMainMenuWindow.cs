@@ -11,8 +11,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages
     {
         public OpenMainMenuWindow()
         {
-            
+
         }
-        public ExamModeViewModel Mw { get; set; }
+        
     }
 }
