@@ -8,6 +8,9 @@ using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using System.Windows.Input;
+using De.HsFlensburg.LernkartenApp001.Services.ServiceBus;
+using De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages;
+
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
    public class MainMenuViewModel : AbstractViewModel
@@ -32,7 +35,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
           public MainMenuViewModel() {
             testMethodVar = new RelayCommand(this.Test, this.getTrue); 
         }
-        
+        private void OpenCreateCategoryWindow()
+        {
+            ServiceBus.Instance.Send(new OpenCreateCategoryWindow());
+        }
+        public RelayCommand OpenCreateCategoryWindowCommand { get; }
+
         public ICommand TestMethode
         {
             get
