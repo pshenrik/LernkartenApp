@@ -1,10 +1,11 @@
 ﻿using System;
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using De.HsFlensburg.LernkartenApp001.Business.Model.Common;
 
 namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
 {
-    public class Card : INotifyPropertyChanged
+    public class Card : BusinessObject
     {
         private string name;
         private bool marked;
@@ -43,12 +44,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        
 
         //Die Karte guckt selber, ob eine Antwort mit den Keywords übereinstimmt.
         public bool CheckAnswer(String answer)
