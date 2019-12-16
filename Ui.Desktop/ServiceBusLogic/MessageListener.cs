@@ -25,7 +25,49 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                 {
                     Window1 mainmenu = new Window1();
                     mainmenu.Show();
+                    
                 });
+
+            ServiceBus.Instance.Register<OpenStatisticsWindow>(
+               this,
+               msg =>
+               {
+                   Statistics statWindow = new Statistics();
+                   statWindow.Show();
+                   
+               });
+            ServiceBus.Instance.Register<OpenCreateCategoryWindow>(
+               this,
+               msg =>
+               {
+                   CreateCategory createCategory = new CreateCategory();
+                   createCategory.Show();
+                   
+               });
+            ServiceBus.Instance.Register<OpenViewCategoryWindow>(
+               this,
+               msg =>
+               {
+                   Category category = new Category();
+                   category.Show();
+                   
+               });
+            ServiceBus.Instance.Register<OpenExamModeWindow>(
+               this,
+               msg =>
+               {
+                   Prüfungsmodus examMode = new Prüfungsmodus();
+                   examMode.Show();
+                   
+               });
+            ServiceBus.Instance.Register<OpenLernmodusWindow>(
+               this,
+               msg =>
+               {
+                   Lernmodus lernmodus = new Lernmodus();
+                   lernmodus.Show();
+                   
+               });
         }
 
 
@@ -51,7 +93,9 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
 
         // Und nur dafür ist diese Property... :
         public bool BindableProperty => true;
-
+        
+        
+           
         #endregion
     }
 
