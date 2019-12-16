@@ -15,7 +15,7 @@
     </Window.DataContext>
     <Window.IsEnabled>
         
-        <Binding Source ="{StaticResource MessageListener}" Path="BindableProperty"></Binding>
+        <Binding Source ="{StaticResource MessageListener}" Path="ShowExamModeWindow"></Binding>
         
     </Window.IsEnabled>
 

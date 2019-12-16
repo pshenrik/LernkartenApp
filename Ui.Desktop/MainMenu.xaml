@@ -10,7 +10,11 @@
     <Window.DataContext>
         <viewModel:MainMenuViewModel></viewModel:MainMenuViewModel>
     </Window.DataContext>
-   
+    <Window.IsEnabled>
+
+        <Binding Source ="{StaticResource MessageListener}" Path="BindableProperty"></Binding>
+
+    </Window.IsEnabled>
     <Grid>
         <Grid Margin="0,0,0,324" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
 
