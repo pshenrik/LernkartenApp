@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages
 {
-    public class OpenLernmodusWindow
+    public class OpenExportWindow
     {
     }
 }
