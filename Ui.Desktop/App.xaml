@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Ui.Desktop"
              xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
-             StartupUri="Exammode.xaml">
+             StartupUri="Lernmodus.xaml">
     <Application.Resources>
         <!--<viewModel:ViewModelLocator x:Key="ViewModelLocator">
         </>-->
