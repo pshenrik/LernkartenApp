@@ -1,51 +1,76 @@
-﻿using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
+﻿using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
+using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-   public class CreateCardViewModel
+   public class CreateCardViewModel : AbstractViewModel
     {
         
-        public CardPageViewModel CardPageQuestion { set; get; }
-        public CardPageViewModel CardPageAnswer { set; get; }
-        public string Question { get; set; }
-        public string Answer { get; set; }
+        public CardCollectionViewModel Cards { get; set; }
+        public CardViewModel Card { get; set; }
+        public CardPageViewModel Front { get; set; }
+        public CardPageViewModel Back { get; set; }
 
-        public CardCollectionViewModel cards;
+        //relayCommand
+        private ICommand createCardCommand;
+        public ICommand CreateCardCommand { get { return createCardCommand; } }
 
-        
-        //CardWrapper card;
+        private ICommand addQuestionImgCommand;
+        public ICommand AddQuestionImgCommand { get { return addQuestionImgCommand; } }
 
+        private ICommand addAnswerImgCommand;
+        public ICommand AddAnswerImgCommand { get { return addAnswerImgCommand; } }
         public CreateCardViewModel()
         {
-            CardPageQuestion = new CardPageViewModel();
-            CardPageAnswer = new CardPageViewModel();
-            CardPageQuestion.Text = "Farge Eingeben";
-            CardPageAnswer.Text = "Antwort Eingeben";
 
-            //card = new CardWrapper();
-            //card.Front = cardPage.page;
+            Card = new CardViewModel("");
+
+            Front = new CardPageViewModel();
+            Back = new CardPageViewModel();
+            Front.Text = "Frage eingeben";
+            Back.Text = "Antwort eingeben";
+
+            Card.Front.Text = Front.Text;
+            Card.Back.Text = Back.Text;
+            Card.Name = "Überschrift";
+
+            //relayCommand
+           createCardCommand = new RelayCommand(this.CreateCard, this.ReturnTrue);
+
+           addQuestionImgCommand = new RelayCommand(this.addQuestionImg, this.ReturnTrue);
+
+           addAnswerImgCommand = new RelayCommand(this.addAnswerImg, this.ReturnTrue);
         }
 
 
 
-        public void CreateCard()
+        private void CreateCard()
         {
-            //CardWrapper newCardVM = new CardWrapper();
-            //newCardVM.Back.Text = Question;
-            //newCardVM.Front.Text = Answer;
-            //cards.Add(newCardVM);
+            Card.Front.Text = Front.Text;
+            Card.Back.Text = Back.Text;
+            Console.WriteLine(Card.Front.Text);
 
-            //CardViewModel newCardVM = new CardViewModel();
-            //newCardVM.Front = CardPageQuestion.Text;
-            //newCardVM.= CardPageAnswer.n
-            //newCardVM.Back = CardPageAnswer.Text;
+           // this.Cards.Add(this.Card);
 
+        }
 
+        private void addQuestionImg()
+        {
+            Console.WriteLine("Frage");
+        }
+        private void addAnswerImg()
+        {
+            Console.WriteLine("Antwort");
+        }
+        private bool ReturnTrue()
+        {
+            return true;
         }
     }
 }

@@ -57,6 +57,7 @@
     <Compile Include="ViewModels\CreateCategoryViewModel.cs" />
     <Compile Include="ViewModels\ExportViewModel.cs" />
     <Compile Include="ViewModels\LernmodusViewModel.cs" />
+    <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\ViewCategoryViewModel.cs" />
     <Compile Include="Wrapper\CardCollectionViewModel.cs" />
