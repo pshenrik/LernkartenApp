@@ -49,6 +49,7 @@
     <Compile Include="Messages\OpenLernmodusWindow.cs" />
     <Compile Include="Messages\OpenMainMenuWindow.cs" />
     <Compile Include="Messages\OpenStatisticsWindow.cs" />
+    <Compile Include="Messages\OpenViewCategoryWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\ExamModeViewModel.cs" />
