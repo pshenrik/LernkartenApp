@@ -25,7 +25,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common
 
         // PropertyChangedHandler with Mapping for different-named Properties.
         public void PropertyChangedHandler(object sender, PropertyChangedEventArgs e)
-        {
+        {   
             String propertyNameOut = "";
             if (this.PropertyMapping.TryGetValue(e.PropertyName, out propertyNameOut))
             {

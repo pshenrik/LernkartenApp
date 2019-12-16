@@ -26,7 +26,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             set
             {
                 category.Name = value;
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
     }
