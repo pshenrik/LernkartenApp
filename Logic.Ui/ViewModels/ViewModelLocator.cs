@@ -16,6 +16,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ViewModelLocator()
         {
             ObservableCollection<Category> list = new ObservableCollection<Category>();
+
+
             CreateCategoryVM = new CreateCategoryViewModel();
             CreateCardVM = new CreateCardViewModel();
             ExamModeVM = new ExamModeViewModel();
