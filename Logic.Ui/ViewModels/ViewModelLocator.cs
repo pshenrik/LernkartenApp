@@ -10,29 +10,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     {
         public ViewModelLocator()
         {
-            /*int variante = 1;
-
-            if (variante == 0)
-            {
-                #region Variante1: Erzegung des Models im MainWindowViewModel
-                // MainWindow wird erzeugt - und darin das Model...
-                MainWindowVM = new MainWindowViewModel();
-                // Das Model geholt...
-                SetViewModel svm = MainWindowVM.getModel();
-                // und allen weiteren ViewModels übergeben:
-                StatisticWindowVM = new StatisticsWindowViewModel(svm);
-                #endregion
-            }
-            else
-            {
-                #region Variante2: Erzegung des Models im ViewModelLocator
-                // Das Model wird erzeugt
-                SetViewModel svm = new SetViewModel();
-                // und allen  ViewModels übergeben:
-                MainWindowVM = new MainWindowViewModel(svm);
-                StatisticWindowVM = new StatisticsWindowViewModel(svm);
-                #endregion
-            }*/
+            CreateCategoryVM = new CreateCategoryViewModel();
+            CreateCardVM = new CreateCardViewModel();
+            ExamModeVM = new ExamModeViewModel();
+            LernmodusVM = new LernmodusViewModel();
+            MainMenuVM = new MainMenuViewModel();
+            ViewCategoryVM = new ViewCategoryViewModel();
+            ExportVM = new ExportViewModel();
+           
 
         }
         // ToDo: Inhalte für Vorlesung: Achtung: diese Properties 
@@ -40,5 +25,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         // Compiler erwartet nur internal...
         public MainMenuViewModel MainWindowVM { get; }
         //public StatisticsWindowViewModel StatisticWindowVM { get; }
+        public CreateCategoryViewModel CreateCategoryVM { get; }
+        public CreateCardViewModel CreateCardVM { get; }
+        public ExamModeViewModel ExamModeVM { get; }
+
+        public LernmodusViewModel LernmodusVM { get; }
+
+        public MainMenuViewModel MainMenuVM { get; }
+
+        public ViewCategoryViewModel ViewCategoryVM { get; }
+        public ExportViewModel ExportVM { get; }
     }
 }
