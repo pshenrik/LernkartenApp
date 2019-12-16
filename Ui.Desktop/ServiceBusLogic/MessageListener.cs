@@ -44,14 +44,14 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    createCategory.Show();
                    
                });
-            ServiceBus.Instance.Register<OpenViewCategoryWindow>(
-               this,
-               msg =>
-               {
-                   Category category = new Category();
-                   category.Show();
+            //ServiceBus.Instance.Register<OpenViewCategoryWindow>(
+            //   this,
+            //   msg =>
+            //   {
+            //       Category category = new Category();
+            //       category.Show();
                    
-               });
+            //   });
             ServiceBus.Instance.Register<OpenExamModeWindow>(
                this,
                msg =>
@@ -60,14 +60,15 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    examMode.Show();
                    
                });
-            ServiceBus.Instance.Register<OpenLernmodusWindow>(
-               this,
-               msg =>
-               {
-                   Lernmodus lernmodus = new Lernmodus();
-                   lernmodus.Show();
+
+            //ServiceBus.Instance.Register<OpenLernmodusWindow>(
+            //   this,
+            //   msg =>
+            //   {
+            //       Lernmodus lernmodus = new Lernmodus();
+            //       lernmodus.Show();
                    
-               });
+            //   });
         }
 
 
