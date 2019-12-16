@@ -21,6 +21,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
      * 
      * CardCollection hat kein NotifyPropertyChanged ?
      * 
+     * ListBox Name anzeigen
+     * 
      * 
      * TODO
      * x:Class="ViewModelLocator.MainWindow"
@@ -69,18 +71,62 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         }
 
         private CardViewModel currentCard;
+        public CardViewModel CurrentCard
+        {
+            get
+            {
+                return currentCard;
+            }
+
+            set
+            {
+                currentCard = value;
+                OnPropertyChanged();
+            }
+        }
         //Speichert bereits beantwortete Fragen
         private ObservableCollection<CardViewModel> finishedCards;
-        private CategoryViewModel category;
+
+        public ObservableCollection<CardViewModel> FinishedCards
+        {
+            get
+            {
+                return finishedCards;
+            }
+
+            set
+            {
+                finishedCards = value;
+                OnPropertyChanged();
+            }
+            
+        }
+
+        
+
         #endregion
 
 
-        public LernmodusViewModel()
+        private CategoryViewModel category;
+        public LernmodusViewModel(CategoryViewModel category)
         {
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             cancelTrainingCommand = new RelayCommand(this.CancelTraining, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
             requestHelpCommand = new RelayCommand(this.RequestHelp, this.ReturnTrue);
+            this.FinishedCards = new ObservableCollection<CardViewModel>();
+          
+            FinishedCards.Add(new CardViewModel(new Card("test1")));
+            FinishedCards.Add(new CardViewModel(new Card("test2")));
+            FinishedCards.Add(new CardViewModel(new Card("test3")));
+            
+
+            this.category = category;
+            //Bsp Karte erstellen
+            this.CurrentCard = new CardViewModel(new Card("Hammerhart"));
+            CurrentCard.Front.Text = "Woher kommt Brendan?";
+            CurrentCard.Back.Text = "Mepw";
+            
         }
         
 
@@ -91,9 +137,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             
 
-          /*  finishedCards.Add(currentCard);
+          /*FinishedCards.Add(currentCard);
             CardViewModel nextCard = GetNextCard();
             currentCard = nextCard;*/
+        }
+
+        //Zeigt eine Karte aus der Liste an
+        private void ShowCard()
+        {
+
         }
 
    
@@ -105,6 +157,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             int collectionIndex = rand.Next(category.Collections.Length);
             //Zufällige Karte aus dem Stapel auswählen
             int cardIndex = rand.Next(category.Collections[collectionIndex].cards.Count);
+
+
+
             CardViewModel card = new CardViewModel(category.Collections[collectionIndex].cards[cardIndex]);
 
             return card;

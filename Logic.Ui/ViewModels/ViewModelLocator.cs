@@ -1,5 +1,7 @@
-﻿using System;
+﻿using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,18 +10,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
     public class ViewModelLocator
     {
+        
+
+
         public ViewModelLocator()
         {
+            ObservableCollection<Category> list = new ObservableCollection<Category>();
+
+
             CreateCategoryVM = new CreateCategoryViewModel();
             CreateCardVM = new CreateCardViewModel();
             ExamModeVM = new ExamModeViewModel();
-            LernmodusVM = new LernmodusViewModel();
+            LernmodusVM = new LernmodusViewModel(new Wrapper.CategoryViewModel());
             MainMenuVM = new MainMenuViewModel();
             ViewCategoryVM = new ViewCategoryViewModel();
             ExportVM = new ExportViewModel();
             StatisticsVM = new StatisticsViewModel();
-           
-
         }
         // ToDo: Inhalte für Vorlesung: Achtung: diese Properties 
         // müssen Public sein, da sie von XMAL aus referenziert werden! 

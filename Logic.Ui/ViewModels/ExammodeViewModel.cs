@@ -8,6 +8,8 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using System.Windows.Input;
 using System.Threading;
+using De.HsFlensburg.LernkartenApp001.Services.ServiceBus;
+using De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages;
 
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
@@ -42,7 +44,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.EnableSettings = true;
             this.cardAmount = 1;
             this.time = 5;    
-            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnStartTrue);     
+            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnStartTrue);
+            OpenMainMenuCommand = new RelayCommand(() => this.back());
         }
       
         #region Propertys
@@ -239,9 +242,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         #region Command / RelayCommandStuff
 
         private ICommand startExamCommand;
-        
+        private ICommand backToMenu;
         public ICommand StartExamCommand { get { return startExamCommand; } }
-
+        public RelayCommand OpenMainMenuCommand { get; }
         public void StartExam()
         {
             ExamStarted = true;
@@ -249,6 +252,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             CanStart = false;
             Thread examThread = new Thread(new ThreadStart(() => exam()));
             examThread.Start();
+        }
+
+        private void back()
+        {
+            ServiceBus.Instance.Send(new OpenMainMenuWindow());
         }
         #endregion
 

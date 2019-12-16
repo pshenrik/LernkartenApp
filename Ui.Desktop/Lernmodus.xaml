@@ -7,22 +7,24 @@
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
         mc:Ignorable="d"
         Title="Lernmodus" Height="450" Width="800">
-    
+
     <Window.DataContext>
-        <viewModel:LernmodusViewModel></viewModel:LernmodusViewModel>
+        <Binding Path="LernmodusVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
+
+ 
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="45" Margin="254,290,0,0" TextWrapping="Wrap" Text="{Binding Path=AnswerInputText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="335" SpellCheck.IsEnabled="True" Cursor="IBeam"/>
-        <Button Content="Hilfe" HorizontalAlignment="Left" Margin="165,297,0,0" VerticalAlignment="Top" Width="67" Height="30" Command="{Binding RequestHelpCommand, Mode=OneWay}" />
-        <Button Content="Makieren" HorizontalAlignment="Left" Margin="96,297,0,0" VerticalAlignment="Top" Width="64" Height="30" Command="{Binding MarkCardCommand, Mode=OneWay}"/>
-        <Button Content="Fertig" HorizontalAlignment="Left" Margin="613,297,0,0" VerticalAlignment="Top" Width="67" Height="30" Command="{Binding SubmitAnswerCommand, Mode=OneWay}"/>
+        <TextBox HorizontalAlignment="Left" Height="45" Margin="295,320,0,0" TextWrapping="Wrap" Text="{Binding Path=AnswerInputText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="335" SpellCheck.IsEnabled="True" Cursor="IBeam"/>
+        <Button Content="Hilfe" HorizontalAlignment="Left" Margin="212,328,0,0" VerticalAlignment="Top" Width="67" Height="30" Command="{Binding RequestHelpCommand, Mode=OneWay}" />
+        <Button Content="Makieren" HorizontalAlignment="Left" Margin="129,328,0,0" VerticalAlignment="Top" Width="64" Height="30" Command="{Binding MarkCardCommand, Mode=OneWay}"/>
+        <Button Content="Fertig" HorizontalAlignment="Left" Margin="663,328,0,0" VerticalAlignment="Top" Width="67" Height="30" Command="{Binding SubmitAnswerCommand, Mode=OneWay}" RenderTransformOrigin="1.687,0.467"/>
         <Button Content="Abbrechen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="64" Height="30" Command="{Binding CancelTrainingCommand, Mode=OneWay}"/>
-        <Image HorizontalAlignment="Left" Height="183" VerticalAlignment="Top" Width="335" Margin="254,34,0,0"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="158" Stroke="Black" VerticalAlignment="Top" Width="335" Margin="254,41,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Margin="254,204,0,0" 
+        <Image HorizontalAlignment="Left" Height="158" VerticalAlignment="Top" Width="335" Margin="296,82,0,0"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="158" Stroke="Black" VerticalAlignment="Top" Width="335" Margin="296,82,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Margin="296,245,0,0" 
                    TextWrapping="Wrap" Text="{Binding Path=CurrentCard.Front.Text, UpdateSourceTrigger=PropertyChanged}"
-                   VerticalAlignment="Top" Width="335" Height="37" FontSize="14"/>
-        <TextBlock HorizontalAlignment="Left" Margin="380,12,0,0" 
+                   VerticalAlignment="Top" Width="335" Height="51" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="418,52,0,0" 
                    TextWrapping="Wrap" Text="{Binding Path=CurrentCard.Name, UpdateSourceTrigger=PropertyChanged}"
                    VerticalAlignment="Top" FontSize="18"/>
         <TextBlock HorizontalAlignment="Left" Margin="661,15,0,0" 
@@ -30,6 +32,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="704,57,0,0" 
                    TextWrapping="Wrap" Text="{Binding Path=LearnedCardsCounter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                    VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <ListBox ItemsSource="{Binding FinishedCards}" HorizontalAlignment="Left" Height="269" Margin="15,95,0,0" VerticalAlignment="Top" Width="114" Cursor="None">
+        </ListBox>
+        <Label Content="Letzte Karten&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="82" Height="26"/>
 
     </Grid>
 </Window>

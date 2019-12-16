@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
 {
-    /// <summary>
-    /// Interaktionslogik für Statistics.xaml
-    /// </summary>
     public partial class Statistics : Window
     {
         public Statistics()

@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using System.ComponentModel;
-using System.Collections.ObjectModel;
+
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;

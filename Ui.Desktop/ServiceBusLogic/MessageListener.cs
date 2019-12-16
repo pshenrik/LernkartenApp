@@ -3,28 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages;
+using De.HsFlensburg.LernkartenApp001.Services.ServiceBus;
 
 namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
 {
-    class MassageListener
+    public class MessageListener
     {
-        public MassageListener()
+        public MessageListener()
         {
-          //  InitMessenger();
+            InitMessenger();
         }
 
         #region methods
-        /*
+
         private void InitMessenger()
         {
-            ServiceBus.Instance.Register<OpenStatisticsWindowMessage>(
+            ServiceBus.Instance.Register<OpenMainMenuWindow>(
                 this,
                 msg =>
                 {
-                    StatisticsWindow window = new StatisticsWindow();
-                    window.Show();
+                    Window1 mainmenu = new Window1();
+                    mainmenu.Show();
                 });
-        }*/
+        }
 
 
         #endregion
