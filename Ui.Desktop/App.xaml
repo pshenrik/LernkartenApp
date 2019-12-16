@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Ui.Desktop"
              xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
+             xmlns:desktop="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic"
              StartupUri="Exammode.xaml">
     <Application.Resources>
         <!--<viewModel:ViewModelLocator x:Key="ViewModelLocator">
@@ -10,7 +11,8 @@
    
             <viewModel:ViewModelLocator x:Key="ViewModelLocator">
             </viewModel:ViewModelLocator>
-            
-        </Application.Resources>
+        <desktop:MessageListener x:Key="MessageListener">
+        </desktop:MessageListener>
+    </Application.Resources>
     
 </Application>

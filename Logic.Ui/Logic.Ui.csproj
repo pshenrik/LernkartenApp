@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Messages\OpenExamModeWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\ExamModeViewModel.cs" />
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">
       <Project>{ffaaeefb-6f81-4063-8762-eb50f8c9dfe9}</Project>
       <Name>Business.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceBus\ServiceBus.csproj">
+      <Project>{4ec5848e-808c-4af1-8dd3-72733e000599}</Project>
+      <Name>ServiceBus</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

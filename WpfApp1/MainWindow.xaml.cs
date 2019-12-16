@@ -10,15 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
+namespace WpfApp1
 {
-    public partial class Statistics : Window
+    /// <summary>
+    /// Interaktionslogik für MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
-        public Statistics()
+        public MainWindow()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }
