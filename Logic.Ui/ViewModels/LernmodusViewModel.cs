@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
      */
     public class LernmodusViewModel : AbstractViewModel
     {
+        #region ICommand
         private ICommand submitAnswerCommand;
         private ICommand cancelTrainingCommand;
         private ICommand markCardCommand;
@@ -35,10 +37,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ICommand CancelTrainingCommand { get { return cancelTrainingCommand; } }
         public ICommand MarkCardCommand { get { return markCardCommand; } }
         public ICommand RequestHelpCommand { get { return requestHelpCommand; } }
+        #endregion
 
+        #region Properties
         private String answerInputText;
-
-
         public String AnswerInputText
         {
             get
@@ -48,6 +50,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 answerInputText = value;
+                OnPropertyChanged();
             }
         }
 
@@ -61,13 +64,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 learnedCardsCounter = value;
+                OnPropertyChanged();
             }
         }
 
-
-
-
-
+        private CardViewModel currentCard;
+        //Speichert bereits beantwortete Fragen
+        private ObservableCollection<CardViewModel> finishedCards;
+        private CategoryViewModel category;
+        #endregion
 
 
         public LernmodusViewModel()
@@ -82,21 +87,43 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void SubmitAnswer()
         {
             Console.WriteLine(learnedCardsCounter);
-            learnedCardsCounter++;
+            LearnedCardsCounter++;
+
+            
+
+          /*  finishedCards.Add(currentCard);
+            CardViewModel nextCard = GetNextCard();
+            currentCard = nextCard;*/
+        }
+
+   
+
+        private CardViewModel GetNextCard()
+        {
+            Random rand = new Random();
+            //Erstmal zufällig aus einem der Stapel auswählen
+            int collectionIndex = rand.Next(category.Collections.Length);
+            //Zufällige Karte aus dem Stapel auswählen
+            int cardIndex = rand.Next(category.Collections[collectionIndex].cards.Count);
+            CardViewModel card = new CardViewModel(category.Collections[collectionIndex].cards[cardIndex]);
+
+            return card;
         }
 
         private void CancelTraining()
-        {
+        {   
             Console.WriteLine("cancel");
         }
 
         private void MarkCard()
         {
-            Console.WriteLine("mark");
+
+            //currentCard.Marked = true;
         }
 
         private void RequestHelp()
-        {
+        {   
+            //Zeigt ein Keyword an, wenn es nur eins gibt, dann wird die Hälfte des Strings angezeigt
             Console.WriteLine("help");
         }
 
