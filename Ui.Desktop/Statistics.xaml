@@ -9,6 +9,11 @@
     <Window.DataContext>
         <Binding Path="StatisticsVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
+    <Window.IsEnabled>
+
+        <Binding Source ="{StaticResource MessageListener}" Path="BindableProperty"></Binding>
+
+    </Window.IsEnabled>
 
     <Grid>
 
@@ -134,6 +139,7 @@
         <Label Content="Prüfungsmodus:" HorizontalAlignment="Left" Margin="412,215,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
         <Label Content="0:48" HorizontalAlignment="Left" Margin="564,168,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
         <Label Content="0:12&#xA;" HorizontalAlignment="Left" Margin="564,215,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
+        <Canvas HorizontalAlignment="Left" Height="60" Margin="412,23,0,0" VerticalAlignment="Top" Width="245"/>
 
     </Grid>
 </Window>
