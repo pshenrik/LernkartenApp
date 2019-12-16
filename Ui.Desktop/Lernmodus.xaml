@@ -7,10 +7,12 @@
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
         mc:Ignorable="d"
         Title="Lernmodus" Height="450" Width="800">
-    
+
     <Window.DataContext>
-        <viewModel:LernmodusViewModel></viewModel:LernmodusViewModel>
+        <Binding Path="LernmodusVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
+    
+    
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="45" Margin="254,290,0,0" TextWrapping="Wrap" Text="{Binding Path=AnswerInputText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="335" SpellCheck.IsEnabled="True" Cursor="IBeam"/>
         <Button Content="Hilfe" HorizontalAlignment="Left" Margin="165,297,0,0" VerticalAlignment="Top" Width="67" Height="30" Command="{Binding RequestHelpCommand, Mode=OneWay}" />

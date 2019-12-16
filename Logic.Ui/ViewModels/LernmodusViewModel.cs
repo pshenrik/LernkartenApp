@@ -71,16 +71,20 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private CardViewModel currentCard;
         //Speichert bereits beantwortete Fragen
         private ObservableCollection<CardViewModel> finishedCards;
-        private CategoryViewModel category;
+
         #endregion
 
 
-        public LernmodusViewModel()
+        private CategoryViewModel category;
+        public LernmodusViewModel(CategoryViewModel category)
         {
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             cancelTrainingCommand = new RelayCommand(this.CancelTraining, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
             requestHelpCommand = new RelayCommand(this.RequestHelp, this.ReturnTrue);
+
+            this.category = category;
+           // this.currentCard = category.Collections[0][0];
         }
         
 
