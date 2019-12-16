@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ServiceBusLogic\MessageListener.cs" />
     <Compile Include="ViewCategory.xaml.cs">
       <DependentUpon>ViewCategory.xaml</DependentUpon>
     </Compile>
@@ -158,6 +159,10 @@
     <ProjectReference Include="..\Logic.Ui\Logic.Ui.csproj">
       <Project>{2fb7346b-ae7e-44d0-976f-b1a882a1624e}</Project>
       <Name>Logic.Ui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceBus\ServiceBus.csproj">
+      <Project>{4ec5848e-808c-4af1-8dd3-72733e000599}</Project>
+      <Name>ServiceBus</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
