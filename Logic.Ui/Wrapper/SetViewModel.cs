@@ -27,7 +27,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             this.set = set;
             this.CollectionChanged += ViewModelCollectionChanged;
-            this.set.CollectionChanged += ModelCollectionChanged;
+            if(set != null)
+            {
+                this.set.CollectionChanged += ModelCollectionChanged;
+            }
+            
         }
 
 
