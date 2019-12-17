@@ -17,7 +17,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 
         public CardCollectionViewModel()
         {
-            cards = new CardCollection();
+            this.cards = new CardCollection();
 
             this.CollectionChanged += ViewModelCollectionChanged;
             cards.CollectionChanged += ModelCollectionChanged;
@@ -27,7 +27,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             this.cards = cards;
             this.CollectionChanged += ViewModelCollectionChanged;
-            this.cards.CollectionChanged += ModelCollectionChanged;
+            if(this.cards != null)
+            {
+                this.cards.CollectionChanged += ModelCollectionChanged;
+            }
+            
         }
         private void ViewModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
