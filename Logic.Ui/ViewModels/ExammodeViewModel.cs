@@ -59,7 +59,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             {
                 
                 this.collections = value;
-
+                Console.WriteLine(collections);
                 
                 int counter = 0;
                 for (int i = 0; i < collections.Length; i++)
@@ -318,8 +318,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void getCategorys()
         {
-            
-            
+            CategoryList = new CategoryViewModel[2];
+
+            CategoryList[0] = new CategoryViewModel("Mathe");
+            CategoryList[0].Collections[0].Add(new CardViewModel("Was ist 1+1"));
+            CategoryList[0].Collections[0].Add(new CardViewModel("Was ist Kartoffel"));
+
+            CategoryList[1] = new CategoryViewModel("Deutsch");
+            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist 1+1"));
+            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist Kartoffel"));
+            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist 1+1"));
+            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist Kartoffel"));
+            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist 1+1"));
+            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist Kartoffel"));
+
+
+
         }
         #endregion
 

@@ -11,7 +11,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
     public class CategoryViewModel : AbstractViewModel
     {
         public Category category;
-        public CardCollectionViewModel[] Collections;
+        public CardCollectionViewModel[] Collections { get; set; }
         
 
         public CategoryViewModel()
@@ -55,7 +55,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }
 
-        
+        public int NumberOfCards
+        {
+            get
+            {
+                return category.NumberOfCards;
+            }
+        }
 
 
     }

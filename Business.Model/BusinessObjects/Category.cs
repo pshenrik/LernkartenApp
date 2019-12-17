@@ -25,6 +25,11 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
         {
             this.Name = name;
             this.Collections = new CardCollection[5];
+            this.Collections[0] = new CardCollection();
+            this.Collections[1] = new CardCollection();
+            this.Collections[2] = new CardCollection();
+            this.Collections[3] = new CardCollection();
+            this.Collections[4] = new CardCollection();
 
         }
 
