@@ -33,9 +33,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private bool stopTask;
         private bool examStarted;
         private string answer;
-        private string frage;
+        private string question;
         private string progressString;
         private Random rand;
+        private string visabilityExamUi;
         public SetViewModel Set { get; set; }
         
         public CategoryViewModel[] CategoryList { get; set; }
@@ -44,9 +45,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ExamModeViewModel()
         {
             Set = new SetViewModel();
+            VisabilityExamUi = "Hidden";
             getCategorys();
             Time = 5;
-            Frage = "";
+            Question = "";
             ExamProgress = 0;
             QuestionProgress = 0;
             rand = new Random();
@@ -102,6 +104,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 
             }
         }
+        public String VisabilityExamUi
+        {
+            get
+            {
+                return this.visabilityExamUi;
+            }
+            set
+            {
+                this.visabilityExamUi = value;
+                OnPropertyChanged();
+            }
+        }
         public long Time
         {
             get
@@ -144,15 +158,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
         }
-        public String Frage
+        public String Question
         {
             get
             {
-                return this.frage; 
+                return this.question; 
             }
             set
             {
-                this.frage = value;
+                this.question = value;
                 OnPropertyChanged();
             }
         }
@@ -284,6 +298,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public void StartExam()
         {
             ExamStarted = true;
+            VisabilityExamUi = "Visable";
             EnableSettings = false;
             CanStart = false;
             Thread examThread = new Thread(new ThreadStart(() => exam()));
@@ -300,6 +315,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             for (int i = 0; i < CardAmount; i++)
             {
+                if(i == 0)
+                {
+                    Thread.Sleep(1000);
+                }
                 ProgressString = "Frage " + (i + 1) + " von " + CardAmount;
                 QuestionProgress = 0;
                 stopTask = false;
@@ -308,7 +327,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 getNextCard();
                 progressThread.Start();
 
-                Frage = currentCard.Front.Text;
+                Question = currentCard.Front.Text;
 
                 progressThread.Join();
                 ExamProgress = 100f / CardAmount * (i + 1);
@@ -316,13 +335,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 Answer = "";
                 
             }
+            VisabilityExamUi = "Hidden";
             QuestionProgress = 0;
             ExamProgress = 0;
             EnableSettings = true;
             CanStart = true;
             ExamStarted = false;
             ProgressString = "";
-            Frage = "";
+            Question = "";
         }
         
         private void startTime(long timeForQuestion)
