@@ -39,7 +39,7 @@
         <TextBlock Text="{Binding CardAmount, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"  HorizontalAlignment="Left" Margin="31,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="31,256,0,0" TextWrapping="Wrap" Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.078,-0.781"/>
         <Label Content="Kategorie" HorizontalAlignment="Left" FontSize="16" Margin="31,16,0,0" VerticalAlignment="Top" Width="118"/>
-        <ComboBox HorizontalAlignment="Left" Margin="31,47,0,0" ItemsSource="{Binding CategoryList}" IsEnabled="{Binding EnableSettings, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Collections" SelectedValue="{Binding Collections}" VerticalAlignment="Top" Width="120">
+        <ComboBox HorizontalAlignment="Left" Margin="31,47,0,0" ItemsSource="{Binding Set, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EnableSettings, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Collections" SelectedValue="{Binding Collections}" VerticalAlignment="Top" Width="120">
 
         </ComboBox>
         <ProgressBar HorizontalAlignment="Left" Height="10" Margin="26,351,0,0" VerticalAlignment="Top" Width="438" Value="{Binding ExamProgress, UpdateSourceTrigger=PropertyChanged}" Foreground="Blue" Grid.Column="1"/>

@@ -36,13 +36,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private string frage;
         private string progressString;
         private Random rand;
-        
+        public SetViewModel Set { get; set; }
         
         public CategoryViewModel[] CategoryList { get; set; }
 
 
         public ExamModeViewModel()
         {
+            Set = new SetViewModel();
             getCategorys();
             Time = 5;
             Frage = "";
@@ -423,20 +424,21 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void getCategorys()
         {
-            CategoryList = new CategoryViewModel[10];
+            
 
-            for(int i = 0; i < CategoryList.Length; i++)
+            for(int i = 0; i < 10; i++)
             {
-                CategoryList[i] = new CategoryViewModel("Kategorie" + (i+1));
+                CategoryViewModel cat  = new CategoryViewModel("Kategorie" + (i+1));
 
                 for(int j = 0; j < (i*2); j++)
                 {
                     CardViewModel card = new CardViewModel();
                     card.Front.Text = "Kategorie " + (i+1)+ " Frage " + (j+1);
-                    CategoryList[i].Collections[0].Add(card);
+                    cat.Collections[0].Add(card);
                 }
 
-                
+
+                Set.Add(cat);
             }
 
 
