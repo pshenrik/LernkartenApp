@@ -14,6 +14,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         public CardViewModel(Card card)
         {
             this.Card = card;
+            this.FrontVM = new CardPageViewModel(this.Card.Front);
+            this.BackVM = new CardPageViewModel(this.Card.Back);
         }
         public CardViewModel(string name)
         {

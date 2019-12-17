@@ -23,7 +23,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             cards.CollectionChanged += ModelCollectionChanged;
         }
 
-        public CardCollectionViewModel( CardCollection cards)
+        public CardCollectionViewModel(CardCollection cards)
         {
             this.cards = cards;
             this.CollectionChanged += ViewModelCollectionChanged;
