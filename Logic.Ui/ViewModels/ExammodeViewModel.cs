@@ -19,6 +19,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
     public class ExamModeViewModel : AbstractViewModel
     {
+        private CardViewModel currentCard; 
         private bool enableSetting;
         private int cardCounter; 
         private CardCollectionViewModel[] collections;
@@ -32,6 +33,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private bool stopTask;
         private bool examStarted;
         private string answer;
+        private string frage;
+        private string progressString;
+        private Random rand;
+        
+        
         public CategoryViewModel[] CategoryList { get; set; }
 
 
@@ -39,13 +45,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             getCategorys();
             Time = 5;
+            Frage = "";
             ExamProgress = 0;
             QuestionProgress = 0;
+            rand = new Random();
             this.EnableSettings = true;
             this.cardAmount = 1;
             this.time = 5;    
             this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnStartTrue);
-            OpenMainMenuCommand = new RelayCommand(() => this.back());
+            
         }
       
         #region Propertys
@@ -134,6 +142,30 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
 
 
+        }
+        public String Frage
+        {
+            get
+            {
+                return this.frage; 
+            }
+            set
+            {
+                this.frage = value;
+                OnPropertyChanged();
+            }
+        }
+        public String ProgressString
+        {
+            get
+            {
+                return this.progressString;
+            }
+            set
+            {
+                this.progressString = value;
+                OnPropertyChanged();
+            }
         }
         public float QuestionProgress
         {
@@ -242,9 +274,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         #region Command / RelayCommandStuff
 
         private ICommand startExamCommand;
-        private ICommand backToMenu;
+        
         public ICommand StartExamCommand { get { return startExamCommand; } }
-        public RelayCommand OpenMainMenuCommand { get; }
+
+        #endregion
+
+        #region ExamMethods
         public void StartExam()
         {
             ExamStarted = true;
@@ -253,25 +288,26 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             Thread examThread = new Thread(new ThreadStart(() => exam()));
             examThread.Start();
         }
-
-        private void back()
-        {
-            ServiceBus.Instance.Send(new OpenMainMenuWindow());
-        }
-        #endregion
-
-        #region ExamMethods
         private void exam()
         {
-        for (int i = 0; i < CardAmount; i++)
+            usedCards = new bool[5][];
+            usedCards[0] = new bool[Collections[0].Count];
+            usedCards[1] = new bool[Collections[1].Count];
+            usedCards[2] = new bool[Collections[2].Count];
+            usedCards[3] = new bool[Collections[3].Count];
+            usedCards[4] = new bool[Collections[4].Count];
+
+            for (int i = 0; i < CardAmount; i++)
             {
+                ProgressString = "Frage " + (i + 1) + " von " + CardAmount;
                 QuestionProgress = 0;
                 stopTask = false;
                 Action a = new Action(() => startTime(this.time));
                 Thread progressThread = new Thread(new ThreadStart(() => startTime(this.time)));
+                getNextCard();
                 progressThread.Start();
 
-                //TODO: AbfrageAlgorithmus
+                Frage = currentCard.Front.Text;
 
                 progressThread.Join();
                 ExamProgress = 100f / CardAmount * (i + 1);
@@ -284,6 +320,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             EnableSettings = true;
             CanStart = true;
             ExamStarted = false;
+            ProgressString = "";
+            Frage = "";
         }
         
         private void startTime(long timeForQuestion)
@@ -299,6 +337,73 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }           
         }
 
+        private bool[][] usedCards; 
+        private void getNextCard()
+        {
+
+            for(int i = 0; i < 1; i++)
+            {
+                int collectionSelector = rand.Next(0, 101);
+
+                int collection;
+                
+                if(collectionSelector <= 30)
+                {
+                    collection = 0;
+                }else if(collectionSelector <= 55)
+                {
+                    collection = 1;
+                }else if(collectionSelector <= 75)
+                {
+                    collection = 2;
+                }else if (collectionSelector <= 90)
+                {
+                    collection = 3;
+                }else
+                {
+                    collection = 4;
+                }
+
+                if(Collections[collection].Count == 0)
+                {
+                    i--;
+                }else if (!UnusedCards(collection)) {
+                    i--;
+                }
+                else
+                {
+                    for(int j = 0; j < 1; j++)
+                    {
+                        int questionSelector = rand.Next(0, Collections[collection].Count);
+
+                        if (usedCards[collection][questionSelector])
+                        {
+                            j--;
+                        }else
+                        {
+                            currentCard = Collections[collection].ElementAt(questionSelector);
+                            usedCards[collection][questionSelector] = true;
+                        }
+                    }
+                }
+            }
+
+            
+        }
+
+        private bool UnusedCards(int col)
+        {
+            bool freeCards = false;
+            for(int i = 0; i < usedCards[col].Length; i++)
+            {
+                if (!usedCards[col][i])
+                {
+                    freeCards = true;
+                }
+            }
+
+            return freeCards;
+        }
         #endregion
         
         
@@ -318,19 +423,21 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void getCategorys()
         {
-            CategoryList = new CategoryViewModel[2];
+            CategoryList = new CategoryViewModel[10];
 
-            CategoryList[0] = new CategoryViewModel("Mathe");
-            CategoryList[0].Collections[0].Add(new CardViewModel("Was ist 1+1"));
-            CategoryList[0].Collections[0].Add(new CardViewModel("Was ist Kartoffel"));
+            for(int i = 0; i < CategoryList.Length; i++)
+            {
+                CategoryList[i] = new CategoryViewModel("Kategorie" + (i+1));
 
-            CategoryList[1] = new CategoryViewModel("Deutsch");
-            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist 1+1"));
-            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist Kartoffel"));
-            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist 1+1"));
-            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist Kartoffel"));
-            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist 1+1"));
-            CategoryList[1].Collections[0].Add(new CardViewModel("Was ist Kartoffel"));
+                for(int j = 0; j < (i*2); j++)
+                {
+                    CardViewModel card = new CardViewModel();
+                    card.Front.Text = "Kategorie " + (i+1)+ " Frage " + (j+1);
+                    CategoryList[i].Collections[0].Add(card);
+                }
+
+                
+            }
 
 
 

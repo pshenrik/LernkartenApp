@@ -8,8 +8,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
     {
         internal Card Card { get; set; }
 
-        public CardPageViewModel FrontVM;
-        public CardPageViewModel BackVM;
+        private CardPageViewModel FrontVM;
+        private CardPageViewModel BackVM;
         
         public CardViewModel(Card card)
         {
@@ -20,6 +20,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         public CardViewModel(string name)
         {
             this.Card = new Card(name);
+            this.FrontVM = new CardPageViewModel(this.Card.Front);
+            this.BackVM = new CardPageViewModel(this.Card.Back);
+        }
+        public CardViewModel()
+        {
+            this.Card = new Card();
             this.FrontVM = new CardPageViewModel(this.Card.Front);
             this.BackVM = new CardPageViewModel(this.Card.Back);
         }
@@ -39,19 +45,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }
 
-        public CardPage Front
+        public CardPageViewModel Front
         {
             get
             {
-                return FrontVM.Page;
+                return FrontVM;
             }
         }
 
-        public CardPage Back
+        public CardPageViewModel Back
         {
             get
             {
-                return BackVM.Page;
+                return BackVM;
             }
         }
 
