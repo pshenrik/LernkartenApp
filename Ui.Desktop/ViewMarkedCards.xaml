@@ -10,6 +10,9 @@
         <Binding Path="ViewMarkedCardsVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
     <Grid>
-        
+        <Button Content="Vorherige" HorizontalAlignment="Left" Margin="55,190,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Nächste" HorizontalAlignment="Left" Margin="655,190,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Markeirung entfernen" HorizontalAlignment="Left" Margin="330,389,0,0" VerticalAlignment="Top" Width="125"/>
+
     </Grid>
 </Window>
