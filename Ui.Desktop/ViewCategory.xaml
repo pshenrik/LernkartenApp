@@ -5,11 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
-       
+   
     mc:Ignorable="d"
         Title="MainMenu" Height="450" Width="800" Background="#FFF3F3F3">
+           <Window.DataContext>
+    <viewModel:ViewCategoryViewModel></viewModel:ViewCategoryViewModel>
+    </Window.DataContext>
+    <Window.IsEnabled>
 
-           <Grid>
+        <Binding Source ="{StaticResource MessageListener}" Path="BindableProperty"></Binding>
+
+    </Window.IsEnabled>
+    <Grid>
         <Grid Margin="0,0,0,324" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
 
             <Grid.RowDefinitions>
@@ -49,7 +56,7 @@
             </ComboBox>
             <Button  Grid.Row="0" Grid.Column="2" Content="find"  Margin="321,0,5,25" FontSize="20" />
             <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="search..." Margin="10,0,79,25" Background="White" SelectionOpacity="13" FontSize="25" />
-            <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"  FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24"/>
+            <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"  FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding OpenCreateCardWindowCommand, Mode=OneWay}"/>
         </Grid>
         <Grid Margin="0,100,0,275">
             <Grid.RowDefinitions>
@@ -65,21 +72,51 @@
             </Label>
         </Grid>
 
-        <Grid Margin="0,149,0,0">
+        <Grid>
 
-            <!--<DataGrid Name="CardsGrid" AutoGenerateColumns="False" ItemsSource="{Binding Source={x:Static viewModel:CategoryViewModel.cardColl}}" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >-->
 
-                <DataGrid Name="CardsGrid" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >
 
-                    <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Cards"/>
-                    <DataGridComboBoxColumn>
 
-                    </DataGridComboBoxColumn>
 
-                </DataGrid.Columns>
-            </DataGrid>
+            <ListBox Margin="0,145,0,62" ItemsSource="{Binding Source={x:Static viewModel:ViewCategoryViewModel.cards} }" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCard}">
 
+                <ListBox.ItemTemplate>
+
+
+                    <DataTemplate >
+                        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" Width="581" Background="Silver" RenderTransformOrigin="0.5,0.547">
+
+                            <Label Content="{Binding Name}"  HorizontalAlignment="Center" Height="50" Width="41"  Margin="269,0,271,0" RenderTransformOrigin="0.503,0.52">
+
+                            </Label>
+
+
+                        </StackPanel>
+
+
+                    </DataTemplate>
+
+
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
+           
+            <Button Content="Löschen" Command="{Binding getRemoveCardCommand,  Mode=OneWay }" Height="28" Margin="155,373,511,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+            <Button Content="Bearbeitung"  Height="28" Margin="462,373,204,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
         </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
     </Grid>
 </Window>
