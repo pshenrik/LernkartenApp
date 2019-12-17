@@ -16,6 +16,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             this.Card = new Card(name);
         }
+
+
         public String Name
         {
             get

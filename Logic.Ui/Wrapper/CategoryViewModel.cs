@@ -10,17 +10,34 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
     public class CategoryViewModel : AbstractViewModel
     {
-        public CardCollectionViewModel[] Collections { get; set; }
+        public Category category;
+        public CardCollectionViewModel[] Collections;
+        
+
         public CategoryViewModel()
         {
-            category = new Category();
+
         }
 
-        public Category category;
+        public CategoryViewModel(String name)
+        {
+            this.category = new Category(name);
+            this.Collections = new CardCollectionViewModel[5];
+            Collections[0] = new CardCollectionViewModel(category.Collections[0]);
+            Collections[1] = new CardCollectionViewModel(category.Collections[1]);
+            Collections[2] = new CardCollectionViewModel(category.Collections[2]);
+            Collections[3] = new CardCollectionViewModel(category.Collections[3]);
+            Collections[4] = new CardCollectionViewModel(category.Collections[4]);
+
+        }
+
+        
         public String Name
         {
             get
             {
+                
+                
                 return category.Name;
             }
             set
@@ -29,5 +46,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                 OnPropertyChanged();
             }
         }
+
+        
+
+
     }
 }

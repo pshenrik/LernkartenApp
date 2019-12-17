@@ -22,6 +22,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             this.CollectionChanged += ViewModelCollectionChanged;
             cards.CollectionChanged += ModelCollectionChanged;
         }
+
+        public CardCollectionViewModel( CardCollection cards)
+        {
+            this.cards = cards;
+            this.CollectionChanged += ViewModelCollectionChanged;
+            this.cards.CollectionChanged += ModelCollectionChanged;
+        }
         private void ViewModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (syncDisabled) return;
@@ -72,6 +79,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
             return null;
         }
+        
     }
 }
 

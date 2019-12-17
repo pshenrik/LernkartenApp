@@ -71,6 +71,7 @@
     <Compile Include="Wrapper\CardPageViewModel.cs" />
     <Compile Include="Wrapper\CardViewModel.cs" />
     <Compile Include="Wrapper\CategoryViewModel.cs" />
+    <Compile Include="Wrapper\SetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">
