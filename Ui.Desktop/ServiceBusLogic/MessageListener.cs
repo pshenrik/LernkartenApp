@@ -52,6 +52,7 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    category.Show();
 
                });
+
             ServiceBus.Instance.Register<OpenExamModeWindow>(
                this,
                msg =>
@@ -86,6 +87,17 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                 }
 
                 );
+
+            ServiceBus.Instance.Register<OpenCreateCardWindow>(
+             this,
+             msg =>
+             {
+                 CreateCard export = new CreateCard();
+                 export.Show();
+
+             });
+
+
 
         }
 
