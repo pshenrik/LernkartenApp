@@ -51,9 +51,8 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    Category category = new Category();
                    category.Show();
 
-                  
+               });
 
-              });
             ServiceBus.Instance.Register<OpenExamModeWindow>(
                this,
                msg =>

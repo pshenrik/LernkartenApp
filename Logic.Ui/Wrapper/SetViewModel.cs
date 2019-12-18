@@ -1,38 +1,52 @@
-﻿
-using System.Collections.ObjectModel;
-using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
-using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
-using System.ComponentModel;
-
-using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
+using System.ComponentModel;
+
+using System.Collections.Specialized;
+
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
-    public class CardCollectionViewModel : ObservableCollection<CardViewModel>
+    
+    public class SetViewModel : ObservableCollection<CategoryViewModel>
     {
-        public CardCollection cards;
+
+        private Set set;
         private bool syncDisabled = false;
-
-        public CardCollectionViewModel()
+        public SetViewModel()
         {
-            this.cards = new CardCollection();
-
+            this.set = new Set();
             this.CollectionChanged += ViewModelCollectionChanged;
-            cards.CollectionChanged += ModelCollectionChanged;
+            this.set.CollectionChanged += ModelCollectionChanged;
         }
-
-        public CardCollectionViewModel(CardCollection cards)
+        public SetViewModel(Set set)
         {
-            this.cards = cards;
+            this.set = set;
             this.CollectionChanged += ViewModelCollectionChanged;
-            if(this.cards != null)
+            if(set != null)
             {
-                this.cards.CollectionChanged += ModelCollectionChanged;
+                this.set.CollectionChanged += ModelCollectionChanged;
             }
             
         }
+
+
+        public Set Set
+        {
+            get
+            {
+                return this.set; 
+            }
+        }
+
+
+
+
+
         private void ViewModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (syncDisabled) return;
@@ -41,15 +55,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (var card in e.NewItems.OfType<CardViewModel>().Select(v => v.Card).OfType<Card>())
-                        cards.Add(card);
+                    foreach (var category in e.NewItems.OfType<CategoryViewModel>().Select(v => v.category).OfType<Category>())
+                        set.Add(category);
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (var card in e.OldItems.OfType<CardViewModel>().Select(v => v.Card).OfType<Card>())
-                        cards.Remove(card);
+                    foreach (var category in e.OldItems.OfType<CategoryViewModel>().Select(v => v.category).OfType<Category>())
+                        set.Remove(category);
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    cards.Clear();
+                    set.Clear();
                     break;
             }
             syncDisabled = false;
@@ -62,12 +76,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (var card in e.NewItems.OfType<Card>())
-                        Add(new CardViewModel(card));
+                    foreach (var category in e.NewItems.OfType<Category>())
+                        Add(new CategoryViewModel(category));
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (var card in e.OldItems.OfType<Card>())
-                        Remove(GetViewModelOfModel(card));
+                    foreach (var category in e.OldItems.OfType<Category>())
+                        Remove(GetViewModelOfModel(category));
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     this.Clear();
@@ -75,15 +89,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
             syncDisabled = false;
         }
-        private CardViewModel GetViewModelOfModel(Card card)
+        private CategoryViewModel GetViewModelOfModel(Category category)
         {
-            foreach (CardViewModel cvm in this)
+            foreach (CategoryViewModel cat in this)
             {
-                if (cvm.Card.Equals(card)) return cvm;
+                if (cat.category.Equals(category)) return cat;
             }
             return null;
         }
-        
+
     }
 }
-
