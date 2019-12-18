@@ -10,24 +10,28 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 
         private CardPageViewModel FrontVM;
         private CardPageViewModel BackVM;
+        private CardInfoViewModel InfoVM;
         
         public CardViewModel(Card card)
         {
             this.Card = card;
             this.FrontVM = new CardPageViewModel(this.Card.Front);
             this.BackVM = new CardPageViewModel(this.Card.Back);
+            this.InfoVM = new CardInfoViewModel(this.Card.Info);
         }
         public CardViewModel(string name)
         {
             this.Card = new Card(name);
             this.FrontVM = new CardPageViewModel(this.Card.Front);
             this.BackVM = new CardPageViewModel(this.Card.Back);
+            this.InfoVM = new CardInfoViewModel(this.Card.Info);
         }
         public CardViewModel()
         {
             this.Card = new Card();
             this.FrontVM = new CardPageViewModel(this.Card.Front);
             this.BackVM = new CardPageViewModel(this.Card.Back);
+            this.InfoVM = new CardInfoViewModel(this.Card.Info);
         }
 
 
@@ -61,17 +65,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }
 
-        public bool Marked
+        public CardInfoViewModel Info
         {
             get
             {
-                return Card.Marked;
-            }
-
-            set
-            {
-                Card.Marked = value;
+                return InfoVM;
             }
         }
+
+
     }
 }
