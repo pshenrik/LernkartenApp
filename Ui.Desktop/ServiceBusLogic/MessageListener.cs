@@ -77,6 +77,15 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    export.Show();
 
                });
+            ServiceBus.Instance.Register<OpenViewMarkedCardsWindow>(
+                this,
+                msg =>
+                {
+                    ViewMarkedCards vmc = new ViewMarkedCards();
+                    vmc.Show();
+                }
+
+                );
 
         }
 
