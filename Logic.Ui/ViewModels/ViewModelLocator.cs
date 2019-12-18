@@ -15,13 +15,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public ViewModelLocator()
         {
-            
-
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel();
             CreateCategoryVM = new CreateCategoryViewModel();
             CreateCardVM = new CreateCardViewModel();
             ExamModeVM = new ExamModeViewModel();
-            LernmodusVM = new LernmodusViewModel(new Wrapper.CategoryViewModel());
+            LernmodusVM = new LernmodusViewModel();
             MainMenuVM = new MainMenuViewModel();
             ViewCategoryVM = new ViewCategoryViewModel();
             ExportVM = new ExportViewModel();
