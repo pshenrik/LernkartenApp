@@ -14,83 +14,122 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages;
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
    public class MainMenuViewModel : AbstractViewModel
-    {
-        public static IEnumerable<CategoryViewModel> GetCategoryWrappers()
-        {
+    {  
+        
+      
+        public static IEnumerable<CategoryViewModel> getCategoryWrappers()
+        {  
             List<CategoryViewModel> listCat = new List<CategoryViewModel>();
-            /*listCat.Add(new CategoryViewModel { Name = "Math" });
+         
+            listCat.Add(new CategoryViewModel { Name = "Math" });
             listCat.Add(new CategoryViewModel { Name = "B" });
             listCat.Add(new CategoryViewModel { Name = "C" });
             listCat.Add(new CategoryViewModel { Name = "D" });
-            listCat.Add(new CategoryViewModel { Name = "E" });*/
-
-
+            listCat.Add(new CategoryViewModel { Name = "E" });
             return listCat;
         }
        
       
-        public static ObservableCollection<CategoryViewModel> Categories = new ObservableCollection<CategoryViewModel>(GetCategoryWrappers());
+        public static ObservableCollection<CategoryViewModel> categories = new ObservableCollection<CategoryViewModel>(getCategoryWrappers());
 
-        private ICommand testMethodVar; 
-          public MainMenuViewModel() {
-            testMethodVar = new RelayCommand(this.Test, this.getTrue); 
-        }
-        private void OpenCreateCategoryWindow()
-        {
-            ServiceBus.Instance.Send(new OpenCreateCategoryWindow());
-        }
+        private ICommand RemoveCategoryCommand;
         public RelayCommand OpenCreateCategoryWindowCommand { get; }
-
-        public ICommand TestMethode
-        {
-            get
-            {
-                return testMethodVar; 
-            }
+        public RelayCommand OpenExamModeWindowCommand { get; }
+        public RelayCommand OpenStatisticsWindowCommand { get; }
+        public RelayCommand OpenExportWindowCommand { get; }
+        public RelayCommand OpenLernmodusWindowCommand { get; }
+        public RelayCommand OpenViewCategoryWindowCommand { get;  }
+        public CategoryViewModel SelectedCategory { get; set;}
+        public MainMenuViewModel() {
+         //   testMethodVar = new RelayCommand(this.Test, this.getTrue);
+            OpenCreateCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCategoryWindow()));
+            OpenExamModeWindowCommand  = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
+            OpenStatisticsWindowCommand = new RelayCommand(() => OpenWindow(new OpenStatisticsWindow()));
+            OpenExportWindowCommand = new RelayCommand(() => OpenWindow(new OpenExportWindow()));
+            OpenLernmodusWindowCommand = new RelayCommand(() => OpenWindow(new OpenLernmodusWindow()));
+            OpenViewCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewCategoryWindow()));
+         
+            RemoveCategoryCommand = new RelayCommand(this.removeCategoryfunction, this.getBoolean); 
         }
-        public void Test()
-        {
 
-            Console.WriteLine("HIHIHIHIHIH"); 
-        }
-        private bool getTrue()
+        private bool getBoolean()
         {
             return true; 
         }
 
+        private void removeCategoryfunction()
+        {
+            Console.WriteLine("removed");
+            categories.Remove(SelectedCategory); 
+        }
 
-        /*
-        public RelayCommand ChangeModelCommand { get; }
-
-      
-        public string NumberOfCategories
+        private void OpenWindow<TNotification>(TNotification notification)
+        {
+            Console.WriteLine(notification.ToString()); 
+            ServiceBus.Instance.Send(notification);
+         
+        }
+        public ICommand getRemoveCategoryCommand
         {
             get
             {
-                return Categories.Count + "sind vorhanden";
+               
+                return RemoveCategoryCommand; 
             }
         }
 
-        // HilfesFunktion zum Suchen nach einer Kategorie in dem Collection 
-        public string getCategoryName(string categoryName)
-        {
 
-            return null; 
-        }
+        
+        /*    public ICommand TestMethode
+            {
+                get
+                {
+                    return testMethodVar; 
+                }
+            }
+            public void Test()
+            {
+
+                Console.WriteLine("HIHIHIHIHIH"); 
+            }
+            private bool getTrue()
+            {
+                return true; 
+            }
 
 
-        // HilfesFunktion zum Sortieren: Kategorien werden nach Name sortiert!! 
-        public void NameSort() 
-        {
+            /*
+            public RelayCommand ChangeModelCommand { get; }
 
-        }
 
-        // HilfesFunktion zum Sortieren: Kategorien werden nach Date sortiert!! 
-        public void DateSort()
-        {
+            public string NumberOfCategories
+            {
+                get
+                {
+                    return Categories.Count + "sind vorhanden";
+                }
+            }
 
-        }
-        */
+            // HilfesFunktion zum Suchen nach einer Kategorie in dem Collection 
+            public string getCategoryName(string categoryName)
+            {
+
+                return null; 
+            }
+
+
+            // HilfesFunktion zum Sortieren: Kategorien werden nach Name sortiert!! 
+            public void NameSort() 
+            {
+
+            }
+
+            // HilfesFunktion zum Sortieren: Kategorien werden nach Date sortiert!! 
+            public void DateSort()
+            {
+
+            }
+            */
 
     }
 }
