@@ -8,11 +8,30 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
     public class Category : BusinessObject
     {
         //Max 5 collections
-        public CardCollection[] Collections { get; set; }
+        public CardCollection[] Collections;
 
-        public int NumberOfCards { get; set;}
+        public int NumberOfCards
+        {
+            get
+            {
+                return Collections[0].Count + Collections[1].Count + Collections[2].Count + Collections[3].Count + Collections[4].Count;
+            } 
+        }
+
 
         public String Name { get; set; }
+
+        public Category(String name)
+        {
+            this.Name = name;
+            this.Collections = new CardCollection[5];
+            this.Collections[0] = new CardCollection();
+            this.Collections[1] = new CardCollection();
+            this.Collections[2] = new CardCollection();
+            this.Collections[3] = new CardCollection();
+            this.Collections[4] = new CardCollection();
+
+        }
 
        
     }

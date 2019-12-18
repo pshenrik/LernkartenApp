@@ -15,9 +15,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public ViewModelLocator()
         {
-            ObservableCollection<Category> list = new ObservableCollection<Category>();
+            
 
-
+            ViewMarkedCardsVM = new ViewMarkedCardsViewModel();
             CreateCategoryVM = new CreateCategoryViewModel();
             CreateCardVM = new CreateCardViewModel();
             ExamModeVM = new ExamModeViewModel();
@@ -30,6 +30,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         // ToDo: Inhalte für Vorlesung: Achtung: diese Properties 
         // müssen Public sein, da sie von XMAL aus referenziert werden! 
         // Compiler erwartet nur internal...
+        public ViewMarkedCardsViewModel ViewMarkedCardsVM { get;  }
         public MainMenuViewModel MainWindowVM { get; }
         //public StatisticsWindowViewModel StatisticWindowVM { get; }
         public CreateCategoryViewModel CreateCategoryVM { get; }

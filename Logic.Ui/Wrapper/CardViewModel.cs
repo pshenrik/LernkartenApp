@@ -7,15 +7,30 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
     public class CardViewModel : AbstractViewModel
     {
         internal Card Card { get; set; }
+
+        private CardPageViewModel FrontVM;
+        private CardPageViewModel BackVM;
         
         public CardViewModel(Card card)
         {
             this.Card = card;
+            this.FrontVM = new CardPageViewModel(this.Card.Front);
+            this.BackVM = new CardPageViewModel(this.Card.Back);
         }
         public CardViewModel(string name)
         {
             this.Card = new Card(name);
+            this.FrontVM = new CardPageViewModel(this.Card.Front);
+            this.BackVM = new CardPageViewModel(this.Card.Back);
         }
+        public CardViewModel()
+        {
+            this.Card = new Card();
+            this.FrontVM = new CardPageViewModel(this.Card.Front);
+            this.BackVM = new CardPageViewModel(this.Card.Back);
+        }
+
+
         public String Name
         {
             get
@@ -30,19 +45,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }
 
-        public CardPage Front
+        public CardPageViewModel Front
         {
             get
             {
-                return Card.Front;
+                return FrontVM;
             }
         }
 
-        public CardPage Back
+        public CardPageViewModel Back
         {
             get
             {
-                return Card.Back;
+                return BackVM;
             }
         }
 
