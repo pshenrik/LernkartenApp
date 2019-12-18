@@ -17,6 +17,14 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
 
             
         }
+        public Card()
+        {
+           
+            Front = new CardPage();
+            Back = new CardPage();
+
+
+        }
         public CardPage Front { get; }
         public CardPage Back { get; }
 

@@ -50,6 +50,7 @@
     <Compile Include="Messages\OpenMainMenuWindow.cs" />
     <Compile Include="Messages\OpenStatisticsWindow.cs" />
     <Compile Include="Messages\OpenViewCategoryWindow.cs" />
+    <Compile Include="Messages\OpenViewMarkedCardsWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\ExamModeViewModel.cs" />
@@ -65,12 +66,14 @@
     <Compile Include="ViewModels\ExportViewModel.cs" />
     <Compile Include="ViewModels\LernmodusViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
+    <Compile Include="ViewModels\ViewMarkedCardsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\ViewCategoryViewModel.cs" />
     <Compile Include="Wrapper\CardCollectionViewModel.cs" />
     <Compile Include="Wrapper\CardPageViewModel.cs" />
     <Compile Include="Wrapper\CardViewModel.cs" />
     <Compile Include="Wrapper\CategoryViewModel.cs" />
+    <Compile Include="Wrapper\SetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">
