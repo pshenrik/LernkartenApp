@@ -26,6 +26,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private long time;
         private int cardAmount;
         private bool canStart;
+        private bool canStop;
         private float questionProgress;
         private float examProgress;
         private CardViewModel[] cards;
@@ -37,6 +38,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private string progressString;
         private Random rand;
         private string visabilityExamUi;
+        private Thread examThread;
+        private Thread progressThread;
         public SetViewModel Set { get; set; }
         
         public CategoryViewModel[] CategoryList { get; set; }
@@ -46,6 +49,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             Set = new SetViewModel();
             VisabilityExamUi = "Hidden";
+            CanStop = false;
             getCategorys();
             Time = 5;
             Question = "";
@@ -56,6 +60,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.cardAmount = 1;
             this.time = 5;    
             this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnStartTrue);
+            this.stopExamCommand = new RelayCommand(this.StopExam, this.ReturnStartTrue);
+
             
         }
       
@@ -257,6 +263,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 OnPropertyChanged();
             }
         }
+        public bool CanStop
+        {
+            get
+            {
+                return this.canStop;
+            }
+            set
+            {
+                this.canStop = value;
+                OnPropertyChanged();
+            }
+        }
         public int CardAmount
         {
             get
@@ -289,19 +307,37 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         #region Command / RelayCommandStuff
 
         private ICommand startExamCommand;
-        
+        private ICommand stopExamCommand;
+        public ICommand StopExamCommand { get { return stopExamCommand; } }
         public ICommand StartExamCommand { get { return startExamCommand; } }
 
         #endregion
 
         #region ExamMethods
+        private void StopExam()
+        {
+            progressThread.Abort();
+            examThread.Abort();
+            VisabilityExamUi = "Hidden";
+            QuestionProgress = 0;
+            ExamProgress = 0;
+            EnableSettings = true;
+            CanStart = true;
+            ExamStarted = false;
+            ProgressString = "";
+            Question = "";
+            CanStop = false;
+
+        }
         public void StartExam()
         {
+
             ExamStarted = true;
             VisabilityExamUi = "Visable";
             EnableSettings = false;
             CanStart = false;
-            Thread examThread = new Thread(new ThreadStart(() => exam()));
+            CanStop = true;
+            examThread = new Thread(new ThreadStart(() => exam()));
             examThread.Start();
         }
         private void exam()
@@ -323,7 +359,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 QuestionProgress = 0;
                 stopTask = false;
                 Action a = new Action(() => startTime(this.time));
-                Thread progressThread = new Thread(new ThreadStart(() => startTime(this.time)));
+                progressThread = new Thread(new ThreadStart(() => startTime(this.time)));
                 getNextCard();
                 progressThread.Start();
 
@@ -335,6 +371,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 Answer = "";
                 
             }
+            CanStop = false;
             VisabilityExamUi = "Hidden";
             QuestionProgress = 0;
             ExamProgress = 0;
@@ -436,7 +473,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
 
-
+        private bool ReturnStopTrue()
+        {
+            return this.ExamStarted;
+        }
 
 
        
