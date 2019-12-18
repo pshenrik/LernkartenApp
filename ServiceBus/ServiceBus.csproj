@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D6CB8F20-88A5-45B8-AFFE-8BA73439F76C}</ProjectGuid>
+    <ProjectGuid>{4EC5848E-808C-4AF1-8DD3-72733E000599}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>De.HsFlensburg.LernkartenApp001.Services.ServiceBus</RootNamespace>

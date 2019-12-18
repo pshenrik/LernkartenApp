@@ -149,6 +149,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
         #endregion
+
+        public LernmodusViewModel(SetViewModel set)
+        {
+
+        }
+
         private string red = "#e62020";
         private string green = "#41e620";
         private string white = "#fff";
