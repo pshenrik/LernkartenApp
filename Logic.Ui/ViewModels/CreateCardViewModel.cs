@@ -48,7 +48,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
            addAnswerImgCommand = new RelayCommand(this.addAnswerImg, this.ReturnTrue);
         }
 
+        public CreateCardViewModel(SetViewModel set)
+        {
 
+        }
 
         private void CreateCard()
         {

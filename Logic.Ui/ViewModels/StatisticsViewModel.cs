@@ -23,6 +23,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.EnableSettings = true;
         }
 
+        public StatisticsViewModel(SetViewModel Set)
+        {
+        }
+
         public bool EnableSettings
         {
             get

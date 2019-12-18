@@ -71,6 +71,7 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\ViewCategoryViewModel.cs" />
     <Compile Include="Wrapper\CardCollectionViewModel.cs" />
+    <Compile Include="Wrapper\CardInfoViewModel.cs" />
     <Compile Include="Wrapper\CardPageViewModel.cs" />
     <Compile Include="Wrapper\CardViewModel.cs" />
     <Compile Include="Wrapper\CategoryViewModel.cs" />
@@ -94,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\marked.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

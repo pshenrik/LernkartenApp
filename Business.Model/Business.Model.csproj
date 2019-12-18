@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BusinessObjects\Card.cs" />
     <Compile Include="BusinessObjects\CardCollection.cs" />
+    <Compile Include="BusinessObjects\CardInfo.cs" />
     <Compile Include="BusinessObjects\CardPage.cs" />
     <Compile Include="BusinessObjects\Category.cs" />
     <Compile Include="BusinessObjects\Set.cs" />
