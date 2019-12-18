@@ -49,15 +49,24 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void generateCards()
         {
+            int counter = 0;
             for (int i = 0; i < 10; i++)
             {
                 CategoryViewModel cat = new CategoryViewModel("Kategorie" + (i + 1));
 
                 for (int j = 0; j < (i * 2); j++)
                 {
-                    CardViewModel card = new CardViewModel();
+                    counter++;
+                    CardViewModel card = new CardViewModel("Karte Nummer " + counter);
                     card.Front.Text = "Kategorie " + (i + 1) + " Frage " + (j + 1);
                     card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
+                    
+
+                    if( i +j == 0 % 2)
+                    {
+                        card.Marked = true;
+                    }
+
                     cat.Collections[0].Add(card);
                 }
 
