@@ -5,17 +5,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
     public class ViewModelLocator
     {
-        
 
+        private SetViewModel Set;
 
         public ViewModelLocator()
         {
-            
+            generateCards();
 
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel();
             CreateCategoryVM = new CreateCategoryViewModel();
@@ -45,5 +46,30 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ExportViewModel ExportVM { get; }
 
         public StatisticsViewModel StatisticsVM { get; }
+
+        private void generateCards()
+        {
+            int counter = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                CategoryViewModel cat = new CategoryViewModel("Kategorie" + (i + 1));
+
+                for (int j = 0; j < (i * 2); j++)
+                {
+                    counter++;
+                    CardViewModel card = new CardViewModel("Karte Nummer " + counter);
+                    card.Front.Text = "Kategorie " + (i + 1) + " Frage " + (j + 1);
+                    card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
+                    
+
+                   
+
+                    cat.Collections[0].Add(card);
+                }
+
+
+                Set.Add(cat);
+            }
+        }
     }
 }

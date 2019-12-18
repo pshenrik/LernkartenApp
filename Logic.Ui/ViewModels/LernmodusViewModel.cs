@@ -106,6 +106,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         #endregion
 
+        public LernmodusViewModel(SetViewModel set)
+        {
+
+        }
 
         private CategoryViewModel category;
         public LernmodusViewModel(CategoryViewModel category)

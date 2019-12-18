@@ -28,6 +28,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             createCategoryCommand = new RelayCommand(this.CreateCategory, this.ReturnTrue);
         }
 
+        public CreateCategoryViewModel(SetViewModel set)
+        {
+
+        }
 
         //private void ChangeModel()
         //{

@@ -22,6 +22,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             testMethodeCommand = new RelayCommand(this.Test, this.ReturnTrue);
         }
 
+        public ExportViewModel (SetViewModel set)
+        {
+
+        }
+
         public ICommand TestMethodeCommand
         {
             get
