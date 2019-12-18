@@ -59,8 +59,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.EnableSettings = true;
             this.cardAmount = 1;
             this.time = 5;    
-            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnStartTrue);
-            this.stopExamCommand = new RelayCommand(this.StopExam, this.ReturnStartTrue);
+            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
+            this.stopExamCommand = new RelayCommand(this.StopExam, this.ReturnTrue);
 
             
         }
@@ -329,7 +329,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             CanStop = false;
 
         }
-        public void StartExam()
+        private void StartExam()
         {
 
             ExamStarted = true;
@@ -463,20 +463,16 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             return freeCards;
         }
         #endregion
-        
-        
+              
         #region Other
-        private bool ReturnStartTrue()
+        private bool ReturnTrue()
         {
             return true;
         }
 
 
 
-        private bool ReturnStopTrue()
-        {
-            return this.ExamStarted;
-        }
+        
 
 
        
