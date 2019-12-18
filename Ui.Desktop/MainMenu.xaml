@@ -10,13 +10,19 @@
     <Window.DataContext>
         <viewModel:MainMenuViewModel></viewModel:MainMenuViewModel>
     </Window.DataContext>
-   
+    <Window.IsEnabled>
+
+        <Binding Source ="{StaticResource MessageListener}" Path="BindableProperty"></Binding>
+
+    </Window.IsEnabled>
+
+
     <Grid>
         <Grid Margin="0,0,0,324" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
-            
+
 
             </Grid.RowDefinitions>
 
@@ -28,7 +34,7 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Label Content="Lern Cards" Grid.Column="0" FontSize="30" FontFamily="Showcard Gothic" Background="{x:Null}" IsHitTestVisible="False" RenderTransformOrigin="2,0.5" Margin="0,0,0,-14"/>
-            
+
             <ComboBox  Grid.Row="0" Grid.Column="1"  Margin="5,0,0,25">
                 <ComboBoxItem>
                     <StackPanel Orientation="Horizontal">
@@ -56,7 +62,7 @@
             <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="search..." Margin="10,0,79,25"  Background="White" SelectionOpacity="13" FontSize="25" />
 
 
-            <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"   FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding TestMethode, Mode=OneWay}"/>
+            <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"   FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding OpenCreateCategoryWindowCommand, Mode=OneWay}"/>
         </Grid>
         <Grid Margin="0,100,0,275">
             <Grid.RowDefinitions>
@@ -71,81 +77,61 @@
                 </Label.Background>
             </Label>
         </Grid>
-        <Grid Margin="0,144,540,0">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-            </Grid.RowDefinitions>
+        <Grid Margin="0,144,610,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="1*" />
 
-                <ColumnDefinition/>
-                <ColumnDefinition Width="530"/>
-
-                <ColumnDefinition/>
 
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
 
-            <ListView Grid.Column="0" Name="ListView12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="275" Margin="0,0,0,-234" BorderBrush="#FF6AD465" Foreground="#FF4A4D3B">
-                <ListView.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFF1E3B0" Offset="0.083"/>
-                    </LinearGradientBrush>
-                </ListView.Background>
-                <!--<ListViewItem Selected="exportItem" FontSize="36"/>
-                <ListViewItem x:Name="exportItem" Content="Export" FontSize="36" Height="56" ></ListViewItem>
-                <ListViewItem Content="Import" FontSize="36" ></ListViewItem>
-                <ListViewItem Content="Statistik" FontSize="36" ></ListViewItem>
-                <ListViewItem Content="Prüfungsmodus" FontSize="33" Width="240" ></ListViewItem>-->
-            </ListView>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Command="{Binding OpenExportWindowCommand, Mode=OneWay}">Export</Button>
+            <Button Grid.Row="1" Command="{Binding OpenExamModeWindowCommand, Mode=OneWay}">Prüfungsmode</Button>
+            <Button Grid.Row="2" Command="{Binding OpenStatisticsWindowCommand, Mode=OneWay}">Statistik</Button>
+            <Button Grid.Row="3" Command="{Binding OpenLernmodusWindowCommand, Mode=OneWay}">Lernen-Modus</Button>
+
         </Grid>
-        <!---
-         <ListView Grid.Column="2" Name="ListView1" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="ListView1_SelectionChanged" Width="536" Height="275" Margin="0,0,0,-234" Foreground="#FF788F0F" Grid.ColumnSpan="2">
-                <ListView.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="White" Offset="0.081"/>
-                    </LinearGradientBrush>
-                </ListView.Background>
 
-                <ListViewItem Selected="ListViewItem_Selected" FontSize="36"/>
-                <ListViewItem Content="Math" FontSize="36" Height="56">
-
-                </ListViewItem>
-
-                <Label>5 Cards</Label>
+        <Grid>
 
 
-                <ListViewItem Content="English" FontSize="36" Selected="ListViewItem_Selected_1"></ListViewItem>
-                <Label>3 Cards</Label>
-                <ListViewItem Content="History" FontSize="36"></ListViewItem>
-                <Label>4 Cards</Label>
-                <ListViewItem Content="Arabic" FontSize="36" Height="21" BorderBrush="#FFDC4646"></ListViewItem>
-                <Label>1 Cards</Label>
 
-            </ListView>
-        -->
-        <Grid Margin="252,149,0,0">
-            <!--DataGrid Name="CategorysGrid" AutoGenerateColumns="False" ItemsSource="{Binding Source={x:Static viewModel:MainMenuViewModel.Categories}}" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" Margin="0" -->
-            <!--DataGrid Name="CategorysGrid" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" FontSize="30" SelectionMode="Single" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Catogory"/>
-                    <DataGridTextColumn Binding="{Binding NumberOfCards}" Header=""/>
 
-                    <DataGridComboBoxColumn>
 
-                    </DataGridComboBoxColumn>
+            <ListBox Margin="182,145,0,62" ItemsSource="{Binding Source={x:Static viewModel:MainMenuViewModel.categories} }" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCategory}">
 
-                </DataGrid.Columns>
-            </>-->
+                <ListBox.ItemTemplate>
 
+
+                    <DataTemplate >
+                        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" Width="581" Background="Silver" RenderTransformOrigin="0.5,0.547">
+
+                            <Label Content="{Binding Name}"  HorizontalAlignment="Center" Height="50" Width="41"  Margin="269,0,271,0" RenderTransformOrigin="0.503,0.52">
+
+                            </Label>
+
+
+                        </StackPanel>
+
+
+                    </DataTemplate>
+
+
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+         <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
+            <Button Content="Karten Anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Height="28" Margin="214,362,452,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+            <Button Content="Kategorie Löschen" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="423,362,243,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+            <Button Content="Kategorie Bearbeitung" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="639,362,27,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
         </Grid>
 
     </Grid>
 </Window>
+ 

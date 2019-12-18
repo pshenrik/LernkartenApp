@@ -7,13 +7,11 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages
 {
-    public class OpenMainMenuWindow
+    public class OpenStatisticsWindow
     {
-        public OpenMainMenuWindow()
-        {
-          
-
+        public OpenStatisticsWindow()
+        { 
+            
         }
-        
     }
 }

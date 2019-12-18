@@ -15,15 +15,13 @@ using System.Windows.Shapes;
 namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
 {
     /// <summary>
-    /// Interaktionslogik für Prüfungsmodus.xaml
+    /// Interaktionslogik für ViewMarkedCards.xaml
     /// </summary>
-    public partial class Prüfungsmodus : Window
+    public partial class ViewMarkedCards : Window
     {
-        public Prüfungsmodus()
+        public ViewMarkedCards()
         {
             InitializeComponent();
         }
-
-      
     }
 }

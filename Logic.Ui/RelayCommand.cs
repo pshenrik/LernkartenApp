@@ -12,6 +12,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui
     {
         public event EventHandler CanExecuteChanged
         {
+            
             add { }
             remove { }
         }
@@ -25,6 +26,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui
         public RelayCommand(Action methodToExecute)
             : this(methodToExecute, null)
         {
+
+            
         }
         public bool CanExecute(object parameter)
         {

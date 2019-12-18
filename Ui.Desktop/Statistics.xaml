@@ -73,9 +73,6 @@
             </ProgressBar.BorderBrush>
         </ProgressBar>
         <Label Content="3x richtig:&#xA;" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <Expander Header="Englisch" HorizontalAlignment="Left" Height="43" Margin="116,55,0,0" VerticalAlignment="Top" Width="150" FontSize="18">
-            <Grid Background="#FFE5E5E5"/>
-        </Expander>
         <Label Content="Kategorie:&#xA;" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
         <Label Content="Lernmodus:&#xA;" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
         <Label Content="Prüfungsmodus:" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
@@ -134,6 +131,10 @@
         <Label Content="Prüfungsmodus:" HorizontalAlignment="Left" Margin="412,215,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
         <Label Content="0:48" HorizontalAlignment="Left" Margin="564,168,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
         <Label Content="0:12&#xA;" HorizontalAlignment="Left" Margin="564,215,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
+        <ComboBox HorizontalAlignment="Left" Margin="111,61,0,0" ItemsSource="{Binding CategoryList}" IsEnabled="{Binding EnableSettings, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Collections" SelectedValue="{Binding Collections}" VerticalAlignment="Top" Width="120">
+        </ComboBox>
+        <Canvas HorizontalAlignment="Left" Height="60" Margin="412,23,0,0" VerticalAlignment="Top" Width="245"/>
+        
 
     </Grid>
 </Window>
