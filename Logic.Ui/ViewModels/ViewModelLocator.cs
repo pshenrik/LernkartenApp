@@ -62,10 +62,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
                     
 
-                    if( i +j == 0 % 2)
-                    {
-                        card.Marked = true;
-                    }
+                   
 
                     cat.Collections[0].Add(card);
                 }
