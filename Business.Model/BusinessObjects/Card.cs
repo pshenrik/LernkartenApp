@@ -8,28 +8,15 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
     public class Card : BusinessObject
     {
         private string name;
-        private bool marked;
-        public Card (string name)
-        {
-            this.name = name;
-            Front = new CardPage();
-            Back = new CardPage();
 
-            
-        }
-        public Card()
-        {
-           
-            Front = new CardPage();
-            Back = new CardPage();
-
-
-        }
+        #region Properties
         public CardPage Front { get; }
         public CardPage Back { get; }
+        public CardInfo Info { get; set; }
 
-        
-        public string Name {
+
+        public string Name
+        {
             get
             {
                 return name;
@@ -40,18 +27,27 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
             }
         }
 
-        //Gibt an ob eine Karte makiert wurde
-        public bool Marked {
-            get
-            {
-                return marked;
-            }
-            set
-            {
-                marked = value;
-            }
-        }
+        #endregion
 
+
+        public Card (string name)
+        {
+            this.name = name;
+            Front = new CardPage();
+            Back = new CardPage();
+            Info = new CardInfo();
+
+
+        }
+        public Card()
+        {
+           
+            Front = new CardPage();
+            Back = new CardPage();
+            Info = new CardInfo();
+
+
+        }
         
 
         //Die Karte guckt selber, ob eine Antwort mit den Keywords übereinstimmt.

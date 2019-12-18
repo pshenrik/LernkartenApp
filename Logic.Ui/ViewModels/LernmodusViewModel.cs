@@ -32,10 +32,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     {
         #region ICommand
         private ICommand submitAnswerCommand;
+        private ICommand nextCardCommand;
         private ICommand cancelTrainingCommand;
         private ICommand markCardCommand;
         private ICommand requestHelpCommand;
         public ICommand SubmitAnswerCommand { get { return submitAnswerCommand; } }
+        public ICommand NextCardCommand { get { return nextCardCommand; } }
         public ICommand CancelTrainingCommand { get { return cancelTrainingCommand; } }
         public ICommand MarkCardCommand { get { return markCardCommand; } }
         public ICommand RequestHelpCommand { get { return requestHelpCommand; } }
@@ -81,12 +83,29 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 currentCard = value;
+                CurrentCardPage = value.Front;
+                interactedWithCard = false; //Interaktion bei einer neuen Karte auf false setzen
                 OnPropertyChanged();
             }
         }
+
+        private CardPageViewModel currentCardPage;
+        public CardPageViewModel CurrentCardPage
+        {
+            get
+            {
+                return currentCardPage;
+            }
+
+            set
+            {
+                currentCardPage = value;
+                OnPropertyChanged();
+            }
+        }
+
         //Speichert bereits beantwortete Fragen
         private ObservableCollection<CardViewModel> finishedCards;
-
         public ObservableCollection<CardViewModel> FinishedCards
         {
             get
@@ -101,32 +120,64 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             
         }
+        private string answerIndicatorFillColor;
+        public string AnswerIndicatorFillColor
+        {
+            get
+            {
+                return answerIndicatorFillColor;
+            }
+            set
+            {
+                answerIndicatorFillColor = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool submitButtonEnabled = true;
+        public bool SubmitButtonEnabled
+        {
+            get
+            {
+                return submitButtonEnabled;
+            }
+            set
+            {
+                submitButtonEnabled = value;
+                OnPropertyChanged();
+            }
+        }
 
-        
 
         #endregion
 
+        public LernmodusViewModel(SetViewModel set)
+        {
 
+        }
+
+        private string red = "#e62020";
+        private string green = "#41e620";
+        private string white = "#fff";
+    
+        private bool interactedWithCard; //Ob mit der aktuellen Karte bereits interagiert wurde (Submit oder Skip)
         private CategoryViewModel category;
-        public LernmodusViewModel(CategoryViewModel category)
+        public LernmodusViewModel()
         {
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
+            nextCardCommand = new RelayCommand(this.NextCard, this.ReturnTrue);
             cancelTrainingCommand = new RelayCommand(this.CancelTraining, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
             requestHelpCommand = new RelayCommand(this.RequestHelp, this.ReturnTrue);
             this.FinishedCards = new ObservableCollection<CardViewModel>();
-          
-            FinishedCards.Add(new CardViewModel(new Card("test1")));
-            FinishedCards.Add(new CardViewModel(new Card("test2")));
-            FinishedCards.Add(new CardViewModel(new Card("test3")));
             
-
-            this.category = category;
+            
             //Bsp Karte erstellen
             this.CurrentCard = new CardViewModel(new Card("Hammerhart"));
             CurrentCard.Front.Text = "Woher kommt Brendan?";
-            CurrentCard.Back.Text = "Mepw";
-            
+            CurrentCard.Back.Text = "Spanien";
+
+
+
         }
         
 
@@ -135,24 +186,50 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             Console.WriteLine(learnedCardsCounter);
             LearnedCardsCounter++;
 
+            interactedWithCard = true;
+
+            //Antwort anzeigen
+            CurrentCardPage = currentCard.Back;
+            SubmitButtonEnabled = false;
+
+            //Wenn die eingegebene Antwort richtig ist
+            if (currentCard.Card.CheckAnswer(answerInputText))
+            {
+                AnswerIndicatorFillColor = green;
+                currentCard.Info.LearnHistory.Add(1);
+            }
+            //Wenn die Anwort falsch ist
+            else
+            {
+                AnswerIndicatorFillColor = red;
+                currentCard.Info.LearnHistory.Add(0);
+            }
             
 
-          /*FinishedCards.Add(currentCard);
-            CardViewModel nextCard = GetNextCard();
-            currentCard = nextCard;*/
         }
+        
 
-        //Zeigt eine Karte aus der Liste an
-        private void ShowCard()
+        private void NextCard()
         {
+            AnswerIndicatorFillColor = white;
+            SubmitButtonEnabled = true;
+            //Wenn die Karte geskippt wurde
+            if (!interactedWithCard)
+            {
 
+                currentCard.Info.LearnHistory.Add(2);
+            }
+            //Neue Karte der Lern History hinzufügen
+            FinishedCards.Add(currentCard);
+            CurrentCard = GetNextCard();
         }
+        
 
    
-
+        //Der Lernmodusalgorithmus
         private CardViewModel GetNextCard()
         {
-            Random rand = new Random();
+            /*Random rand = new Random();
             //Erstmal zufällig aus einem der Stapel auswählen
             int collectionIndex = rand.Next(category.Collections.Length);
             //Zufällige Karte aus dem Stapel auswählen
@@ -160,7 +237,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
 
-            CardViewModel card = new CardViewModel(category.Collections[collectionIndex].cards[cardIndex]);
+            CardViewModel card = new CardViewModel(category.Collections[collectionIndex].cards[cardIndex]);*/
+            CardViewModel card = new CardViewModel(currentCard.Card);
 
             return card;
         }
@@ -173,7 +251,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void MarkCard()
         {
 
-            //currentCard.Marked = true;
+            currentCard.Info.Marked = true;
         }
 
         private void RequestHelp()

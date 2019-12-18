@@ -32,20 +32,32 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public CardViewModel SelectedCard { get; set; }
         private ICommand RemoveCardCommand;
 
-
+        public static String NameOfCategory { get; set;}
+        public static String NumberOFCards { get; set; }
         public RelayCommand OpenCreateCardWindowCommand { get; }
-      
+
         //   testMethodVar = new RelayCommand(this.Test, this.getTrue);
-            
+        public SetViewModel setViewModel; 
+            public ViewCategoryViewModel( SetViewModel setViewModel)
+        {
+            this.setViewModel = setViewModel;
+          
+            OpenCreateCardWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCardWindow()));
+            RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.getBoolean);
+        }
 
             public ViewCategoryViewModel()
         {
             OpenCreateCardWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCardWindow()));
-            RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.getBoolean); 
+            RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.getBoolean);
+
+            
         }
 
         private void OpenWindow<TNotification>(TNotification notification)
         {
+
+
             ServiceBus.Instance.Send(notification);
         }
 

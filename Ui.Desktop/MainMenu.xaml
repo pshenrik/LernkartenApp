@@ -68,7 +68,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="                         04/50 lern Cartegories used" HorizontalAlignment="Left"  VerticalAlignment="Bottom"   FontSize="30" Width="792" Margin="0,0,0,-3" Height="44" Foreground="#FFFFFDFD" >
+            <Label Grid.Row="0" Content="{Binding NumberOfCategories, Mode=TwoWay}" HorizontalAlignment="Left"  VerticalAlignment="Bottom"   FontSize="30" Width="792" Margin="0,0,0,-3" Height="44" Foreground="#FFFFFDFD" >
                 <Label.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0"/>
@@ -129,7 +129,7 @@
          <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
             <Button Content="Karten Anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Height="28" Margin="214,362,452,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
             <Button Content="Kategorie Löschen" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="423,362,243,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-            <Button Content="Kategorie Bearbeitung" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="639,362,27,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+            <Button Content="Kategorie Bearbeiten" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="639,362,27,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
         </Grid>
 
     </Grid>
