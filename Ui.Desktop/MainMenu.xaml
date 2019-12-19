@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Main menu" Height="450" Width="800">
     <Window.DataContext>
-        <viewModel:MainMenuViewModel></viewModel:MainMenuViewModel>
+        <Binding Path="MainMenuVM" Source="{StaticResource ViewModelLocator}"/>
     </Window.DataContext>
     <Window.IsEnabled>
 
@@ -68,7 +68,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="{Binding NumberOfCategories, Mode=TwoWay}" HorizontalAlignment="Left"  VerticalAlignment="Bottom"   FontSize="30" Width="792" Margin="0,0,0,-3" Height="44" Foreground="#FFFFFDFD" >
+            <Label Grid.Row="0" Content="{Binding NumberOfCategories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Bottom"   FontSize="30" Width="792" Margin="0,0,0,-3" Height="44" Foreground="#FFFFFDFD" >
                 <Label.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0"/>
@@ -104,17 +104,17 @@
 
 
 
-            <ListBox Margin="182,145,0,62" ItemsSource="{Binding Source={x:Static viewModel:MainMenuViewModel.categories} }" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCategory}">
+            <ListBox Margin="182,145,0,62" ItemsSource="{Binding categories, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCategory, Mode=OneWayToSource}" SelectionChanged="ListBox_SelectionChanged">
 
                 <ListBox.ItemTemplate>
 
 
                     <DataTemplate >
-                        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" Width="581" Background="Silver" RenderTransformOrigin="0.5,0.547">
+                        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="581" Background="Silver" RenderTransformOrigin="0.5,0.547">
 
-                            <Label Content="{Binding Name}"  HorizontalAlignment="Center" Height="50" Width="41"  Margin="269,0,271,0" RenderTransformOrigin="0.503,0.52">
+                            <TextBlock Text="{Binding Name}"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="287"  Margin="125,0,169,0" RenderTransformOrigin="0.503,0.52">
 
-                            </Label>
+                            </TextBlock>
 
 
                         </StackPanel>
@@ -126,10 +126,10 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-         <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
-            <Button Content="Karten Anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Height="28" Margin="214,362,452,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-            <Button Content="Kategorie Löschen" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="423,362,243,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-            <Button Content="Kategorie Bearbeiten" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="639,362,27,29" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+            <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
+            <Button Content="Karten Anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Height="28" Margin="212,357,454,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+            <Button Content="Kategorie Löschen" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="423,357,243,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+            <Button Content="Kategorie Bearbeiten" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="639,357,27,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
         </Grid>
 
     </Grid>
