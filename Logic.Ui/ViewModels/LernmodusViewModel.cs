@@ -150,18 +150,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         #endregion
 
-        public LernmodusViewModel(SetViewModel set)
-        {
-
-        }
 
         private string red = "#e62020";
         private string green = "#41e620";
         private string white = "#fff";
-    
+
         private bool interactedWithCard; //Ob mit der aktuellen Karte bereits interagiert wurde (Submit oder Skip)
         private CategoryViewModel category;
-        public LernmodusViewModel()
+
+        public LernmodusViewModel(SetViewModel set)
         {
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             nextCardCommand = new RelayCommand(this.NextCard, this.ReturnTrue);
@@ -169,16 +166,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
             requestHelpCommand = new RelayCommand(this.RequestHelp, this.ReturnTrue);
             this.FinishedCards = new ObservableCollection<CardViewModel>();
-            
-            
+
+
             //Bsp Karte erstellen
             this.CurrentCard = new CardViewModel(new Card("Hammerhart"));
             CurrentCard.Front.Text = "Woher kommt Brendan?";
             CurrentCard.Back.Text = "Spanien";
-
-
-
         }
+
+       
         
 
         private void SubmitAnswer()
@@ -243,10 +239,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             return card;
         }
 
-        private void CancelTraining()
-        {   
-            Console.WriteLine("cancel");
-        }
+   
 
         private void MarkCard()
         {
