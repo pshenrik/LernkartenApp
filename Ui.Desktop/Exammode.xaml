@@ -34,7 +34,7 @@
 
         <TextBox Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="34" Margin="26,297,0,0" TextWrapping="Wrap" Text="{Binding Answer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ExamStarted, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="438"  FontSize="20" Grid.Column="1"/>
         <Label Content="Antwort:" Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="26,265,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="20" Grid.Column="1" Height="30" Width="83"/>
-        <ProgressBar Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="10" Margin="26,336,0,0" VerticalAlignment="Top" Width="438" Value="{Binding QuestionProgress, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Color, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+        <ProgressBar Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="10" Margin="26.4,345,0,0" VerticalAlignment="Top" Width="438" Value="{Binding QuestionProgress, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Color, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left" Height="32" Margin="26,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" FontSize="20" Grid.Column="1"><Run Text="{Binding Question, UpdateSourceTrigger=PropertyChanged}"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock Text="{Binding CardAmount, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"  HorizontalAlignment="Left" Margin="31,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="31,256,0,0" TextWrapping="Wrap" Text="{Binding Time, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.078,-0.781"/>
@@ -42,8 +42,18 @@
         <ComboBox HorizontalAlignment="Left" Margin="31,47,0,0" ItemsSource="{Binding Set, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EnableSettings, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Collections" SelectedValue="{Binding Collections}" VerticalAlignment="Top" Width="120">
 
         </ComboBox>
-        <ProgressBar Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="10" Margin="26,351,0,0" VerticalAlignment="Top" Width="438" Value="{Binding ExamProgress, UpdateSourceTrigger=PropertyChanged}" Foreground="Blue" Grid.Column="1"/>
-        <Label Content="{Binding ProgressString, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Center"  Height="29" Margin="190,361,232,0" VerticalAlignment="Top" Width="125"/>
+        <ProgressBar Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="10" Margin="26.4,371,0,0" VerticalAlignment="Top" Width="438" Value="{Binding ExamProgress, UpdateSourceTrigger=PropertyChanged}" Foreground="Blue" Grid.Column="1"/>
+        <Label Content="{Binding ProgressString, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Center"  Height="29" Margin="184.4,381,238.6,0" VerticalAlignment="Top" Width="125"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="380" Margin="245,0,0,0" VerticalAlignment="Top" Width="1" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+        </Border>
 
 
     </Grid>
