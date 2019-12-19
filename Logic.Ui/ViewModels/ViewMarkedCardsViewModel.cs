@@ -225,6 +225,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.CardName = this.markedCards.ElementAt(this.CurrentCardIndex).Name;
             this.CurrentQuestion = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Text;
             this.CurrentAnswer = this.markedCards.ElementAt(this.CurrentCardIndex).Back.Text;
+            Console.WriteLine(this.markedCards.ElementAt(this.CurrentCardIndex).Info.LastTimeUsed);
 
         }
 
