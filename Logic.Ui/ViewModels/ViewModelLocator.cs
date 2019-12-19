@@ -16,6 +16,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public ViewModelLocator()
         {
+            Set = new SetViewModel();
             generateCards();
 
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel(Set);
