@@ -33,12 +33,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         #region ICommand
         private ICommand submitAnswerCommand;
         private ICommand nextCardCommand;
-        private ICommand cancelTrainingCommand;
         private ICommand markCardCommand;
         private ICommand requestHelpCommand;
         public ICommand SubmitAnswerCommand { get { return submitAnswerCommand; } }
         public ICommand NextCardCommand { get { return nextCardCommand; } }
-        public ICommand CancelTrainingCommand { get { return cancelTrainingCommand; } }
         public ICommand MarkCardCommand { get { return markCardCommand; } }
         public ICommand RequestHelpCommand { get { return requestHelpCommand; } }
         #endregion
@@ -162,7 +160,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             nextCardCommand = new RelayCommand(this.NextCard, this.ReturnTrue);
-            cancelTrainingCommand = new RelayCommand(this.CancelTraining, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
             requestHelpCommand = new RelayCommand(this.RequestHelp, this.ReturnTrue);
             this.FinishedCards = new ObservableCollection<CardViewModel>();

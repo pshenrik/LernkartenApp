@@ -40,7 +40,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate >
                     <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" Width="139"  Background="{Binding Info.LastLearnedColor}" RenderTransformOrigin="0.5,0.547" Height="27">
-                        <Image Source="LernkartenApp/Logic.Ui/Resources/marked.png" IsEnabled="{Binding Info.Marked, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0" HorizontalAlignment="Right" Height="26" VerticalAlignment="Center" Width="26"/>
+                        <Image IsEnabled="{Binding Info.Marked, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0" HorizontalAlignment="Right" Height="26" VerticalAlignment="Center" Width="26"/>
                         <Label Content="{Binding Name}"  HorizontalAlignment="Left" Height="27" Width="92"  Margin="0,-27,0,0" RenderTransformOrigin="0.503,0.52"/>
 
 
@@ -51,7 +51,7 @@
         <Label Content="Letzte Karten&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="214,28,0,0" VerticalAlignment="Top" Width="82" Height="26"/>
         <Button Content="Nächste Karte" HorizontalAlignment="Left" Margin="855,360,0,0" VerticalAlignment="Top" Width="92" Height="30" Command="{Binding NextCardCommand, Mode=OneWay}" RenderTransformOrigin="1.687,0.467"/>
         <Rectangle x:Name="AnswerIndicator" Fill="{Binding AnswerIndicatorFillColor, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="0,435,-2,0" Stroke="Black" VerticalAlignment="Top" Width="986" StrokeThickness="0"/>
-        <Image Source="Logic.Ui\Resources\marked.png"  HorizontalAlignment="Left" Height="48" Margin="501,80,0,0" VerticalAlignment="Top" Width="32"/>
+        <Image HorizontalAlignment="Left" Height="48" Margin="501,80,0,0" VerticalAlignment="Top" Width="32"/>
         <Label Content="Kategorie auswählen" HorizontalAlignment="Left" Margin="19,49,0,0" VerticalAlignment="Top" Width="124"/>
         <ComboBox HorizontalAlignment="Left" Margin="23,80,0,0" VerticalAlignment="Top" Width="136" Height="24"/>
         <Button Content="Lernen starten" HorizontalAlignment="Left" Margin="23,336,0,0" VerticalAlignment="Top" Width="136" Height="30"/>
