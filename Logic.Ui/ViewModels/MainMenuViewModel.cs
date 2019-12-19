@@ -17,35 +17,55 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     {  
         
       
-        public static IEnumerable<CategoryViewModel> getCategoryWrappers()
-        {  
-            List<CategoryViewModel> listCat = new List<CategoryViewModel>();
-         
-            listCat.Add(new CategoryViewModel { Name = "Math" });
-            listCat.Add(new CategoryViewModel { Name = "B" });
-            listCat.Add(new CategoryViewModel { Name = "C" });
-            listCat.Add(new CategoryViewModel { Name = "D" });
-            listCat.Add(new CategoryViewModel { Name = "E" });
-            return listCat;
-        }
        
       
-        public static ObservableCollection<CategoryViewModel> categories = new ObservableCollection<CategoryViewModel>(getCategoryWrappers());
-
-        private ICommand RemoveCategoryCommand;
+      
+        private ICommand RemoveCategoryCommand { get; }
         public RelayCommand OpenCreateCategoryWindowCommand { get; }
         public RelayCommand OpenExamModeWindowCommand { get; }
         public RelayCommand OpenStatisticsWindowCommand { get; }
         public RelayCommand OpenExportWindowCommand { get; }
         public RelayCommand OpenLernmodusWindowCommand { get; }
         public RelayCommand OpenViewCategoryWindowCommand { get;  }
-        public CategoryViewModel SelectedCategory { get; set;}
 
-        public static String NumberOfCategories { get; set; }
+        public CategoryViewModel SelectedCategory { get; set; }
 
 
-        public SetViewModel setViewModel; 
+        private string selctedComboBoxItem;
+        public String SelectedcomboBoxItem
+        {
+            get {
+                return this.selctedComboBoxItem; 
+            
+            }
+            set
+            {
+               // string[] words = this.selctedComboBoxItem.Split(':'); 
+
+               // Console.WriteLine(words.Length); 
+                Console.WriteLine(this.selctedComboBoxItem); 
+            }
+        }
+        private string numberOfCategories;
+        public String NumberOfCategories 
+        {
+            get
+            {
+                return this.numberOfCategories;
+            }
+
+            set
+            {
+                this.numberOfCategories = value;
+                OnPropertyChanged();
+            }
+                 
+        }
+
+
+        public SetViewModel categories { get; set; } 
         public MainMenuViewModel() {
+
          //   testMethodVar = new RelayCommand(this.Test, this.getTrue);
             OpenCreateCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCategoryWindow()));
             OpenExamModeWindowCommand  = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
@@ -53,7 +73,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             OpenExportWindowCommand = new RelayCommand(() => OpenWindow(new OpenExportWindow()));
             OpenLernmodusWindowCommand = new RelayCommand(() => OpenWindow(new OpenLernmodusWindow()));
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
-         
+            
             RemoveCategoryCommand = new RelayCommand(this.removeCategoryfunction, this.getBoolean);
             NumberOfCategories = "                                   " + categories.Count() + " Kategorien"; 
      
@@ -63,7 +83,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public MainMenuViewModel(SetViewModel setViewModel)
         {
-            this.setViewModel = setViewModel;
+           
+            this.categories = setViewModel;
+            
             OpenCreateCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCategoryWindow()));
             OpenExamModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
             OpenStatisticsWindowCommand = new RelayCommand(() => OpenWindow(new OpenStatisticsWindow()));
@@ -82,8 +104,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void removeCategoryfunction()
         {
-            Console.WriteLine("removed");
-            categories.Remove(SelectedCategory); 
+            if (SelectedCategory != null)
+            {
+
+
+                Console.WriteLine(SelectedCategory.Name);
+                categories.Remove(SelectedCategory);
+                NumberOfCategories = "                                   " + categories.Count + " Kategorien";
+                SelectedCategory = null;
+            }
         }
 
         private void OpenWindow<TNotification>(TNotification notification)
@@ -94,7 +123,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
          
         }
 
-        
+        private void setNumberOfCards()
+        {
+
+        }
 
 
         private void OpenViewCategoryWindowFunc<TNotification>(TNotification ViewCategoryWindow)

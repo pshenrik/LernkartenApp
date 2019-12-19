@@ -25,6 +25,8 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
         public CardInfo()
         {
             learnHistory = new ObservableCollection<int>();
+            this.LastTimeUsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            this.createdTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         }
 
 
@@ -105,6 +107,25 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
                 OnPropertyChanged();
             }
         }
+        #endregion
+
+        #region ExamModeProperties
+
+        private long lastTimeUsed;
+
+        public long LastTimeUsed
+        {
+            get
+            {
+                return this.lastTimeUsed;
+            }
+            set
+            {
+                this.lastTimeUsed = value;
+            }
+        }
+
+
         #endregion
 
     }
