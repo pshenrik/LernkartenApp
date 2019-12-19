@@ -75,10 +75,29 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }
 
-    
+
 
 
         #endregion
+
+        #region ExamModeProperties
+
+        public long LastTimeUsed
+        {
+            get
+            {
+                return this.info.LastTimeUsed;
+            }
+            set
+            {
+                this.info.LastTimeUsed = value;
+            }
+        }
+
+
+
+        #endregion
+
         public CardInfoViewModel(CardInfo info)
         {
             this.info = info;
@@ -87,6 +106,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         public CardInfoViewModel()
         {
             this.info = new CardInfo();
+            
         }
 
 
