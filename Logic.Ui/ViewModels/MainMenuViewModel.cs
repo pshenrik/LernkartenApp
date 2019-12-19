@@ -17,17 +17,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     {  
         
       
-        public static IEnumerable<CategoryViewModel> getCategoryWrappers()
-        {  
-            List<CategoryViewModel> listCat = new List<CategoryViewModel>();
-         
-            listCat.Add(new CategoryViewModel { Name = "Math" });
-            listCat.Add(new CategoryViewModel { Name = "B" });
-            listCat.Add(new CategoryViewModel { Name = "C" });
-            listCat.Add(new CategoryViewModel { Name = "D" });
-            listCat.Add(new CategoryViewModel { Name = "E" });
-            return listCat;
-        }
        
       
       
@@ -41,6 +30,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public CategoryViewModel SelectedCategory { get; set; }
 
+
+        private string selctedComboBoxItem;
+        public String SelectedcomboBoxItem
+        {
+            get {
+                return this.selctedComboBoxItem; 
+            
+            }
+            set
+            {
+               // string[] words = this.selctedComboBoxItem.Split(':'); 
+
+               // Console.WriteLine(words.Length); 
+                Console.WriteLine(this.selctedComboBoxItem); 
+            }
+        }
         private string numberOfCategories;
         public String NumberOfCategories 
         {
