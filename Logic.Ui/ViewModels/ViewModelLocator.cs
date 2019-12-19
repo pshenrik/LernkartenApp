@@ -19,12 +19,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             Set = new SetViewModel();
             generateCards();
 
+            MainMenuVM = new MainMenuViewModel(Set);
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel(Set);
             CreateCategoryVM = new CreateCategoryViewModel(Set);
             CreateCardVM = new CreateCardViewModel(Set);
             ExamModeVM = new ExamModeViewModel(Set);
             LernmodusVM = new LernmodusViewModel(Set);
-            MainMenuVM = new MainMenuViewModel(Set);
+           
             ViewCategoryVM = new ViewCategoryViewModel(Set);
             ExportVM = new ExportViewModel(Set);
             StatisticsVM = new StatisticsViewModel(Set);
@@ -62,7 +63,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     card.Front.Text = "Kategorie " + (i + 1) + " Frage " + (j + 1);
                     card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
 
-                    if( i + j == 0 % 2) { 
+                    if( (i + j)%2 == 0 ) { 
                         card.Info.Marked = true;
                     }
 
