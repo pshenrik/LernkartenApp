@@ -9,10 +9,20 @@
     <Window.DataContext>
         <Binding Path="ViewMarkedCardsVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
-    <Grid>
-        <Button Content="Vorherige" HorizontalAlignment="Left" Margin="55,190,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Nächste" HorizontalAlignment="Left" Margin="655,190,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Markeirung entfernen" HorizontalAlignment="Left" Margin="330,389,0,0" VerticalAlignment="Top" Width="125"/>
+    <Grid Margin="0,10,-0.4,0">
+        <ComboBox HorizontalAlignment="Left" Margin="31,47,0,0" ItemsSource="{Binding Set, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Collections" SelectedValue="{Binding Collections}" VerticalAlignment="Top" Width="120">
 
+        </ComboBox>
+        <Button Visibility="{Binding UiVisable, UpdateSourceTrigger=PropertyChanged}" Content="Vorherige" Command="{Binding PrevCard, Mode=OneWay}" IsEnabled="{Binding PrevAvailable, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="155,175,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Visibility="{Binding UiVisable, UpdateSourceTrigger=PropertyChanged}" Content="Nächste" Command="{Binding NextCard, Mode=OneWay}" IsEnabled="{Binding NextAvailable, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="680,175,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Visibility="{Binding UiVisable, UpdateSourceTrigger=PropertyChanged}" Content="Frage:"  FontSize="16" HorizontalAlignment="Left" Margin="240,40,0,0" VerticalAlignment="Top" Width="305"/>
+        <TextBlock Visibility="{Binding UiVisable, UpdateSourceTrigger=PropertyChanged}" Text="{Binding CurrentQuestion, UpdateSourceTrigger=PropertyChanged}" FontSize="16" HorizontalAlignment="Left" Height="33" Margin="240,72,0,0" VerticalAlignment="Top" Width="435"/>
+        <Image Visibility="{Binding UiVisable, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="125" Margin="360,125,0,0" VerticalAlignment="Top" Width="185"/>
+        <TextBlock Visibility="{Binding UiVisable, UpdateSourceTrigger=PropertyChanged}" Text="{Binding CurrentAnswer, UpdateSourceTrigger=PropertyChanged}" FontSize="16" HorizontalAlignment="Left" Margin="240,342,0,0" VerticalAlignment="Top" Height="35" Width="435"/>
+        <Label Visibility="{Binding UiVisable, UpdateSourceTrigger=PropertyChanged}" Content="Antwort:" FontSize="16" HorizontalAlignment="Left" Margin="240,305,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.162"/>
+        <Border Visibility="{Binding UiVisable, UpdateSourceTrigger=PropertyChanged}" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="337" Margin="230,40,0,0" VerticalAlignment="Top" Width="450"/>
+        <TextBlock Text="{Binding Info, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="31,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="70" Width="124"/>
+        <Button Content="Markierung entfernen" Visibility="{Binding UiVisable,UpdateSourceTrigger=PropertyChanged}" Command="{Binding Remove, Mode=OneWay}" HorizontalAlignment="Left" Margin="410,382,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="{Binding CardName, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding UiVisable,UpdateSourceTrigger=PropertyChanged}" FontSize="16" HorizontalAlignment="Left" Margin="230,0,0,0" VerticalAlignment="Top" Width="445" Height="36"/>
     </Grid>
 </Window>

@@ -67,7 +67,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             Set = new SetViewModel();
             VisabilityExamUi = "Hidden";
             CanStop = false;
-            generateCards();
+            //generateCards();
             Time = 5;
             Question = "";
             ExamProgress = 0;
