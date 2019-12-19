@@ -23,6 +23,6 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
         {
             InitializeComponent();
         }
-        
+
     }
 }

@@ -45,12 +45,29 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public CategoryViewModel[] CategoryList { get; set; }
 
 
+        public ExamModeViewModel (SetViewModel set)
+        {
+            this.Set = set;
+            VisabilityExamUi = "Hidden";
+            CanStop = false;
+
+            Time = 5;
+            Question = "";
+            ExamProgress = 0;
+            QuestionProgress = 0;
+            rand = new Random();
+            this.EnableSettings = true;
+            this.cardAmount = 1;
+            this.time = 5;
+            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
+            this.stopExamCommand = new RelayCommand(this.StopExam, this.ReturnTrue);
+        }
         public ExamModeViewModel()
         {
             Set = new SetViewModel();
             VisabilityExamUi = "Hidden";
             CanStop = false;
-            getCategorys();
+            //generateCards();
             Time = 5;
             Question = "";
             ExamProgress = 0;
@@ -472,34 +489,30 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
 
-        
 
 
-       
-
-
-        private void getCategorys()
+        private void generateCards()
         {
-            
-
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                CategoryViewModel cat  = new CategoryViewModel("Kategorie" + (i+1));
+                CategoryViewModel cat = new CategoryViewModel("Kategorie" + (i + 1));
 
-                for(int j = 0; j < (i*2); j++)
+                for (int j = 0; j < (i * 2); j++)
                 {
                     CardViewModel card = new CardViewModel();
-                    card.Front.Text = "Kategorie " + (i+1)+ " Frage " + (j+1);
+                    card.Front.Text = "Kategorie " + (i + 1) + " Frage " + (j + 1);
+                    card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
                     cat.Collections[0].Add(card);
                 }
 
 
                 Set.Add(cat);
             }
-
-
-
         }
+
+
+
+
         #endregion
 
     }

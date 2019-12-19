@@ -19,11 +19,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             this.category = new Category("");
             this.Collections = new CardCollectionViewModel[5];
-            Collections[0] = new CardCollectionViewModel(category.Collections[0]);
-            Collections[1] = new CardCollectionViewModel(category.Collections[1]);
-            Collections[2] = new CardCollectionViewModel(category.Collections[2]);
-            Collections[3] = new CardCollectionViewModel(category.Collections[3]);
-            Collections[4] = new CardCollectionViewModel(category.Collections[4]);
+            for(int i = 0; i < 5; i++)
+            {
+                Collections[i] = new CardCollectionViewModel(category.Collections[i]);
+            }
 
 
         }
@@ -32,22 +31,20 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             this.category = new Category(name);
             this.Collections = new CardCollectionViewModel[5];
-            Collections[0] = new CardCollectionViewModel(category.Collections[0]);
-            Collections[1] = new CardCollectionViewModel(category.Collections[1]);
-            Collections[2] = new CardCollectionViewModel(category.Collections[2]);
-            Collections[3] = new CardCollectionViewModel(category.Collections[3]);
-            Collections[4] = new CardCollectionViewModel(category.Collections[4]);
+            for (int i = 0; i < 5; i++)
+            {
+                Collections[i] = new CardCollectionViewModel(category.Collections[i]);
+            }
 
         }
         public CategoryViewModel( Category cat)
         {
             this.category = cat;
             this.Collections = new CardCollectionViewModel[5];
-            Collections[0] = new CardCollectionViewModel(category.Collections[0]);
-            Collections[1] = new CardCollectionViewModel(category.Collections[1]);
-            Collections[2] = new CardCollectionViewModel(category.Collections[2]);
-            Collections[3] = new CardCollectionViewModel(category.Collections[3]);
-            Collections[4] = new CardCollectionViewModel(category.Collections[4]);
+            for (int i = 0; i < 5; i++)
+            {
+                Collections[i] = new CardCollectionViewModel(category.Collections[i]);
+            }
 
         }
         
@@ -66,6 +63,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }
 
+        public long CreatedTime
+        {
+            get
+            {
+                return category.CreatedTime;
+            }
+        }
         public int NumberOfCards
         {
             get
