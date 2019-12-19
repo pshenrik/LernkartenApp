@@ -9,7 +9,18 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
     {
         //Max 5 collections
         public CardCollection[] Collections;
-
+        private long createdTime;
+        public long CreatedTime
+        {
+            get
+            {
+                return this.createdTime;
+            }
+            set
+            {
+                this.createdTime = value;
+            }
+        }
         public int NumberOfCards
         {
             get
@@ -23,6 +34,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
 
         public Category(String name)
         {
+            this.CreatedTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             this.Name = name;
             this.Collections = new CardCollection[5];
             this.Collections[0] = new CardCollection();
