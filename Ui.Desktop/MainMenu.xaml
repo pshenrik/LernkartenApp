@@ -17,7 +17,7 @@
     </Window.IsEnabled>
 
 
-    <Grid>
+    <Grid Margin="0,0,2,-3">
         <Grid Margin="0,0,0,324" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
 
             <Grid.RowDefinitions>
@@ -35,23 +35,17 @@
             </Grid.ColumnDefinitions>
             <Label Content="Lern Cards" Grid.Column="0" FontSize="30" FontFamily="Showcard Gothic" Background="{x:Null}" IsHitTestVisible="False" RenderTransformOrigin="2,0.5" Margin="0,0,0,-14"/>
 
-            <ComboBox  Grid.Row="0" Grid.Column="1"  Margin="5,0,0,25" SelectedItem="{Binding SelectedcomboBoxItem, Mode=OneWayToSource}" SelectionChanged="ComboBox_SelectionChanged">
-                <ComboBoxItem Content="Name">
-                    
-                </ComboBoxItem>
-                <ComboBoxItem Content="Text">
-                  
-                </ComboBoxItem >
-                <ComboBoxItem Content="Date">
-                    
-                </ComboBoxItem>
+            <ComboBox  Grid.Row="0" Grid.Column="1"  Margin="5,0,0,25"  SelectedItem="{Binding SelectedcomboBoxItem, Mode=OneWayToSource}">
+                <ComboBoxItem Content="Name"></ComboBoxItem>
+                <ComboBoxItem Content="Datum"></ComboBoxItem>
+                <ComboBoxItem Content="Anzahl der Karten"></ComboBoxItem>
             </ComboBox>
 
 
 
-            <Button  Grid.Row="0" Grid.Column="2" Content="find"    Margin="321,0,5,25" FontSize="20" />
-            <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="search..." Margin="10,0,79,25"  Background="White" SelectionOpacity="13" FontSize="25" />
-
+            <Button  Grid.Row="0" Grid.Column="2" Content="finden"    Margin="321,0,5,25" FontSize="20" Command="{Binding FindCategoryCommand, Mode=OneWay}"/>
+            <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="{Binding searchedCategory}" Margin="10,0,79,25"  Background="White" SelectionOpacity="13" FontSize="25" />
+            <Label Content="{Binding NotFoundMessage}" FontSize="12" HorizontalAlignment="Center" RenderTransformOrigin="0.483,0.493" Margin="10,51,5,-27" Grid.Column="2" Width="385" FontWeight="Bold" FontStyle="Italic" Foreground="Red" />
 
             <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"   FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding OpenCreateCategoryWindowCommand, Mode=OneWay}"/>
         </Grid>
@@ -79,19 +73,20 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
-
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
             <Button Grid.Row="0" Command="{Binding OpenExportWindowCommand, Mode=OneWay}">Export</Button>
             <Button Grid.Row="1" Command="{Binding OpenExamModeWindowCommand, Mode=OneWay}">Prüfungsmode</Button>
             <Button Grid.Row="2" Command="{Binding OpenStatisticsWindowCommand, Mode=OneWay}">Statistik</Button>
             <Button Grid.Row="3" Command="{Binding OpenLernmodusWindowCommand, Mode=OneWay}">Lernen-Modus</Button>
-
+            <Button Grid.Row="4" Command="{Binding OpenViewMarkedCardsWindowCommand, Mode=OneWay}">Markierte Karten</Button>
         </Grid>
 
-        <Grid>
+        <Grid Margin="180,147,0,64">
 
-            <ListBox Margin="182,145,0,62" ItemsSource="{Binding categories, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCategory, Mode=OneWayToSource}" SelectionChanged="ListBox_SelectionChanged">
+            <!-- <ListBox Margin="182,145,0,62" ItemsSource="{Binding categories, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCategory, Mode=OneWayToSource}">
+
 
                 <ListBox.ItemTemplate>
 
@@ -99,10 +94,12 @@
                     <DataTemplate >
                         <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="581" Background="Silver" RenderTransformOrigin="0.5,0.547">
 
-                            <TextBlock Text="{Binding Name}"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="287"  Margin="125,0,169,0" RenderTransformOrigin="0.503,0.52">
+                            <TextBlock Text="{Binding Name}"  HorizontalAlignment="Center" FontSize="20"  VerticalAlignment="Center" Height="29" Width="287"  Margin="125,0,169,0" RenderTransformOrigin="0.503,0.52">
 
                             </TextBlock>
+                            <TextBlock Text="{Binding CreatedTime}"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="15" Width="204"  Margin="367,0,10,0" RenderTransformOrigin="1.373,0.52">
 
+                            </TextBlock>
 
                         </StackPanel>
 
@@ -111,14 +108,94 @@
 
 
                 </ListBox.ItemTemplate>
+            </ListBox>-->
+            <TextBlock Text=" Kategorie"  HorizontalAlignment="Center" FontSize="20"  VerticalAlignment="Top" Height="29" Width="144" RenderTransformOrigin="-0.855,0.69" Margin="0,0,466,0"  >
+
+            </TextBlock>
+
+            <TextBlock Text=" Erstellzeit" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Height="29" Width="130" RenderTransformOrigin="0.487,-2.828" Margin="219,0,261,182"  >
+
+            </TextBlock>
+
+
+            <TextBlock Text=" Anzahl der Karten in %" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Height="29" Width="223" Margin="387,0,0,182"   >
+
+            </TextBlock>
+
+            <ListBox ItemsSource="{Binding categories, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCategory, Mode=OneWayToSource}" Margin="0,29,0,0">
+
+
+                <ListBox.ItemTemplate>
+
+
+                    <DataTemplate >
+                        <Grid Width="581">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <TextBlock Text="{Binding Name}" Grid.Column="0" HorizontalAlignment="Center" FontSize="20"  VerticalAlignment="Top" Height="29" Width="194"  Margin="0" RenderTransformOrigin="1.17,0.517">
+
+                            </TextBlock>
+
+                            <TextBlock Text="{Binding CreatedTime}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="29" Width="193"  Margin="1,0,0,0" RenderTransformOrigin="1.373,0.52" Grid.ColumnSpan="1">
+
+                            </TextBlock>
+                            <ProgressBar Grid.Column="2" Minimum="0" Maximum="100" Value="20" Grid.ColumnSpan="1" Margin="0"  RenderTransformOrigin="0.5,0.5" >
+
+                            </ProgressBar>
+
+
+
+                        </Grid>
+
+
+                    </DataTemplate>
+
+
+                </ListBox.ItemTemplate>
             </ListBox>
 
-            <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
-            <Button Content="Karten Anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Height="28" Margin="212,357,454,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-            <Button Content="Kategorie Löschen" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="423,357,243,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-            <Button Content="Kategorie Bearbeiten" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="639,357,27,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-        </Grid>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </Grid>
+        <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
+        <Button Content="Karten Anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Height="28" Margin="212,357,454,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+        <Button Content="Kategorie Löschen" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="423,357,243,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+        <Button Content="Kategorie Bearbeiten" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="639,357,27,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
     </Grid>
 </Window>
  
