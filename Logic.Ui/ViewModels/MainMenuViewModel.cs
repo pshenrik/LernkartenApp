@@ -17,8 +17,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     {
 
 
-
-
         public ICommand FindCategoryCommand { get; }
         private ICommand RemoveCategoryCommand { get; }
         public RelayCommand OpenCreateCategoryWindowCommand { get; }
@@ -29,7 +27,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public RelayCommand OpenViewCategoryWindowCommand { get; }
         public RelayCommand OpenViewMarkedCardsWindowCommand { get; }
         public CategoryViewModel SelectedCategory { get; set; }
-        public String searchedCategory { get; set; }
+        public String SearchedCategory { get; set; }
 
         private String notFoundMessage;
         public String NotFoundMessage
@@ -76,12 +74,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
 
         }
-
-
-
-
-
-        public SetViewModel categories { get; set; }
+        public SetViewModel Categories { get; set; }
         public MainMenuViewModel()
         {
 
@@ -92,11 +85,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             OpenExportWindowCommand = new RelayCommand(() => OpenWindow(new OpenExportWindow()));
             OpenLernmodusWindowCommand = new RelayCommand(() => OpenWindow(new OpenLernmodusWindow()));
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
-            OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow())); 
-            FindCategoryCommand = new RelayCommand(this.FindCategoryfunction, this.getBoolean);
-            RemoveCategoryCommand = new RelayCommand(this.removeCategoryfunction, this.getBoolean);
-      
-            NumberOfCategories = "                                   " + categories.Count() + " Kategorien";
+            OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow()));
+            FindCategoryCommand = new RelayCommand(this.FindCategoryfunction, this.GetBoolean);
+            RemoveCategoryCommand = new RelayCommand(this.RemoveCategoryfunction, this.GetBoolean);
+
+            NumberOfCategories = "                                   " + Categories.Count() + " Kategorien";
 
 
         }
@@ -105,7 +98,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public MainMenuViewModel(SetViewModel setViewModel)
         {
 
-            this.categories = setViewModel;
+
+            this.Categories = setViewModel;
 
             OpenCreateCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCategoryWindow()));
             OpenExamModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
@@ -114,10 +108,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             OpenLernmodusWindowCommand = new RelayCommand(() => OpenWindow(new OpenLernmodusWindow()));
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
             OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow()));
-            FindCategoryCommand = new RelayCommand(this.FindCategoryfunction, this.getBoolean);
-            RemoveCategoryCommand = new RelayCommand(this.removeCategoryfunction, this.getBoolean);
-            NumberOfCategories = "                                   " + categories.Count() + " Kategorien";
-       
+            FindCategoryCommand = new RelayCommand(this.FindCategoryfunction, this.GetBoolean);
+            RemoveCategoryCommand = new RelayCommand(this.RemoveCategoryfunction, this.GetBoolean);
+            NumberOfCategories = "                                   " + Categories.Count() + " Kategorien";
+
         }
 
 
@@ -129,51 +123,51 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             if (selectedType == "Name")
             {
-                var sortableList = this.categories.OrderBy(category => category.Name).ToList();
+                var sortableList = this.Categories.OrderBy(category => category.Name).ToList();
 
-                this.categories.Clear();
+                this.Categories.Clear();
                 foreach (var item in sortableList)
                 {
-                    this.categories.Add(item);
+                    this.Categories.Add(item);
                 }
             }
             else if (selectedType == "Datum")
             {
-                var sortableList = this.categories.OrderBy(category => Convert.ToDateTime(category.CreatedTime).Ticks).ToList();
+                var sortableList = this.Categories.OrderBy(category => Convert.ToDateTime(category.CreatedTime).Ticks).ToList();
 
-                this.categories.Clear();
+                this.Categories.Clear();
                 foreach (var item in sortableList)
                 {
-                    this.categories.Add(item);
+                    this.Categories.Add(item);
                 }
             }
             else
             {
-              /*  var sortableList = this.categories.OrderBy(category => category.NumberOfCards).ToList();
+                /*  var sortableList = this.categories.OrderBy(category => category.NumberOfCards).ToList();
 
-                this.categories.Clear();
-                foreach (var item in sortableList)
-                {
-                    this.categories.Add(item);
-                }*/
+                  this.categories.Clear();
+                  foreach (var item in sortableList)
+                  {
+                      this.categories.Add(item);
+                  }*/
 
 
             }
         }
         private void FindCategoryfunction()
         {
-            if (this.searchedCategory != "")
+            if (this.SearchedCategory != "")
             {
                 bool isFound = false;
 
-                for (var i = 0; i < this.categories.Count && !isFound; i++)
+                for (var i = 0; i < this.Categories.Count && !isFound; i++)
                 {
-                    if (this.categories[i].Name == this.searchedCategory)
+                    if (this.Categories[i].Name == this.SearchedCategory)
                     {
                         isFound = true;
-                        this.categories.Move(i, 0);
+                        this.Categories.Move(i, 0);
 
-                        NotFoundMessage = ""; 
+                        NotFoundMessage = "";
                     }
                     else
                     {
@@ -184,20 +178,20 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         }
 
 
-        private bool getBoolean()
+        private bool GetBoolean()
         {
             return true;
         }
 
-        private void removeCategoryfunction()
+        private void RemoveCategoryfunction()
         {
             if (SelectedCategory != null)
             {
 
 
                 Console.WriteLine(SelectedCategory.Name);
-                categories.Remove(SelectedCategory);
-                NumberOfCategories = "                                   " + categories.Count + " Kategorien";
+                Categories.Remove(SelectedCategory);
+                NumberOfCategories = "                                   " + Categories.Count + " Kategorien";
                 SelectedCategory = null;
             }
         }
@@ -210,23 +204,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         }
 
-        private void setNumberOfCards()
-        {
-
-        }
 
 
         private void OpenViewCategoryWindowFunc<TNotification>(TNotification ViewCategoryWindow)
         {
+
             if (SelectedCategory != null)
             {
-                ViewCategoryViewModel.NumberOFCards = "                                   " + SelectedCategory.NumberOfCards + " Karten in " + SelectedCategory.Name;
-                ViewCategoryViewModel.NameOfCategory = SelectedCategory.Name;
+
+
+                ViewCategoryViewModel.SelectedCategoryInMainMenu = this.SelectedCategory;
+                // new ViewCategoryViewModel( this.SelectedCategory); 
                 ServiceBus.Instance.Send(ViewCategoryWindow);
             }
 
         }
-        public ICommand getRemoveCategoryCommand
+        public ICommand GetRemoveCategoryCommand
         {
             get
             {
@@ -236,57 +229,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         }
 
 
-
-        /*    public ICommand TestMethode
-            {
-                get
-                {
-                    return testMethodVar; 
-                }
-            }
-            public void Test()
-            {
-
-                Console.WriteLine("HIHIHIHIHIH"); 
-            }
-            private bool getTrue()
-            {
-                return true; 
-            }
-
-
-            /*
-            public RelayCommand ChangeModelCommand { get; }
-
-
-            public string NumberOfCategories
-            {
-                get
-                {
-                    return Categories.Count + "sind vorhanden";
-                }
-            }
-
-            // HilfesFunktion zum Suchen nach einer Kategorie in dem Collection 
-            public string getCategoryName(string categoryName)
-            {
-
-                return null; 
-            }
-
-
-            // HilfesFunktion zum Sortieren: Kategorien werden nach Name sortiert!! 
-            public void NameSort() 
-            {
-
-            }
-
-            // HilfesFunktion zum Sortieren: Kategorien werden nach Date sortiert!! 
-            public void DateSort()
-            {
-
-            }
-            */
 
     }
 }

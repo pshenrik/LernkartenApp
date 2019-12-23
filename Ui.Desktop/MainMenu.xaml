@@ -44,7 +44,7 @@
 
 
             <Button  Grid.Row="0" Grid.Column="2" Content="finden"    Margin="321,0,5,25" FontSize="20" Command="{Binding FindCategoryCommand, Mode=OneWay}"/>
-            <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="{Binding searchedCategory}" Margin="10,0,79,25"  Background="White" SelectionOpacity="13" FontSize="25" />
+            <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="{Binding SearchedCategory}" Margin="10,0,79,25"  Background="White" SelectionOpacity="13" FontSize="25" />
             <Label Content="{Binding NotFoundMessage}" FontSize="12" HorizontalAlignment="Center" RenderTransformOrigin="0.483,0.493" Margin="10,51,5,-27" Grid.Column="2" Width="385" FontWeight="Bold" FontStyle="Italic" Foreground="Red" />
 
             <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"   FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding OpenCreateCategoryWindowCommand, Mode=OneWay}"/>
@@ -122,7 +122,7 @@
 
             </TextBlock>
 
-            <ListBox ItemsSource="{Binding categories, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCategory, Mode=OneWayToSource}" Margin="0,29,0,0">
+            <ListBox ItemsSource="{Binding Categories, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCategory, Mode=OneWayToSource}" Margin="0,29,0,0">
 
 
                 <ListBox.ItemTemplate>
@@ -194,8 +194,8 @@
         </Grid>
         <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
         <Button Content="Karten Anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Height="28" Margin="212,357,454,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-        <Button Content="Kategorie Löschen" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="423,357,243,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-        <Button Content="Kategorie Bearbeiten" Command="{Binding getRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="639,357,27,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+        <Button Content="Kategorie Löschen" Command="{Binding GetRemoveCategoryCommand,  Mode=OneWay }" Height="28" Margin="423,357,243,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+        <Button Content="Kategorie Bearbeiten"  Height="28" Margin="639,357,27,34" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
     </Grid>
 </Window>
  
