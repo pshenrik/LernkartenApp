@@ -7,7 +7,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
         mc:Ignorable="d"
-        Title="CreateCard" Height="450" Width="800">
+        Title="CreateCard" Height="500" Width="1090">
 
     <Window.DataContext>
         <!--<viewModel:CreateCardViewModel></viewModel:CreateCardViewModel>
@@ -16,17 +16,47 @@
     </Window.DataContext>
 
     <Grid Background="#FFE5E3E3">
-        <Border x:Name="header" BorderThickness="1" HorizontalAlignment="Left" Height="95" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" Background="#FF4094EB"/>
-        <Label x:Name="newCard" Content="Neue Karte " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="79,25,0,0" Height="41" Width="250" FontFamily="Verdana" FontSize="20" FontWeight="Bold" Foreground="#FFFAFAFA"/>
-        <Button x:Name="create" Content="Erstellen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="651,25,0,0" Height="41"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" Command="{Binding CreateCardCommand, Mode=OneWay}"/>
-        <TextBox x:Name="tilte" HorizontalAlignment="Left" Height="40"  Text="{ Binding Path= Card.Name}" VerticalAlignment="Top" Width="181" Margin="61,135,0,0"  FontSize="30" FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" />
-        <TextBox x:Name="question" HorizontalAlignment="Left" Height="56" TextWrapping="Wrap" Text="{ Binding Front.Text}" VerticalAlignment="Top" Width="383" Margin="61,193,0,0" Foreground="#FF8B8787" FontSize="30" BorderBrush="#FF0040FF"/>
-        <TextBox x:Name="answer" HorizontalAlignment="Left" Height="56" TextWrapping="Wrap" Text="{ Binding  Back.Text}" VerticalAlignment="Top" Width="383" Margin="61,283,0,0" FontSize="30" Foreground="#FF8B8787" BorderBrush="#FF0040FF"/>
-        <Viewbox HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="image1" Content="Bild" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="372,201,0,0" Height="40" BorderBrush="{x:Null}" Foreground="#FF736E6E" FontSize="20" FontStyle="Italic" Background="#FFA9B2F4" Command="{Binding AddQuestionImgCommand, Mode=OneWay}"/>
-        <Button x:Name="image2" Content="Bild" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="372,290,0,0" Height="40" BorderBrush="{x:Null}" Foreground="#FF736E6E" FontSize="20" FontStyle="Italic" Background="#FFA9B2F4" Command="{Binding AddAnswerImgCommand, Mode=OneWay}"/>
+        <Border x:Name="header" BorderThickness="1" HorizontalAlignment="Left" Height="73" VerticalAlignment="Top" Width="1084" Background="#FF4094EB"/>
+        <Label x:Name="newCard" Content="Neue Karte " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,18,0,0" Height="41" Width="176" FontFamily="Verdana" FontSize="20" FontWeight="Bold" Foreground="#FFFAFAFA" RenderTransformOrigin="0.804,0.695"/>
+        <Button x:Name="create" Content="Erstellen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="931,15,0,0" Height="41"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" Command="{Binding CreateCardCommand, Mode=OneWay}"/>
+        <TextBox x:Name="tilte" HorizontalAlignment="Left" Height="37"  Text="{ Binding  Card.Name}" VerticalAlignment="Top" Width="240" Margin="482,79,0,0"  FontSize="30" FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" />
+        <TextBox x:Name="question" HorizontalAlignment="Left" Height="78" TextWrapping="Wrap" Text="{ Binding Card.Front.Text}" VerticalAlignment="Top" Width="325" Margin="219,383,0,0" Foreground="#FF8B8787" FontSize="20" BorderBrush="#FF0040FF"/>
+        <TextBox x:Name="answer" HorizontalAlignment="Left" Height="78" TextWrapping="Wrap" Text="{ Binding  Card.Back.Text}" VerticalAlignment="Top" Width="382" Margin="626,383,0,0" FontSize="20" Foreground="#FF8B8787" BorderBrush="#FF0040FF"/>
+        <Button x:Name="image1"  Content="Bild" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="549,406,0,0" Height="40" BorderBrush="{x:Null}" Foreground="#FF736E6E" FontSize="20" FontStyle="Italic" Background="#FFA9B2F4" Command="{Binding AddQuestionImgCommand, Mode=OneWay}" RenderTransformOrigin="0.232,0.5" />
+        <Button x:Name="image2" Content="Bild" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="1018,406,0,0" Height="40" BorderBrush="{x:Null}" Foreground="#FF736E6E" FontSize="20" FontStyle="Italic" Background="#FFA9B2F4" Command="{Binding AddAnswerImgCommand, Mode=OneWay}" RenderTransformOrigin="1.884,0.525"/>
+        <ComboBox HorizontalAlignment="Left" Margin="10,107,0,0"  DisplayMemberPath="Name" ItemsSource="{Binding Set}"  SelectedItem="{Binding SelectedCategory}"  VerticalAlignment="Top" Width="120" Height="30" >
+
+        </ComboBox>
+        <Label Content="Kategorie auswählen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,71,0,0" Height="36" Width="216" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
+        <Border BorderBrush="#FF6E6E6E" BorderThickness="1" HorizontalAlignment="Left" Height="335" Margin="610,136,0,0" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5"></Border>
+        <Label Content="Forderseite" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="242,120,0,0" Height="36" Width="216" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
+        <Label Content="Rückseite:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="644,116,0,0" Height="36" Width="216" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
+
+        <Viewbox Stretch="Fill" Margin="219,157,491,108">
+            <Image Source="{Binding QuesImgeLocation}"/>
+        </Viewbox>
+        <Viewbox Stretch="Fill" Margin="623,152,76,108">
+            <Image Source="{Binding AnswerImgeLocation}"/>
+        </Viewbox>
+        <Label  Content="{ Binding  CheckAddNewCard}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="298,15,0,0" Height="36" Width="424" FontFamily="Verdana" FontSize="16" Foreground="#FF761F1F"/>
+        <Label Content="Schlüsselwörter:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-2,152,0,0" Height="33" Width="184" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
+        <ListBox Margin="10,185,892,72" ItemsSource="{Binding Keywords}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" >
+            <ListBox.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="171" Background="LightGray" RenderTransformOrigin="0.5,0.547" Height="41">
+
+                        <Label Content="{Binding .}"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="53" Width="171"  Margin="0" RenderTransformOrigin="0.503,0.52" FontSize="18" Background="#FFE2E2E2" Foreground="#FF07439B">
+
+                        </Label>
+
+                    </StackPanel>
+                </DataTemplate>
 
 
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="create_Copy" Content="Neu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="142,406,0,0" Height="40"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" Command="{Binding AddNewKeywordCommand, Mode=OneWay}"/>
+        <TextBox Height="40" TextWrapping="Wrap" Text="{Binding NewKeyword}" VerticalAlignment="Top" Width="127" Margin="10,406,947,0" Foreground="#FF8B8787" FontSize="16" BorderBrush="#FF0040FF"/>
 
     </Grid>
 </Window>
