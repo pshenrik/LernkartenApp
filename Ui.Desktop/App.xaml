@@ -8,11 +8,11 @@
     <Application.Resources>
         <!--<viewModel:ViewModelLocator x:Key="ViewModelLocator">
         </>-->
-   
-            <viewModel:ViewModelLocator x:Key="ViewModelLocator">
-            </viewModel:ViewModelLocator>
+        <viewModel:ViewModelLocator x:Key="ViewModelLocator">
+        </viewModel:ViewModelLocator>
         <desktop:MessageListener x:Key="MessageListener">
         </desktop:MessageListener>
+
     </Application.Resources>
     
 </Application>
