@@ -99,5 +99,8 @@
   <ItemGroup>
     <Content Include="Resources\marked.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\CardPictures\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

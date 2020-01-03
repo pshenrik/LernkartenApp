@@ -13,34 +13,25 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
 
     /*
-     * Sind die Variablen zu den Attributen so richtig?
-     * 
-     * INotifyPropertyChanged ?
-     * 
-     * learnedCardsCounter ändert sich nicht im UI
-     * 
-     * CardCollection hat kein NotifyPropertyChanged ?
-     * 
-     * ListBox Name anzeigen
-     * 
-     * 
-     * TODO
-     * x:Class="ViewModelLocator.MainWindow"
-     * in die xaml einfügen
+     Methodennamen so richtig ? Klein/Großschreibung
+     CheckStartRequirements in die Bedingung mit ReturnTrue einbinden
+     Properties so richtig mit private Backendfield?
      */
     public class LernmodusViewModel : AbstractViewModel
     {
         #region ICommand
         private ICommand submitAnswerCommand;
         private ICommand nextCardCommand;
-        private ICommand cancelTrainingCommand;
         private ICommand markCardCommand;
         private ICommand requestHelpCommand;
+        private ICommand startLearningCommand;
+        private ICommand stopLearningCommand;
         public ICommand SubmitAnswerCommand { get { return submitAnswerCommand; } }
         public ICommand NextCardCommand { get { return nextCardCommand; } }
-        public ICommand CancelTrainingCommand { get { return cancelTrainingCommand; } }
         public ICommand MarkCardCommand { get { return markCardCommand; } }
         public ICommand RequestHelpCommand { get { return requestHelpCommand; } }
+        public ICommand StartLearningCommand { get { return startLearningCommand; } }
+        public ICommand StopLearningCommand { get { return stopLearningCommand; } }
         #endregion
 
         #region Properties
@@ -84,7 +75,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             {
                 currentCard = value;
                 CurrentCardPage = value.Front;
-                interactedWithCard = false; //Interaktion bei einer neuen Karte auf false setzen
                 OnPropertyChanged();
             }
         }
@@ -147,78 +137,226 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
+        private bool nextButtonEnabled = false;
+        public bool NextButtonEnabled { 
+            get
+            {
+                return nextButtonEnabled;
+            }
+            set
+            {
+                nextButtonEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool menuButtonsEnabled = true;
+        public bool MenuButtonsEnabled
+        {
+            get
+            {
+                return menuButtonsEnabled;
+            }
+            set
+            {
+                menuButtonsEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public SetViewModel Set { get; set; }
+  
+
+        public CategoryViewModel category;
+        public CategoryViewModel Category
+        {
+            get
+            {
+                return category;
+            }
+            set
+            {
+                category = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool hideLearningInterface = true;
+        public string HideLearningInterface
+        {
+            get
+            {
+                Console.WriteLine(hideLearningInterface);
+                if (hideLearningInterface)
+                {
+                    return "Hidden";
+                } 
+                return "Visible";
+            }
+            set
+            {
+                if (value.Equals("Hidden"))
+                {
+                   
+                    hideLearningInterface = true;
+                } else
+                {
+                    hideLearningInterface = false;
+                }
+                
+                OnPropertyChanged();
+            }
+        }
+
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get
+            {
+                return errorMessage;
+            }
+            set
+            {
+                Console.WriteLine(ErrorMessage);
+                errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
-        public LernmodusViewModel(SetViewModel set)
-        {
-
-        }
 
         private string red = "#e62020";
         private string green = "#41e620";
         private string white = "#fff";
+        
+        private int currentCardIndex;
     
-        private bool interactedWithCard; //Ob mit der aktuellen Karte bereits interagiert wurde (Submit oder Skip)
-        private CategoryViewModel category;
-        public LernmodusViewModel()
+
+        public LernmodusViewModel(SetViewModel set)
         {
+            this.Set = set;
+
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             nextCardCommand = new RelayCommand(this.NextCard, this.ReturnTrue);
-            cancelTrainingCommand = new RelayCommand(this.CancelTraining, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
             requestHelpCommand = new RelayCommand(this.RequestHelp, this.ReturnTrue);
+            startLearningCommand = new RelayCommand(this.StartLearning, this.ReturnTrue);
+            stopLearningCommand = new RelayCommand(this.StopLearning, this.ReturnTrue);
             this.FinishedCards = new ObservableCollection<CardViewModel>();
-            
-            
-            //Bsp Karte erstellen
-            this.CurrentCard = new CardViewModel(new Card("Hammerhart"));
-            CurrentCard.Front.Text = "Woher kommt Brendan?";
-            CurrentCard.Back.Text = "Spanien";
 
+        
+        }
 
+        private void StartLearning()
+        {
+            if (CheckStartRequirements())
+            {
+                //Interface einblenden
+                HideLearningInterface = "Visible";
+                CurrentCard = GetNextCard();
 
+                MenuButtonsEnabled = false;
+            }
+        }
+
+        private void StopLearning()
+        {
+            HideLearningInterface = "Hidden";
+            FinishedCards = new ObservableCollection<CardViewModel>();
+            MenuButtonsEnabled = true;
+        }
+
+        private bool CheckStartRequirements()
+        {
+            //Es muss eine Kategorie ausgewählt sein und diese darf nicht leer sein.
+            if (category != null )
+            {
+                if (category.NumberOfCards > 0)
+                {
+                    ErrorMessage = "";
+                    return true;
+                } else
+                {
+                    ErrorMessage = "Die ausgewählte Kategorie ist leer.";
+                }
+                
+            } else
+            {
+                ErrorMessage = "Bitte wähle eine Kategorie aus.";
+            }
+          
+
+            return false;
+        }
+
+        //Überprüft, ob eine Kategorie leer ist
+        private bool CategoryContainsCards(CardCollectionViewModel[] categoryCollections)
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                if(categoryCollections[i].Count > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         
 
         private void SubmitAnswer()
         {
-            Console.WriteLine(learnedCardsCounter);
             LearnedCardsCounter++;
-
-            interactedWithCard = true;
 
             //Antwort anzeigen
             CurrentCardPage = currentCard.Back;
             SubmitButtonEnabled = false;
+            NextButtonEnabled = true;
 
             //Wenn die eingegebene Antwort richtig ist
             if (currentCard.Card.CheckAnswer(answerInputText))
             {
+                CardToNextLevel(currentCard);
                 AnswerIndicatorFillColor = green;
-                currentCard.Info.LearnHistory.Add(1);
+                currentCard.Info.LearnHistory.Add(true);
+                Console.WriteLine(currentCard.Info.LearnHistory[currentCard.Info.LearnHistory.Count - 1]);
             }
             //Wenn die Anwort falsch ist
             else
             {
+                CardToLowerLevel(currentCard);
                 AnswerIndicatorFillColor = red;
-                currentCard.Info.LearnHistory.Add(0);
+                currentCard.Info.LearnHistory.Add(false);
             }
             
 
         }
-        
+        private void CardToNextLevel(CardViewModel card)
+        {
+           int index = currentCardIndex + 1;
+           if (currentCardIndex == 4) {
+                index = 0;
+           }
+           //Aus dem akutellen Level entfernen
+           category.Collections[currentCardIndex].Remove(card);
+            //Zum nächsten Level hinzufügen
+           category.Collections[index].Add(card);
+        }
+
+        private void CardToLowerLevel(CardViewModel card)
+        {
+            //Aus dem akutellen Level entfernen
+            category.Collections[currentCardIndex].Remove(card);
+            //Zum 1 Level hinzufügen
+            category.Collections[0].Add(card);
+        }
 
         private void NextCard()
         {
             AnswerIndicatorFillColor = white;
             SubmitButtonEnabled = true;
-            //Wenn die Karte geskippt wurde
-            if (!interactedWithCard)
-            {
+            NextButtonEnabled = false;
 
-                currentCard.Info.LearnHistory.Add(2);
-            }
             //Neue Karte der Lern History hinzufügen
             FinishedCards.Add(currentCard);
             CurrentCard = GetNextCard();
@@ -226,26 +364,74 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         
 
    
-        //Der Lernmodusalgorithmus
+        //Der Lernmodus-Algorithmus
         private CardViewModel GetNextCard()
         {
-            /*Random rand = new Random();
+            Random rand = new Random();
             //Erstmal zufällig aus einem der Stapel auswählen
-            int collectionIndex = rand.Next(category.Collections.Length);
-            //Zufällige Karte aus dem Stapel auswählen
-            int cardIndex = rand.Next(category.Collections[collectionIndex].cards.Count);
+            int randomNumber = rand.Next(100);
+            CardViewModel nextCard;
+            int index;
+            
+            //50% für Stapel 1
+            if(randomNumber <= 50)
+            {
+                index = 0;
+            }
+            //25% für Stapel 2
+            else if (randomNumber <= 75)
+            {
+                index = 1;
+            }
+            //12% für Stapel 3
+            else if (randomNumber <= 87)
+            {
+                index = 2;
+            }
+            //8% für Stapel 4
+            else if (randomNumber <= 95)
+            {
+                index = 3;
+            }
+            //5% für Stapel 5
+            else
+            {
+                index = 4;
+            }
 
+            if (category.Collections[index].Count != 0)
+            {
+                currentCardIndex = index;
+                nextCard = category.Collections[index][0];
+            }
+            else
+            {
+                nextCard = FindCard(index, 1);
+            }
 
-
-            CardViewModel card = new CardViewModel(category.Collections[collectionIndex].cards[cardIndex]);*/
-            CardViewModel card = new CardViewModel(currentCard.Card);
-
-            return card;
+            return nextCard;
         }
 
-        private void CancelTraining()
-        {   
-            Console.WriteLine("cancel");
+        //Durchsucht andere Collections nach Karten
+        private CardViewModel FindCard(int startIndex, int tryCounter)
+        {
+            int index = startIndex + 1;
+            if (startIndex == 4)
+            {
+                index = 0;
+            }
+
+            if (category.Collections[index].Count == 0)
+            {
+                return FindCard(index, tryCounter + 1);
+            }
+            else
+            {
+                currentCardIndex = index;
+                return category.Collections[index][0];
+            }
+            
+            
         }
 
         private void MarkCard()

@@ -41,7 +41,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         #endregion
 
         #region Lernmodus Properties
-        public ObservableCollection<int> LearnHistory
+        public ObservableCollection<bool> LearnHistory
         {
             get
             {
