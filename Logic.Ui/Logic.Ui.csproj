@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Messages\OpenCreateCardWindow.cs" />
     <Compile Include="Messages\OpenCreateCategoryWindow.cs" />
+    <Compile Include="Messages\OpenEditCardWindow.cs" />
     <Compile Include="Messages\OpenExamModeWindow.cs" />
     <Compile Include="Messages\OpenExportWindow.cs" />
     <Compile Include="Messages\OpenLernmodusWindow.cs" />

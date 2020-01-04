@@ -9,9 +9,13 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
 {
     public class Set : ObservableCollection<Category>
     {
+        
+       
         public Set()
         {
 
         }
+
+
     }
 }

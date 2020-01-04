@@ -92,8 +92,16 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
              this,
              msg =>
              {
-                 CreateCard export = new CreateCard();
-                 export.Show();
+                 CreateCard createCardWindow = new CreateCard();
+                 createCardWindow.Show();
+
+             });
+            ServiceBus.Instance.Register<OpenEditCardWindow>(
+             this,
+             msg =>
+             {
+                 EditCard editCard = new EditCard();
+                 editCard.Show();
 
              });
 

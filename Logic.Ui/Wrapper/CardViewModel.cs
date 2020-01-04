@@ -48,7 +48,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                 OnPropertyChanged();
             }
         }
-
+     
         public CardPageViewModel Front
         {
             get

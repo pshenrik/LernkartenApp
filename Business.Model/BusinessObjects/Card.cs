@@ -14,7 +14,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
         public CardPage Back { get; }
         public CardInfo Info { get; set; }
 
-
+      
         public string Name
         {
             get
