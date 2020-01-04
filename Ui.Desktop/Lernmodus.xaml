@@ -37,7 +37,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="855,89,0,0" 
                    TextWrapping="Wrap" Text="{Binding Path=LearnedCardsCounter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                    VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding FinishedCards}" HorizontalAlignment="Left" Height="269" Margin="219,59,0,0" VerticalAlignment="Top" Width="159" Cursor="Hand" Background="White">
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding FinishedCards}" SelectedValue="{Binding CurrentCardListBox}" HorizontalAlignment="Left" Height="269" Margin="219,59,0,0" VerticalAlignment="Top" Width="159" Cursor="Hand" Background="White">
 
                 <ListBox.ItemTemplate>
                     <DataTemplate >
