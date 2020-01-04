@@ -105,7 +105,14 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
 
              });
 
+            ServiceBus.Instance.Register<OpenImportWindow>(
+            this,
+            msg =>
+            {
+                Import import = new Import();
+                import.Show();
 
+            });
 
         }
 

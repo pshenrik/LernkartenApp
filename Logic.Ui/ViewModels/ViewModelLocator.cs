@@ -20,12 +20,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             generateCards();
 
             MainMenuVM = new MainMenuViewModel(Set);
+            ImportVM = new ImportViewModel(Set); 
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel(Set);
             CreateCategoryVM = new CreateCategoryViewModel(Set);
             CreateCardVM = new CreateCardViewModel(Set);
             ExamModeVM = new ExamModeViewModel(Set);
             LernmodusVM = new LernmodusViewModel(Set);
-           
+            
             ViewCategoryVM = new ViewCategoryViewModel(Set);
             ExportVM = new ExportViewModel(Set);
             StatisticsVM = new StatisticsViewModel(Set);
@@ -44,7 +45,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public LernmodusViewModel LernmodusVM { get; }
 
         public MainMenuViewModel MainMenuVM { get; }
-
+        public ImportViewModel ImportVM { get; }
         public ViewCategoryViewModel ViewCategoryVM { get; }
         public ExportViewModel ExportVM { get; }
 

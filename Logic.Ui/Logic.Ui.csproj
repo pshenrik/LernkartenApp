@@ -49,6 +49,7 @@
     <Compile Include="Messages\OpenEditCardWindow.cs" />
     <Compile Include="Messages\OpenExamModeWindow.cs" />
     <Compile Include="Messages\OpenExportWindow.cs" />
+    <Compile Include="Messages\OpenImportWindow.cs" />
     <Compile Include="Messages\OpenLernmodusWindow.cs" />
     <Compile Include="Messages\OpenMainMenuWindow.cs" />
     <Compile Include="Messages\OpenStatisticsWindow.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\EditCardViewModel.cs" />
     <Compile Include="ViewModels\ExamModeViewModel.cs" />
+    <Compile Include="ViewModels\ImportViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

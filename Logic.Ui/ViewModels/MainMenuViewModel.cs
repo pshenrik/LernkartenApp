@@ -27,6 +27,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public RelayCommand OpenLernmodusWindowCommand { get; }
         public RelayCommand OpenViewCategoryWindowCommand { get; }
         public RelayCommand OpenViewMarkedCardsWindowCommand { get; }
+        public RelayCommand OpenImportWindowCommand { get; }
+        
         public CategoryViewModel SelectedCategory { get; set; }
         public String SearchedCategory { get; set; }
         public String InsertedNewNameForCategory { get; set; }
@@ -91,6 +93,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             OpenLernmodusWindowCommand = new RelayCommand(() => OpenWindow(new OpenLernmodusWindow()));
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
             OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow()));
+            OpenImportWindowCommand = new RelayCommand(()=> OpenWindow(new OpenImportWindow())); 
             FindCategoryCommand = new RelayCommand(this.FindCategoryfunction, this.GetBoolean);
             RemoveCategoryCommand = new RelayCommand(this.RemoveCategoryfunction, this.GetBoolean);
             ChangingNameOfCategoryCommand = new RelayCommand(this.ChangingNameOfCategoryFunction, this.GetBoolean); 
@@ -240,7 +243,7 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
             this.NotFoundMessage = "";
             if (SelectedCategory != null)
             {
-
+                
                  
               //  this.SelectedCategory.IsSelected = true; 
                 ViewCategoryViewModel.SelectedCategoryInMainMenu = this.SelectedCategory;

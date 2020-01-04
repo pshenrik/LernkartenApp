@@ -72,13 +72,15 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
             <Button Grid.Row="0" Command="{Binding OpenExportWindowCommand, Mode=OneWay}">Export</Button>
-            <Button Grid.Row="1" Command="{Binding OpenExamModeWindowCommand, Mode=OneWay}">Prüfungsmode</Button>
-            <Button Grid.Row="2" Command="{Binding OpenStatisticsWindowCommand, Mode=OneWay}">Statistik</Button>
-            <Button Grid.Row="3" Command="{Binding OpenLernmodusWindowCommand, Mode=OneWay}">Lernen-Modus</Button>
-            <Button Grid.Row="4" Command="{Binding OpenViewMarkedCardsWindowCommand, Mode=OneWay}">Markierte Karten</Button>
+            <Button Grid.Row="1" Command="{Binding OpenImportWindowCommand, Mode=OneWay}">Import</Button>
+            <Button Grid.Row="2" Command="{Binding OpenExamModeWindowCommand, Mode=OneWay}">Prüfungsmode</Button>
+            <Button Grid.Row="3" Command="{Binding OpenStatisticsWindowCommand, Mode=OneWay}">Statistik</Button>
+            <Button Grid.Row="4" Command="{Binding OpenLernmodusWindowCommand, Mode=OneWay}">Lernen-Modus</Button>
+            <Button Grid.Row="5" Command="{Binding OpenViewMarkedCardsWindowCommand, Mode=OneWay}">Markierte Karten</Button>
         </Grid>
 
         <Grid Margin="180,147,0,79">
