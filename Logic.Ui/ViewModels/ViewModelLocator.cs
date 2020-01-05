@@ -29,6 +29,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             ViewCategoryVM = new ViewCategoryViewModel(Set);
             ExportVM = new ExportViewModel(Set);
             StatisticsVM = new StatisticsViewModel(Set);
+            EditCardVM = new EditCardViewModel(Set);
         }
         // ToDo: Inhalte für Vorlesung: Achtung: diese Properties 
         // müssen Public sein, da sie von XMAL aus referenziert werden! 
@@ -48,7 +49,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ExportViewModel ExportVM { get; }
 
         public StatisticsViewModel StatisticsVM { get; }
-
+        public EditCardViewModel EditCardVM { get; }
         private void generateCards()
         {
             int counter = 0;
@@ -62,8 +63,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     CardViewModel card = new CardViewModel("Karte Nummer " + counter);
                     card.Front.Text = "Kategorie " + (i + 1) + " Frage " + (j + 1);
                     card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
+                    card.Keywords.Add("test");
+                    card.Keywords.Add("KATEGORIE");
+                    card.Keywords.Add("FUN");
+                    card.Keywords.Add("apache");
 
-                    if( (i + j)%2 == 0 ) { 
+                    if ( (i + j)%2 == 0 ) { 
                         card.Info.Marked = true;
                     }
 

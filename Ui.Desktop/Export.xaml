@@ -6,21 +6,21 @@
         xmlns:viewModel="clr-namespace:De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels;assembly=Logic.Ui"
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
         mc:Ignorable="d"
-        Title="Export" Height="450" Width="800">
+        Title="Export" Height="450" Width="630.5">
 
     <Window.DataContext>
         <Binding Path="ExportVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
 
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="326,10,0,0" TextWrapping="Wrap" Text="Export" VerticalAlignment="Top" FontSize="48" Height="69"/>
-        <Button Content="-&gt;" HorizontalAlignment="Left" Height="27" Margin="438,137,0,0" VerticalAlignment="Top" Width="96" Command="{Binding TestMethodeCommand, Mode=OneWay}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="257,137,0,0" TextWrapping="Wrap" Text="Als XML exportieren" VerticalAlignment="Top" Width="176" Height="29" FontSize="18"/>
-        <Button Content="-&gt;" HorizontalAlignment="Left" Height="27" Margin="438,201,0,0" VerticalAlignment="Top" Width="96"/>
-        <TextBlock HorizontalAlignment="Left" Margin="257,199,0,0" TextWrapping="Wrap" Text="Als PDF exportieren" VerticalAlignment="Top" Width="176" Height="29" FontSize="18"/>
-        <Button Content="&lt;-" HorizontalAlignment="Left" Height="27" Margin="438,261,0,0" VerticalAlignment="Top" Width="96"/>
-        <TextBlock HorizontalAlignment="Left" Margin="257,261,0,0" TextWrapping="Wrap" Text="XML importieren" VerticalAlignment="Top" Width="176" Height="29" FontSize="18"/>
-        <Button Content="Zurück" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="64" Height="30" />
-
+        <TextBlock HorizontalAlignment="Left" Margin="236,24,0,0" TextWrapping="Wrap" Text="Export" VerticalAlignment="Top" FontSize="48" Height="68"/>
+        <Button IsEnabled="{Binding Path=ButtonsEnabled, UpdateSourceTrigger=PropertyChanged}" Content="-&gt;" HorizontalAlignment="Left" Height="26" Margin="345,214,0,0" VerticalAlignment="Top" Width="96" />
+        <TextBlock HorizontalAlignment="Left" Margin="164,214,0,0" TextWrapping="Wrap" Text="Als XML exportieren" VerticalAlignment="Top" Width="176" Height="28" FontSize="18"/>
+        <Button IsEnabled="{Binding Path=ButtonsEnabled, UpdateSourceTrigger=PropertyChanged}" Content="-&gt;" HorizontalAlignment="Left" Height="26" Margin="345,278,0,0" VerticalAlignment="Top" Width="96" Command="{Binding ExportPDFCommand, Mode=OneWay}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,276,0,0" TextWrapping="Wrap" Text="Als PDF exportieren" VerticalAlignment="Top" Width="176" Height="28" FontSize="18"/>
+        <Button Content="&lt;-" HorizontalAlignment="Left" Height="26" Margin="345,338,0,0" VerticalAlignment="Top" Width="96"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,338,0,0" TextWrapping="Wrap" Text="XML importieren" VerticalAlignment="Top" Width="176" Height="28" FontSize="18"/>
+        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding Set, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValue="{Binding Category}" Margin="239,123,0,0" VerticalAlignment="Top" Width="136" Height="24"/>
+        <Label Content="Kategorie auswählen" HorizontalAlignment="Left" Margin="248,97,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

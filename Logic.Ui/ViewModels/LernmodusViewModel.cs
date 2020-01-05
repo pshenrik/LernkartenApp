@@ -74,7 +74,29 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 currentCard = value;
-                CurrentCardPage = value.Front;
+                if(value != null) {
+                   
+                    CurrentCardPage = value.Front;
+                }
+                ShowHelpMessage = "Hidden";
+                OnPropertyChanged();
+            }
+        }
+        //Die Karte vor dem Wechsel
+        private CardViewModel cardBuffer;
+        public CardViewModel CurrentCardListBox
+        {
+            set
+            {
+                if (cardBuffer == null)
+                {
+                    cardBuffer = CurrentCard;
+                }
+                CurrentCard = value;
+
+                //Buttons enablen/disablen
+                NextButtonEnabled = true;
+                SubmitButtonEnabled = false;
                 OnPropertyChanged();
             }
         }
@@ -186,7 +208,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             get
             {
-                Console.WriteLine(hideLearningInterface);
                 if (hideLearningInterface)
                 {
                     return "Hidden";
@@ -217,8 +238,46 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             set
             {
-                Console.WriteLine(ErrorMessage);
                 errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string helpMessage;
+        public string HelpMessage
+        {
+            get
+            {
+                return helpMessage;
+            }
+            set
+            {
+                helpMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showHelpMessage;
+        public string ShowHelpMessage
+        {
+            get
+            {
+                if (showHelpMessage)
+                {
+                    return "Visible";
+                }
+                return "Hidden";
+            }
+            set
+            {
+                if (value.Equals("Visible"))
+                {
+                    showHelpMessage = true;
+                } else
+                {
+                    showHelpMessage = false;
+                }
+                
                 OnPropertyChanged();
             }
         }
@@ -319,7 +378,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 CardToNextLevel(currentCard);
                 AnswerIndicatorFillColor = green;
                 currentCard.Info.LearnHistory.Add(true);
-                Console.WriteLine(currentCard.Info.LearnHistory[currentCard.Info.LearnHistory.Count - 1]);
             }
             //Wenn die Anwort falsch ist
             else
@@ -358,8 +416,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             NextButtonEnabled = false;
 
             //Neue Karte der Lern History hinzufügen
-            FinishedCards.Add(currentCard);
+            if(cardBuffer == null)
+            {
+                FinishedCards.Add(currentCard);
+            }
+            
             CurrentCard = GetNextCard();
+            cardBuffer = null;
         }
         
 
@@ -367,49 +430,55 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         //Der Lernmodus-Algorithmus
         private CardViewModel GetNextCard()
         {
-            Random rand = new Random();
-            //Erstmal zufällig aus einem der Stapel auswählen
-            int randomNumber = rand.Next(100);
-            CardViewModel nextCard;
-            int index;
             
-            //50% für Stapel 1
-            if(randomNumber <= 50)
+            if(cardBuffer != null) {
+                return cardBuffer;
+            } else
             {
-                index = 0;
-            }
-            //25% für Stapel 2
-            else if (randomNumber <= 75)
-            {
-                index = 1;
-            }
-            //12% für Stapel 3
-            else if (randomNumber <= 87)
-            {
-                index = 2;
-            }
-            //8% für Stapel 4
-            else if (randomNumber <= 95)
-            {
-                index = 3;
-            }
-            //5% für Stapel 5
-            else
-            {
-                index = 4;
-            }
+                Random rand = new Random();
+                int randomNumber = rand.Next(100);
+                CardViewModel nextCard;
+                int index;
 
-            if (category.Collections[index].Count != 0)
-            {
-                currentCardIndex = index;
-                nextCard = category.Collections[index][0];
-            }
-            else
-            {
-                nextCard = FindCard(index, 1);
-            }
+                //50% für Stapel 1
+                if (randomNumber <= 50)
+                {
+                    index = 0;
+                }
+                //25% für Stapel 2
+                else if (randomNumber <= 75)
+                {
+                    index = 1;
+                }
+                //12% für Stapel 3
+                else if (randomNumber <= 87)
+                {
+                    index = 2;
+                }
+                //8% für Stapel 4
+                else if (randomNumber <= 95)
+                {
+                    index = 3;
+                }
+                //5% für Stapel 5
+                else
+                {
+                    index = 4;
+                }
 
-            return nextCard;
+                if (category.Collections[index].Count != 0)
+                {
+                    currentCardIndex = index;
+                    nextCard = category.Collections[index][0];
+                }
+                else
+                {
+                    nextCard = FindCard(index, 1);
+                }
+
+                return nextCard;
+            }
+           
         }
 
         //Durchsucht andere Collections nach Karten
@@ -436,14 +505,25 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void MarkCard()
         {
-
             currentCard.Info.Marked = true;
         }
 
         private void RequestHelp()
         {   
             //Zeigt ein Keyword an, wenn es nur eins gibt, dann wird die Hälfte des Strings angezeigt
-            Console.WriteLine("help");
+            string message;
+            if (CurrentCard.Keywords.Count > 0)
+            {
+                string keywordPart = currentCard.Keywords[0].Substring(0, currentCard.Keywords[0].Length/2);
+                message = "Ein gesuchtes Keyword fängt mit " + keywordPart + " an.";
+            } else
+            {
+                string answerPart = currentCard.Back.Text.Substring(0, currentCard.Back.Text.Length/2);
+                message = "Die Antwort fängt mit '"+ answerPart + "' an.";
+            }
+
+            HelpMessage = message;
+            ShowHelpMessage = "Visible";
         }
 
         private bool ReturnTrue()
