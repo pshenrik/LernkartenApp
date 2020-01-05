@@ -55,6 +55,7 @@
             <Button Content="Nächste Karte" IsEnabled="{Binding Path=NextButtonEnabled, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="855,360,0,0" VerticalAlignment="Top" Width="92" Height="30" Command="{Binding NextCardCommand, Mode=OneWay}" RenderTransformOrigin="1.687,0.467"/>
             <Rectangle x:Name="AnswerIndicator" Fill="{Binding AnswerIndicatorFillColor, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="0,435,-2,0" Stroke="Black" VerticalAlignment="Top" Width="986" StrokeThickness="0"/>
             <Image HorizontalAlignment="Left" Height="48" Margin="501,80,0,0" VerticalAlignment="Top" Width="32"/>
+            <TextBlock HorizontalAlignment="Left" Margin="411,403,0,0" TextWrapping="Wrap" Text="{Binding HelpMessage, Mode=OneWay}" Visibility="{Binding ShowHelpMessage,Mode=TwoWay}" VerticalAlignment="Top" Height="32" Width="536"/>
 
 
         </Grid>

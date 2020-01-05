@@ -74,9 +74,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 currentCard = value;
-                if(value != null) { 
+                if(value != null) {
+                   
                     CurrentCardPage = value.Front;
                 }
+                ShowHelpMessage = "Hidden";
                 OnPropertyChanged();
             }
         }
@@ -237,6 +239,45 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string helpMessage;
+        public string HelpMessage
+        {
+            get
+            {
+                return helpMessage;
+            }
+            set
+            {
+                helpMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showHelpMessage;
+        public string ShowHelpMessage
+        {
+            get
+            {
+                if (showHelpMessage)
+                {
+                    return "Visible";
+                }
+                return "Hidden";
+            }
+            set
+            {
+                if (value.Equals("Visible"))
+                {
+                    showHelpMessage = true;
+                } else
+                {
+                    showHelpMessage = false;
+                }
+                
                 OnPropertyChanged();
             }
         }
@@ -470,7 +511,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void RequestHelp()
         {   
             //Zeigt ein Keyword an, wenn es nur eins gibt, dann wird die Hälfte des Strings angezeigt
-            Console.WriteLine("help");
+            string message;
+            if (CurrentCard.Keywords.Count > 0)
+            {
+                string keywordPart = currentCard.Keywords[0].Substring(0, currentCard.Keywords[0].Length/2);
+                message = "Ein gesuchtes Keyword fängt mit " + keywordPart + " an.";
+            } else
+            {
+                string answerPart = currentCard.Back.Text.Substring(0, currentCard.Back.Text.Length/2);
+                message = "Die Antwort fängt mit '"+ answerPart + "' an.";
+            }
+
+            HelpMessage = message;
+            ShowHelpMessage = "Visible";
         }
 
         private bool ReturnTrue()
