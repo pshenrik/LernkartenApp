@@ -29,6 +29,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             ViewCategoryVM = new ViewCategoryViewModel(Set);
             ExportVM = new ExportViewModel(Set);
             StatisticsVM = new StatisticsViewModel(Set);
+            EditCardVM = new EditCardViewModel(Set);
         }
         // ToDo: Inhalte für Vorlesung: Achtung: diese Properties 
         // müssen Public sein, da sie von XMAL aus referenziert werden! 
@@ -48,7 +49,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ExportViewModel ExportVM { get; }
 
         public StatisticsViewModel StatisticsVM { get; }
-
+        public EditCardViewModel EditCardVM { get; }
         private void generateCards()
         {
             int counter = 0;

@@ -19,30 +19,35 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private ICommand createCategoryCommand;
         public ICommand CreateCategoryCommand { get { return createCategoryCommand; } }
      
-        public CreateCategoryViewModel()
+        private SetViewModel set;
+        private String addedSuccessful = "";
+        public String AddedSuccessful
         {
+            get
+            {
+                return addedSuccessful;
+            }
+            set
+            {
+                addedSuccessful = value;
+                OnPropertyChanged();
+            }
+        }
+        public CreateCategoryViewModel(SetViewModel set)
+        {
+            this.set = set;
             Category = new CategoryViewModel();
-            Category.Name = "Kategorienname Eingeben";
-
+            Category.Name = "Kategorienname eingeben";
             //relayCommand
             createCategoryCommand = new RelayCommand(this.CreateCategory, this.ReturnTrue);
         }
 
-        public CreateCategoryViewModel(SetViewModel set)
-        {
-
-        }
-
-        //private void ChangeModel()
-        //{
-        //  this.Category.category.Name = this.Category.category.Name + "-Diff-";
-        //}
-
         private void CreateCategory()
         {
-            //CategoryCollection fehlt
-
+            this.set.Add(this.Category);
+            AddedSuccessful = Category.Name + " erfolgreich hizugefügt";
             Console.WriteLine(Category.Name);
+            Category.Name = "Kategorienname eingeben";
         }
         private bool ReturnTrue()
         {
