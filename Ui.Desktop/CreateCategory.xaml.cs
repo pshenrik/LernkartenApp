@@ -25,9 +25,6 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
             InitializeComponent();
         }
 
-        public static implicit operator Form(CreateCategory v)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
