@@ -62,8 +62,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     CardViewModel card = new CardViewModel("Karte Nummer " + counter);
                     card.Front.Text = "Kategorie " + (i + 1) + " Frage " + (j + 1);
                     card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
+                    card.Keywords.Add("test");
+                    card.Keywords.Add("KATEGORIE");
+                    card.Keywords.Add("FUN");
+                    card.Keywords.Add("apache");
 
-                    if( (i + j)%2 == 0 ) { 
+                    if ( (i + j)%2 == 0 ) { 
                         card.Info.Marked = true;
                     }
 
