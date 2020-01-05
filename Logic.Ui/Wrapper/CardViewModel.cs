@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 
@@ -34,6 +35,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             this.InfoVM = new CardInfoViewModel(this.Card.Info);
         }
 
+        public ObservableCollection<String> Keywords
+        {
+            get
+            {
+                return Card.Keywords;
+            }
+            set
+            {
+                Card.Keywords = value;
+                OnPropertyChanged();
+            }
+        }
 
         public String Name
         {
@@ -71,6 +84,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             {
                 return InfoVM;
             }
+        }
+
+        public bool CheckAnswer(string input)
+        {
+            return Card.CheckAnswer(input);
         }
 
 
