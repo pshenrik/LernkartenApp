@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
@@ -19,6 +20,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
     public class ExamModeViewModel : AbstractViewModel
     {
+        private ObservableCollection<CardViewModel> wrongAnswers;
         private CardViewModel currentCard; 
         private bool enableSetting;
         private int cardCounter; 
@@ -50,7 +52,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.Set = set;
             VisabilityExamUi = "Hidden";
             CanStop = false;
-
+            wrongAnswers = new ObservableCollection<CardViewModel>();
             Time = 5;
             Question = "";
             ExamProgress = 0;
@@ -62,26 +64,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
             this.stopExamCommand = new RelayCommand(this.StopExam, this.ReturnTrue);
         }
-        public ExamModeViewModel()
-        {
-            Set = new SetViewModel();
-            VisabilityExamUi = "Hidden";
-            CanStop = false;
-            //generateCards();
-            Time = 5;
-            Question = "";
-            ExamProgress = 0;
-            QuestionProgress = 0;
-            rand = new Random();
-            this.EnableSettings = true;
-            this.cardAmount = 1;
-            this.time = 5;    
-            this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
-            this.stopExamCommand = new RelayCommand(this.StopExam, this.ReturnTrue);
-
-            
-        }
-      
+        
         #region Propertys
         public CardCollectionViewModel[] Collections
         {
@@ -127,6 +110,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 
             }
         }
+
+        public ObservableCollection<CardViewModel> WrongAnwers
+        {
+            get
+            {
+                return this.wrongAnswers;
+            }
+        }
         public String VisabilityExamUi
         {
             get
@@ -162,6 +153,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.answer = value;
+                if (this.currentCard.CheckAnswer(this.answer))
+                {
+                    this.stopTask = true;
+                }
                 OnPropertyChanged();
                 Console.WriteLine(this.answer);
             }
@@ -370,12 +365,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             {
                 if(i == 0)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                 }
                 ProgressString = "Frage " + (i + 1) + " von " + CardAmount;
                 QuestionProgress = 0;
                 stopTask = false;
-                Action a = new Action(() => startTime(this.time));
+                
                 progressThread = new Thread(new ThreadStart(() => startTime(this.time)));
                 getNextCard();
                 progressThread.Start();
@@ -409,7 +404,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             {
                 QuestionProgress = 100f / timeMs * diff;               
                 diff = DateTimeOffset.Now.ToUnixTimeMilliseconds() - startTime;                              
-            }           
+            }
+            if (!stopTask)
+            {
+                wrongAnswers.Add(currentCard);
+            }else
+            {
+                stopTask = false;
+            }
         }
 
         private bool[][] usedCards; 
@@ -491,24 +493,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
 
-        private void generateCards()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                CategoryViewModel cat = new CategoryViewModel("Kategorie" + (i + 1));
-
-                for (int j = 0; j < (i * 2); j++)
-                {
-                    CardViewModel card = new CardViewModel();
-                    card.Front.Text = "Kategorie " + (i + 1) + " Frage " + (j + 1);
-                    card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
-                    cat.Collections[0].Add(card);
-                }
-
-
-                Set.Add(cat);
-            }
-        }
+       
 
 
 
