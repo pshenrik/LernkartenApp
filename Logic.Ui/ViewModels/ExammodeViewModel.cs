@@ -9,6 +9,7 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using System.Windows.Input;
 using System.Threading;
+using static System.Windows.Threading.Dispatcher;
 using De.HsFlensburg.LernkartenApp001.Services.ServiceBus;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages;
 
@@ -20,10 +21,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
     public class ExamModeViewModel : AbstractViewModel
     {
-        private ObservableCollection<CardViewModel> wrongAnswers;
-        private CardViewModel currentCard; 
+        private System.Windows.Threading.Dispatcher dispatcher; 
+        private CardViewModel selectedWrongCard;
+        private CardViewModel currentCard;
+        private string selectedWrongQuestion;
+        private string selectedWrongAnswer;
         private bool enableSetting;
-        private int cardCounter; 
+        private int cardCounter;
+        private string percentString;
         private CardCollectionViewModel[] collections;
         private long time;
         private int cardAmount;
@@ -40,8 +45,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private string progressString;
         private Random rand;
         private string visabilityExamUi;
+        private string visabilityStatUi;
         private Thread examThread;
         private Thread progressThread;
+        private string boxColor;
+        private string statString;
         public SetViewModel Set { get; set; }
         
         public CategoryViewModel[] CategoryList { get; set; }
@@ -50,9 +58,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ExamModeViewModel (SetViewModel set)
         {
             this.Set = set;
+            dispatcher = System.Windows.Threading.Dispatcher.CurrentDispatcher;
             VisabilityExamUi = "Hidden";
+            VisabilityStatUi = "Hidden";
             CanStop = false;
-            wrongAnswers = new ObservableCollection<CardViewModel>();
+            boxColor = "white";
+            WrongAnswers = new ObservableCollection<CardViewModel>();
             Time = 5;
             Question = "";
             ExamProgress = 0;
@@ -64,8 +75,77 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.startExamCommand = new RelayCommand(this.StartExam, this.ReturnTrue);
             this.stopExamCommand = new RelayCommand(this.StopExam, this.ReturnTrue);
         }
-        
+
+
         #region Propertys
+        public String VisabilityStatUi
+        {
+            get
+            {
+                return this.visabilityStatUi;
+            }
+            set
+            {
+                this.visabilityStatUi = value;
+                OnPropertyChanged();
+            }
+        }
+        public String SelectedWrongQuestion
+        {
+            get
+            {
+                return this.selectedWrongQuestion;
+            }
+            set
+            {
+                this.selectedWrongQuestion = value;
+                OnPropertyChanged();
+            }
+        }
+        public String SelectedWrongAnswer
+        {
+            get
+            {
+                return this.selectedWrongAnswer;
+            }
+            set
+            {
+                this.selectedWrongAnswer = value;
+                OnPropertyChanged();
+            }
+        }
+        public CardViewModel SelectedWrongCard
+        {
+            get
+            {
+                return this.selectedWrongCard;
+            }
+            set
+            {
+                this.selectedWrongCard = value;
+                if(this.selectedWrongCard != null)
+                {
+                    this.SelectedWrongQuestion = selectedWrongCard.Front.Text;
+                    this.SelectedWrongAnswer = selectedWrongCard.Back.Text;
+                }
+                
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<CardViewModel> WrongAnswers { get; set; }
+        public String BoxColor
+        {
+            get
+            {
+                return this.boxColor;
+            }
+            set
+            {
+                this.boxColor = value;
+                OnPropertyChanged();
+            }
+        }
         public CardCollectionViewModel[] Collections
         {
             get
@@ -110,14 +190,31 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 
             }
         }
-
-        public ObservableCollection<CardViewModel> WrongAnwers
+        public String PercentString
         {
             get
             {
-                return this.wrongAnswers;
+                return this.percentString;
+            }
+            set
+            {
+                this.percentString = value;
+                OnPropertyChanged();
             }
         }
+        public String StatString
+        {
+            get
+            {
+                return this.statString;
+            }
+            set
+            {
+                this.statString = value;
+                OnPropertyChanged();
+            }
+        }
+        
         public String VisabilityExamUi
         {
             get
@@ -344,6 +441,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void StartExam()
         {
 
+            VisabilityStatUi = "Hidden";
+            WrongAnswers.Clear();
+            SelectedWrongQuestion = "";
+            SelectedWrongAnswer = "";
+            
             ExamStarted = true;
             VisabilityExamUi = "Visable";
             EnableSettings = false;
@@ -361,8 +463,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             usedCards[3] = new bool[Collections[3].Count];
             usedCards[4] = new bool[Collections[4].Count];
 
+            int initialCardAmount = CardAmount;
+
             for (int i = 0; i < CardAmount; i++)
             {
+               
                 if(i == 0)
                 {
                     Thread.Sleep(500);
@@ -379,8 +484,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
                 progressThread.Join();
                 ExamProgress = 100f / CardAmount * (i + 1);
+                if (!stopTask)
+                {
+                    dispatcher.Invoke(() => WrongAnswers.Add(currentCard));
+                    
+                }
+                else
+                {
+                    BoxColor = "Green";
+                    stopTask = false;
+                }
                 Thread.Sleep(500);
                 Answer = "";
+                BoxColor = "White";
                 
             }
             CanStop = false;
@@ -391,7 +507,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             CanStart = true;
             ExamStarted = false;
             ProgressString = "";
-            Question = "";
+            Question = "";        
+            statistics(initialCardAmount);
         }
         
         private void startTime(long timeForQuestion)
@@ -405,13 +522,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 QuestionProgress = 100f / timeMs * diff;               
                 diff = DateTimeOffset.Now.ToUnixTimeMilliseconds() - startTime;                              
             }
-            if (!stopTask)
-            {
-                wrongAnswers.Add(currentCard);
-            }else
-            {
-                stopTask = false;
-            }
+            
+        }
+
+        private void statistics(int initialCardAmount)
+        {
+            double rightAnswers = initialCardAmount - WrongAnswers.Count;
+            double percentCorrect = (rightAnswers / initialCardAmount) * 100;
+            VisabilityStatUi = "Visable";
+            StatString = "Du hast " + rightAnswers + " von " + initialCardAmount + " Fragen richtig beantwortet";
+            PercentString = "Das entspricht " + Math.Round(percentCorrect,2) + "%"; 
+
+            
         }
 
         private bool[][] usedCards; 
