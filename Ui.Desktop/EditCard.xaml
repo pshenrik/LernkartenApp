@@ -31,7 +31,7 @@
         <Button x:Name="create_Copy" Content="Neu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="138,423,0,0" Height="28"  FontSize="16" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" Command="{Binding AddNewKeywordCommand, Mode=OneWay}" RenderTransformOrigin="0.555,0.88"/>
         <TextBox Height="28" TextWrapping="Wrap" Text="{Binding NewKeyword}" VerticalAlignment="Top" Margin="10,423,657,0" Foreground="#FF8B8787" FontSize="16" BorderBrush="#FF0040FF"/>
         <Button x:Name="create_Copy1" Content="Wort Löschen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Margin="10,383,0,0" Height="26"  FontSize="18" BorderBrush="#FF4094EB" Background="#FF9AA2DE" Foreground="White" Command="{Binding RemoveKeywordCommand, Mode=OneWay}" RenderTransformOrigin="0.555,0.88"/>
-        <TextBox x:Name="tilte" HorizontalAlignment="Left" Height="37"  Text="{Binding Card.Name}" VerticalAlignment="Top" Width="240" Margin="451,69,0,0"  FontSize="30" FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" />
+        <TextBox x:Name="tilte" HorizontalAlignment="Left" Height="28"  Text="{Binding Card.Name}" VerticalAlignment="Top" Width="242" Margin="451,69,0,0"  FontSize="20" FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" />
 
         <Label Content="Forderseite:" Visibility="{Binding QuestionVisibility}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="451,116,0,0" Height="31" Width="138" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
         <Viewbox  Margin="451,152,97,141"  Visibility="{Binding QuestionVisibility}">

@@ -176,15 +176,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 OnPropertyChanged();
             }
         }
-        public CardViewModel Card { get; set; }
+        public static CardViewModel Card { get; set; }
         private SetViewModel set;
         public EditCardViewModel(SetViewModel set)
         {
             //  this.Card = set.CARD;
-            this.Card = new CardViewModel();
-            this.Card.Name = "Keine Ahnung";
-            this.Card.Front.Text = "Irgendwas hieeer";
-            this.Card.Back.Text = "Irgendwas dooort";
+           Card = new CardViewModel();
+            Card.Name = "Keine Ahnung";
+            Card.Front.Text = "Irgendwas hieeer";
+           Card.Back.Text = "Irgendwas dooort";
             this.QuesImgeLocation = "C:\\Users\\Khaled\\Desktop\\Bilder\\images (4).jpg";
             this.AnswerImgeLocation= "C:\\Users\\Khaled\\Desktop\\Bilder\\images (2).jpg";
             Console.WriteLine(this.AnswerImgeLocation);
@@ -220,7 +220,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void editedCard()
         {
-            this.checkEditedCard = "Karte wurde aktualisiert";
+            this.CheckEditedCard = "Karte wurde aktualisiert";
         }
 
         private void addQuestionImg()
@@ -233,8 +233,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     this.QuesImgeLocation = dialog.FileName;
-                    this.Card.Front.ImageSourece = this.QuesImgeLocation;
-                    Console.WriteLine(this.Card.Back.ImageSourece);
+                   Card.Front.ImageSourece = this.QuesImgeLocation;
+                    Console.WriteLine(Card.Back.ImageSourece);
                 }
 
             }
@@ -254,8 +254,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     this.AnswerImgeLocation = dialog.FileName;
-                    this.Card.Back.ImageSourece = this.AnswerImgeLocation;
-                    Console.WriteLine(this.Card.Front.ImageSourece);
+                    Card.Back.ImageSourece = this.AnswerImgeLocation;
+                    Console.WriteLine(Card.Front.ImageSourece);
                 }
 
             }
