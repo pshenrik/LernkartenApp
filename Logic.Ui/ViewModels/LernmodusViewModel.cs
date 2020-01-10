@@ -77,7 +77,16 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 if(value != null) {
                    
                     CurrentCardPage = value.Front;
+                    if (value.Info.Marked)
+                    {
+                        CurrentCardMarked = "Visible";
+                    } else
+                    {
+                        CurrentCardMarked = "Hidden";
+                    }
+                  
                 }
+                
                 ShowHelpMessage = "Hidden";
                 OnPropertyChanged();
             }
@@ -226,6 +235,30 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 }
                 
                 OnPropertyChanged();
+            }
+        }
+        private bool currentCardMarked;
+        public string CurrentCardMarked
+        {
+            get
+            {
+                Console.WriteLine(currentCardMarked);
+                if (CurrentCard != null && currentCardMarked)
+                {
+
+                    return "Visible";
+                }
+                
+                return "Hidden";
+            }
+
+            set
+            {
+                if (value == "Visible")
+                {
+                    currentCardMarked = true;
+                } 
+                currentCardMarked = false;
             }
         }
 
@@ -386,7 +419,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 AnswerIndicatorFillColor = red;
                 currentCard.Info.LearnHistory.Add(false);
             }
-            
+            AnswerInputText = "";
+
+
 
         }
         private void CardToNextLevel(CardViewModel card)
@@ -475,7 +510,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 {
                     nextCard = FindCard(index, 1);
                 }
-
                 return nextCard;
             }
            
@@ -505,7 +539,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void MarkCard()
         {
-            currentCard.Info.Marked = true;
+            CurrentCard.Info.Marked = true;
         }
 
         private void RequestHelp()
