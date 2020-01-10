@@ -43,10 +43,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }
 
-
-
-
-
+       
         private void ViewModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (syncDisabled) return;
