@@ -26,14 +26,6 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
         
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
