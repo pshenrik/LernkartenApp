@@ -45,11 +45,11 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
 
 
         public String Name { get; set; }
-
+       
         public Category(String name)
         {
             // this.CreatedTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            this.CreatedTime = string.Format("{0: dd.MM.yyyy hh:mm:ss}", DateTime.Now); 
+            this.CreatedTime = string.Format("{0: dd.MM.yyyy    hh:mm:ss}", DateTime.Now); 
 
             this.Name = name;
             this.Collections = new CardCollection[5];
