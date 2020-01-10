@@ -8,6 +8,9 @@ using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using System.ComponentModel;
 
 using System.Collections.Specialized;
+using System.Xml.Serialization;
+using System.Xml;
+using System.IO;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
@@ -93,6 +96,23 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                 if (cat.category.Equals(category)) return cat;
             }
             return null;
+        }
+
+        private void storeSetOnDisc() {
+            XmlSerializer xsSubmit = new XmlSerializer(typeof(Set));
+            var xml = "";
+
+            using (var sww = new StringWriter())
+            {
+                using (XmlWriter writer = XmlWriter.Create(sww))
+                {
+                    xsSubmit.Serialize(writer, Set);
+                    xml = sww.ToString();
+                    XmlDocument xdoc = new XmlDocument();
+                    xdoc.LoadXml(xml);
+                    xdoc.Save("SetCards.xml");
+                }
+            }
         }
 
         
