@@ -83,6 +83,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
             }
         }
 
+      
         public string LastLearnedColor
         {
             get
@@ -100,6 +101,10 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
                 }
                 return "#fff";
 
+            }
+            set
+            {
+              
             }
         }
 

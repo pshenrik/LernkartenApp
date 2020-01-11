@@ -68,7 +68,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     card.Keywords.Add("KATEGORIE");
                     card.Keywords.Add("FUN");
                     card.Keywords.Add("apache");
-
                     if ( (i + j)%2 == 0 ) { 
                         card.Info.Marked = true;
                     }

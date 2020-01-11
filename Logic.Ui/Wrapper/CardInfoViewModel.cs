@@ -46,6 +46,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             {
                 return info.CreatedTimeAsString; 
             }
+            set
+            {
+                info.CreatedTimeAsString = value; 
+            }
         }
         #endregion
 
@@ -68,6 +72,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             get
             {
                 return info.LastLearnedColor;
+            }
+            set
+            {
+               
             }
         }
 

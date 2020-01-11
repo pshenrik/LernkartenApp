@@ -8,6 +8,9 @@ using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using System.ComponentModel;
 
 using System.Collections.Specialized;
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
@@ -31,10 +34,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             {
                 this.set.CollectionChanged += ModelCollectionChanged;
             }
-            
+
+           
         }
-
-
+     
         public Set Set
         {
             get
@@ -94,10 +97,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
             return null;
         }
+     
+  }
 
-        
-
-        
-
-    }
+    
 }
