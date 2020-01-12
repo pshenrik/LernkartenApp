@@ -18,7 +18,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
      CheckStartRequirements in die Bedingung mit ReturnTrue einbinden
      Properties so richtig mit private Backendfield?
      */
-    public class LernmodusViewModel : AbstractViewModel
+    public class LearnModeViewModel : AbstractViewModel
     {
         #region ICommand
         private ICommand submitAnswerCommand;
@@ -335,10 +335,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private int currentCardIndex;
     
 
-        public LernmodusViewModel(SetViewModel set)
+        public LearnModeViewModel(SetViewModel set)
         {
             this.Set = set;
-
+            Console.WriteLine("TEST");
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             nextCardCommand = new RelayCommand(this.NextCard, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);

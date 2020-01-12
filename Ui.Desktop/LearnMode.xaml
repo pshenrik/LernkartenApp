@@ -1,4 +1,4 @@
-﻿<Window x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.Lernmodus"
+﻿<Window x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.LearnMode"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
         Title="Lernmodus" Height="501.5" Width="994.5">
 
     <Window.DataContext>
-        <Binding Path="LernmodusVM" Source="{StaticResource ViewModelLocator}" />
+        <Binding Path="LearnModeVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
 
 

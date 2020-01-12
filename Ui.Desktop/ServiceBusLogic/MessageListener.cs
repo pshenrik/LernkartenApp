@@ -62,12 +62,13 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    
                });
 
-            ServiceBus.Instance.Register<OpenLernmodusWindow>(
+            ServiceBus.Instance.Register<OpenLearnModeWindow>(
                this,
                msg =>
                {
-                   Lernmodus lernmodus = new Lernmodus();
-                   lernmodus.Show();
+                   LearnMode learnmode = new LearnMode();
+                   
+                   learnmode.Show();
 
                });
             ServiceBus.Instance.Register<OpenExportWindow>(
