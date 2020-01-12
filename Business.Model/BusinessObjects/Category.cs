@@ -11,7 +11,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
         public CardCollection[] Collections;
         //  private long createdTime;
         private String createdTime;
-
+        
         /*   public long CreatedTime
            {
                get
@@ -23,7 +23,10 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
                    this.createdTime = value;
                }
            }*/
+           public Category()
+        {
 
+        }
         public String CreatedTime
    {
        get
@@ -40,7 +43,10 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
             get
             {
                 return Collections[0].Count + Collections[1].Count + Collections[2].Count + Collections[3].Count + Collections[4].Count;
-            } 
+            }
+            set
+            {
+            }
         }
 
 

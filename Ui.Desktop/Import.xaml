@@ -17,9 +17,11 @@
     </Window.IsEnabled>
     <Grid>
 
-        <Label Content="Bitte Pfad eingeben: " Margin="191,94,0,273" HorizontalAlignment="Left" FontSize="20" Width="569"></Label>
-        <Button  Content="XML Importieren" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding ImportCommand, Mode=OneWay}" Width="174" Margin="593,159,0,0" Height="37"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" RenderTransformOrigin="-0.173,3.899"/>
-        <TextBox  HorizontalAlignment="Left" Height="56" TextWrapping="Wrap" Text="{Binding InsertedPath}" VerticalAlignment="Top" Width="383" Margin="191,151,0,0" Foreground="#FF8B8787" FontSize="30" BorderBrush="#FF0040FF"/>
+        <Label Content="Bitte Pfad auswählen:" Margin="136,68,0,282" HorizontalAlignment="Left" FontSize="20" Width="215" RenderTransformOrigin="0.512,0.503"></Label>
+        <Button  Content="XML Exportieren" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding ExportCommand, Mode=OneWay}" Width="174" Margin="401,68,0,0" Height="37"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" RenderTransformOrigin="-0.173,3.899"/>
+        
         <Label Content="{Binding Message}" VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center" Margin="10,242,32,0" Height="177" Width="750"></Label>
+        <Label Content="Bitte XML-Datei auswählen:" Margin="136,137,0,226" HorizontalAlignment="Left" FontSize="20" Width="260" RenderTransformOrigin="0.512,0.503"></Label>
+        <Button  Content="XML Importieren" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding ImportCommand, Mode=OneWay}" Width="174" Margin="401,137,0,0" Height="37"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" RenderTransformOrigin="-0.173,3.899"/>
     </Grid>
 </Window>
