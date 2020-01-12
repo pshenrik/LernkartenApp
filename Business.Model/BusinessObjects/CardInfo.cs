@@ -13,7 +13,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
         //Allgemein
         private bool marked; //Wurde die Karte makiert
         private long createdTime; //Wann die Karte erstellt wurde
-
+        private String createdTimeAsString; // wird nur in View_Category angezeigt. 
         //Lernmodus Variablen
         private ObservableCollection<bool> learnHistory; //Speichert den Lernverlauf der Karte
         private long lastLearnedTime; //Speichert wann die Karte zuletzt gelernt wurde
@@ -23,6 +23,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
             learnHistory = new ObservableCollection<bool>();
             this.LastTimeUsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             this.createdTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            this.CreatedTimeAsString = string.Format("{0: dd.MM.yyyy   hh:mm:ss}", DateTime.Now);
         }
 
 
@@ -52,7 +53,20 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
                 OnPropertyChanged();
             }
         }
+       
 
+        // Wird nur in View Category angezeigt. 
+        public String CreatedTimeAsString
+        {
+            get
+            {
+                return this.createdTimeAsString;
+            }
+            set
+            {
+                this.createdTimeAsString = value;
+            }
+        }
         #endregion
 
         #region Lernmodus Properties
@@ -69,6 +83,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
             }
         }
 
+      
         public string LastLearnedColor
         {
             get
@@ -86,6 +101,10 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
                 }
                 return "#fff";
 
+            }
+            set
+            {
+              
             }
         }
 

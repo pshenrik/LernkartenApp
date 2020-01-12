@@ -13,5 +13,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
         {
 
         }
+
+
     }
 }
