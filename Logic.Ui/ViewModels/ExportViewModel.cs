@@ -9,6 +9,7 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using System.Windows.Input;
 using System.IO;
 using IronPdf;
+using System.Windows.Media.Imaging;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
@@ -76,8 +77,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 for (int j = 0; j < category.Collections[i].Count; j++)
                 {
                     string title = category.Collections[i][j].Name;
-                    string imgSrcFront = category.Collections[i][j].Front.ImageSourece;
-                    string imgSrcBack = category.Collections[i][j].Back.ImageSourece;
+                    BitmapSource imgSrcFront = category.Collections[i][j].Front.Image;
+                    BitmapSource imgSrcBack = category.Collections[i][j].Back.Image;
                     string question = category.Collections[i][j].Front.Text;
                     string answer = category.Collections[i][j].Back.Text;
 
