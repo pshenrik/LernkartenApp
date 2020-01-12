@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
+using System.Xml;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
@@ -20,15 +23,17 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             generateCards();
 
             MainMenuVM = new MainMenuViewModel(Set);
+            ImportVM = new ImportViewModel(Set); 
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel(Set);
             CreateCategoryVM = new CreateCategoryViewModel(Set);
             CreateCardVM = new CreateCardViewModel(Set);
             ExamModeVM = new ExamModeViewModel(Set);
             LernmodusVM = new LernmodusViewModel(Set);
-           
+            
             ViewCategoryVM = new ViewCategoryViewModel(Set);
             ExportVM = new ExportViewModel(Set);
             StatisticsVM = new StatisticsViewModel(Set);
+            EditCardVM = new EditCardViewModel(Set);
         }
         // ToDo: Inhalte für Vorlesung: Achtung: diese Properties 
         // müssen Public sein, da sie von XMAL aus referenziert werden! 
@@ -43,12 +48,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public LernmodusViewModel LernmodusVM { get; }
 
         public MainMenuViewModel MainMenuVM { get; }
-
+        public ImportViewModel ImportVM { get; }
         public ViewCategoryViewModel ViewCategoryVM { get; }
         public ExportViewModel ExportVM { get; }
 
         public StatisticsViewModel StatisticsVM { get; }
-
+        public EditCardViewModel EditCardVM { get; }
         private void generateCards()
         {
             int counter = 0;
@@ -62,8 +67,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     CardViewModel card = new CardViewModel("Karte Nummer " + counter);
                     card.Front.Text = "Kategorie " + (i + 1) + " Frage " + (j + 1);
                     card.Back.Text = "Kategorie " + (i + 1) + " Antwort " + (j + 1);
+                    card.Keywords.Add("test");
+                    card.Keywords.Add("KATEGORIE");
+                    card.Keywords.Add("FUN");
+                    card.Keywords.Add("apache");
 
-                    if( (i + j)%2 == 0 ) { 
+                    if ( (i + j)%2 == 0 ) { 
                         card.Info.Marked = true;
                     }
 
@@ -72,6 +81,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
                 Set.Add(cat);
+            }
+        }
+
+        private void loadCardsFromDisc() { 
+
+            string path = "SetCards.xml";
+            if (File.Exists(path))
+            {
+                SetViewModel setFromDisc = null;
+                XmlSerializer serializer = new XmlSerializer(typeof(SetViewModel));
+
+                StreamReader reader = new StreamReader(path);
+                setFromDisc = (SetViewModel)serializer.Deserialize(reader);
+                reader.Close();
+
+                Set = setFromDisc;
             }
         }
     }

@@ -59,6 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditCard.xaml.cs">
+      <DependentUpon>EditCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Import.xaml.cs">
+      <DependentUpon>Import.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ServiceBusLogic\MessageListener.cs" />
     <Compile Include="ViewCategory.xaml.cs">
       <DependentUpon>ViewCategory.xaml</DependentUpon>
@@ -66,6 +72,14 @@
     <Compile Include="ViewMarkedCards.xaml.cs">
       <DependentUpon>ViewMarkedCards.xaml</DependentUpon>
     </Compile>
+    <Page Include="EditCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Import.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

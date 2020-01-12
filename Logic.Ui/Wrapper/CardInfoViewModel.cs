@@ -38,6 +38,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                 OnPropertyChanged();
             }
         }
+
+        // Wird nur in View_Cartegory angezeigt. 
+        public String CreatedTimeAsString
+        {
+            get
+            {
+                return info.CreatedTimeAsString; 
+            }
+            set
+            {
+                info.CreatedTimeAsString = value; 
+            }
+        }
         #endregion
 
         #region Lernmodus Properties
@@ -59,6 +72,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             get
             {
                 return info.LastLearnedColor;
+            }
+            set
+            {
+               
             }
         }
 

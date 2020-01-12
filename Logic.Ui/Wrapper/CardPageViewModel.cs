@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
@@ -32,18 +34,20 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             set
             {
                 page.Text = value;
+                OnPropertyChanged();
             }
         }
 
-        public String ImageSourece
+        public BitmapSource Image
         {
             get
             {
-               return page.ImageSource;
+               return page.Image;
             }
             set
             {
-                page.ImageSource = value;
+                page.Image = value;
+                OnPropertyChanged();
             }
         }
     }
