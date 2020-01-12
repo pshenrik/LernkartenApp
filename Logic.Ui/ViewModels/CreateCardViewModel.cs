@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
+using System.Drawing;
+using System.Windows.Media.Imaging;
+using System.Windows;
+using System.Runtime.InteropServices;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
@@ -56,35 +60,36 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
-        public String quesImgeLocation = "";
-        public String QuesImgeLocation
+        private BitmapSource questionImage ;
+        public BitmapSource QuestionImage
         {
             get
             {
-                return this.quesImgeLocation;
+                return this.questionImage;
             }
             set
             {
-                this.quesImgeLocation = value;
+                this.questionImage = value;
                 OnPropertyChanged();
             }
         }
 
-        public String answerImgeLocation = "";
-        public String AnswerImgeLocation
+        private BitmapSource answerImage;
+        public BitmapSource AnswerImage
         {
             get
             {
-                return this.answerImgeLocation;
+                return this.answerImage;
             }
             set
             {
-                this.answerImgeLocation = value;
+                this.answerImage = value;
                 OnPropertyChanged();
             }
         }
+   
 
-        private string checkAddNewCard= "";
+        private string checkAddNewCard;
         public string CheckAddNewCard
         {
             get
@@ -97,19 +102,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 OnPropertyChanged();
             }
         }
-        //keywords
-        private ObservableCollection<String> keywords;
-        public ObservableCollection<String> Keywords { 
-            get{
-                return this.keywords;
-            }
-            set
-            {
-                this.keywords = value;
-                OnPropertyChanged();
-            }
-        }
-        private String newKeyword = "";
+
+        private String newKeyword ;
         public String NewKeyword
         {
             get
@@ -123,25 +117,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
-        
         public CreateCardViewModel(SetViewModel set)
         {
             this.set = set;
-            Card = new CardViewModel();
-            Card.Name= "Überschrift";
-            Card.Front.Text= "Frage eingeben";
-            Card.Back.Text = "Antwort eingeben";
-            //
-            this.keywords = new ObservableCollection<String>();
-            this.keywords.Add("hallo");
-            this.keywords.Add("hi");
-            this.newKeyword="Neues Wort";
+            this.Card = new CardViewModel();
+            this.Card.Name= "Überschrift";
+            this.Card.Front.Text= "Frage eingeben";
+            this.Card.Back.Text = "Antwort eingeben";
+
+            this.newKeyword = "Neues Wort";
+            checkAddNewCard = "";
+            this.Card.Keywords.Add("Hallo");
+
             //relayCommand
             createCardCommand = new RelayCommand(this.CreateCard, this.ReturnTrue);
-
             addQuestionImgCommand = new RelayCommand(this.addQuestionImg, this.ReturnTrue);
             addAnswerImgCommand = new RelayCommand(this.addAnswerImg, this.ReturnTrue);
-
             addNewKeywordCommand = new RelayCommand(this.addNewKeyword, this.ReturnTrue);
         }
 
@@ -154,17 +145,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             else
             {
-                Console.WriteLine(this.set[categoryIndex].Name);
+
                 this.set[categoryIndex].Collections[0].Add(this.Card);
-                Console.WriteLine(this.Card.Front.Text);
                 this.CheckAddNewCard = "Karte wurde erfolgreich erstellt";
             }
             this.Card.Name = "Überschrift";
             this.Card.Front.Text = "Frage eingeben";
             this.Card.Back.Text = "Antwort eingeben";
-            this.AnswerImgeLocation = "";
-            this.QuesImgeLocation = "";
-
+            this.AnswerImage = null;
+            this.QuestionImage = null;
         }
 
         private void addQuestionImg()
@@ -176,9 +165,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.QuesImgeLocation = dialog.FileName;
-                    this.Card.Front.ImageSourece = this.QuesImgeLocation;
-                    Console.WriteLine(this.Card.Back.ImageSourece);
+                   // this.QuesImgeLocation = dialog.FileName;
+                   // this.Card.Front.ImageSourece = this.QuesImgeLocation;
+                    //Console.WriteLine(this.QuesImgeLocation);
+
+                  Image newImage = Image.FromFile(dialog.FileName);
+                    this.QuestionImage= GetImageStream(newImage);
+                    this.Card.Front.Image = this.questionImage;
                 }
                 
             }
@@ -197,9 +190,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.AnswerImgeLocation = dialog.FileName;
-                    this.Card.Back.ImageSourece = this.AnswerImgeLocation;
-                    Console.WriteLine(this.Card.Front.ImageSourece);
+                    Image newImage = Image.FromFile(dialog.FileName);
+                    this.AnswerImage= GetImageStream(newImage);
+                    this.Card.Back.Image = this.answerImage;
                 }
 
             }
@@ -210,9 +203,33 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
            
         }
 
+        public static BitmapSource GetImageStream(Image myImage)
+        {
+            var bitmap = new Bitmap(myImage);
+            IntPtr bmpPt = bitmap.GetHbitmap();
+            BitmapSource bitmapSource =
+             System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                   bmpPt,
+                   IntPtr.Zero,
+                   Int32Rect.Empty,
+                   BitmapSizeOptions.FromEmptyOptions());
+
+            //freeze bitmapSource and clear memory to avoid memory leaks
+            bitmapSource.Freeze();
+            DeleteObject(bmpPt);
+
+            return bitmapSource;
+        }
+
+        [DllImport("gdi32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool DeleteObject(IntPtr value);
+
         private void addNewKeyword()
         {
-            this.keywords.Add(this.newKeyword);
+            this.Card.Keywords.Add(this.newKeyword);
+            this.NewKeyword = "Neues Wort";
+           // this.keywords.Add(this.newKeyword);
         }
         private bool ReturnTrue()
         {

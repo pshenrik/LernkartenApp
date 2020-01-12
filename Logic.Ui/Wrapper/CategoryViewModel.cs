@@ -81,12 +81,20 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             return category.CreatedTime;
         }
+            set
+            {
+                this.category.CreatedTime = value; 
+            }
     }
         public int NumberOfCards
         {
             get
             {
                 return category.NumberOfCards;
+            }
+            set
+            {
+                this.category.NumberOfCards = value; 
             }
         }
 

@@ -39,8 +39,8 @@
                
 
             </ComboBox>
-            <Button  Grid.Row="0" Grid.Column="2" Content="finden"  Margin="321,0,5,25" FontSize="20" Command="{Binding FindCardCommand, Mode=OneWay}" />
-            <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="{Binding SearchedCard}" Margin="10,0,79,25" Background="White" SelectionOpacity="13" FontSize="25"  />
+            <Label Content="Suche: " FontSize="20" Grid.Column="2" Margin="10,0,321,25" Background="White"/>
+            <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="{Binding SearchedCard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="79,-1,10,25" Background="White" SelectionOpacity="13" FontSize="25"  />
             <Label Content="{Binding NotFoundMessage}" FontSize="12" HorizontalAlignment="Center" RenderTransformOrigin="0.483,0.493" Margin="10,51,5,-27" Grid.Column="2" Width="385" FontWeight="Bold" FontStyle="Italic" Foreground="Red" />
             <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"  FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding OpenCreateCardWindowCommand, Mode=OneWay}"/>
         </Grid>

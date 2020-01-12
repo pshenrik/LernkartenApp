@@ -15,9 +15,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
     public class MainMenuViewModel : AbstractViewModel
     {
-
-
-        public ICommand FindCategoryCommand { get; }
         private ICommand RemoveCategoryCommand { get; }
         public ICommand ChangingNameOfCategoryCommand { get; }
         public RelayCommand OpenCreateCategoryWindowCommand { get; }
@@ -30,7 +27,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public RelayCommand OpenImportWindowCommand { get; }
         
         public CategoryViewModel SelectedCategory { get; set; }
-        public String SearchedCategory { get; set; }
+
+        private String searchedCategory; 
+        public String SearchedCategory { get {
+                return this.searchedCategory;
+            } set { this.searchedCategory = value;
+                this.FindCategoryfunction(this.searchedCategory); 
+            } }
         public String InsertedNewNameForCategory { get; set; }
         private String notFoundMessage;
         public String NotFoundMessage
@@ -56,8 +59,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.selctedComboBoxItem = value;
-                // selctedComboBoxItem = " :name";
-
+              
                 CollectoinSorting(this.selctedComboBoxItem);
             }
         }
@@ -79,13 +81,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         }
     
         public String[] ComboboxItemslist { get; set; }
-        public SetViewModel Categories { get; set; } 
+        public SetViewModel Categories { get; set; }
         public MainMenuViewModel(SetViewModel setViewModel)
         {
 
 
             this.Categories = setViewModel;
-
+           
+         
             OpenCreateCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCategoryWindow()));
             OpenExamModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
             OpenStatisticsWindowCommand = new RelayCommand(() => OpenWindow(new OpenStatisticsWindow()));
@@ -94,7 +97,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
             OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow()));
             OpenImportWindowCommand = new RelayCommand(()=> OpenWindow(new OpenImportWindow())); 
-            FindCategoryCommand = new RelayCommand(this.FindCategoryfunction, this.GetBoolean);
+ 
             RemoveCategoryCommand = new RelayCommand(this.RemoveCategoryfunction, this.GetBoolean);
             ChangingNameOfCategoryCommand = new RelayCommand(this.ChangingNameOfCategoryFunction, this.GetBoolean); 
             NumberOfCategories = "                                   " + Categories.Count() + " Kategorien";
@@ -135,7 +138,7 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
             OpenLernmodusWindowCommand = new RelayCommand(() => OpenWindow(new OpenLernmodusWindow()));
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
             OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow()));
-            FindCategoryCommand = new RelayCommand(this.FindCategoryfunction, this.GetBoolean);
+
             RemoveCategoryCommand = new RelayCommand(this.RemoveCategoryfunction, this.GetBoolean);
 
             NumberOfCategories = "                                   " + Categories.Count() + " Kategorien";
@@ -147,15 +150,11 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
 
         }
 
-
-     
-
-        // Funktion, durch die das Collection nach Name, Datum oder Anzahle der Karten sortiert werden kann. 
         private void CollectoinSorting(String selectedType)
         {
 
-            this.NotFoundMessage = ""; 
-
+            this.NotFoundMessage = "";
+           
             if (selectedType == "Name")
             {
                 var sortableList = this.Categories.OrderBy(category => category.Name).ToList();
@@ -187,30 +186,40 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
                 }
             }
         }
-        private void FindCategoryfunction()
+        
+        private void FindCategoryfunction(String searchedCategory)
         {
-            if (this.SearchedCategory != "")
-            {
-                bool isFound = false;
+            
 
-                for (var i = 0; i < this.Categories.Count && !isFound; i++)
+            if (!String.IsNullOrEmpty(searchedCategory))
+             {
+                
+                List<CategoryViewModel> list;
+                searchedCategory = searchedCategory.ToLower();
+                list = this.Categories.Where(cate => cate.Name.ToLower().Contains(searchedCategory)).ToList();  
+                if(list.Count > 0)
                 {
-                    if (this.Categories[i].Name == this.SearchedCategory)
+                    this.NotFoundMessage = ""; 
+             
+                for(int i =0; i< list.Count; i++)
                     {
-                        isFound = true;
-                        this.Categories.Move(i, 0);
-
-                        NotFoundMessage = "";
-                    }
-                    else
-                    {
-                        NotFoundMessage = "Die gesuchte Kategorie konnte nicht gefunden werden";
+                            this.Categories.Move(this.Categories.IndexOf(list[i]), i); 
                     }
                 }
+                else
+                {
+                    this.NotFoundMessage = "Nicht gefunden!";
+                }
             }
+            else
+            {
+                this.NotFoundMessage = "";
+                this.CollectoinSorting("Name"); 
+            }
+          
         }
-
-
+      
+        
         private bool GetBoolean()
         {
             return true;
@@ -231,7 +240,7 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
         private void OpenWindow<TNotification>(TNotification notification)
         {
             this.NotFoundMessage = "";
-
+            
             ServiceBus.Instance.Send(notification);
 
         }
@@ -241,13 +250,10 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
         private void OpenViewCategoryWindowFunc<TNotification>(TNotification ViewCategoryWindow)
         {
             this.NotFoundMessage = "";
+          
             if (SelectedCategory != null)
             {
-                
-                 
-              //  this.SelectedCategory.IsSelected = true; 
                 ViewCategoryViewModel.SelectedCategoryInMainMenu = this.SelectedCategory;
-                // new ViewCategoryViewModel( this.SelectedCategory); 
                 ServiceBus.Instance.Send(ViewCategoryWindow);
             }
 
