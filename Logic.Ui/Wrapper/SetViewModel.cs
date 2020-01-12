@@ -98,7 +98,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             return null;
         }
      
-  }
 
-    
+        private void storeSetOnDisc() {
+            XmlSerializer xsSubmit = new XmlSerializer(typeof(Set));
+            var xml = "";
+
+            using (var sww = new StringWriter())
+            {
+                using (XmlWriter writer = XmlWriter.Create(sww))
+                {
+                    xsSubmit.Serialize(writer, Set);
+                    xml = sww.ToString();
+                    XmlDocument xdoc = new XmlDocument();
+                    xdoc.LoadXml(xml);
+                    xdoc.Save("SetCards.xml");
+                }
+            }
+        }
+    }
 }
