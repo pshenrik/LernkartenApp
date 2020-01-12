@@ -13,111 +13,123 @@ using System.Xml;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    public class ImportViewModel: AbstractViewModel
+    public class ImportViewModel : AbstractViewModel
 
     {
         public ICommand ImportCommand { get; }
         public ICommand ExportCommand { get; }
-        private SetViewModel Set; 
+        public String InsertedNameForXmlfile { get; set; }
+        private SetViewModel Set;
 
         public ImportViewModel(SetViewModel set)
         {
             this.Set = set;
-            ImportCommand = new RelayCommand(this.SelectXMlFile, this.GetBoolean); 
+            ImportCommand = new RelayCommand(this.SelectXMlFile, this.GetBoolean);
             ExportCommand = new RelayCommand(this.Exportfunction, this.GetBoolean);
-            
+
         }
 
         private void Exportfunction()
         {
-         //   try
-           // {
-            using (var fldrDlg = new FolderBrowserDialog())
+            if (!String.IsNullOrEmpty(InsertedNameForXmlfile))
             {
-                if (fldrDlg.ShowDialog() == DialogResult.OK)
+                this.Message = "";
+                try
                 {
-                    this.Message = "";
-                    if (String.IsNullOrEmpty(fldrDlg.SelectedPath))
+                    using (var fldrDlg = new FolderBrowserDialog())
                     {
-                        this.Message = "Bitte geben Sie Pfad ein: ";
-                    }
-                    else
-                    {
-                        String path = fldrDlg.SelectedPath + "\\LearnCards.xml";
-                        XmlTextWriter xmlWriter = new XmlTextWriter(path, System.Text.Encoding.UTF8);
-                        xmlWriter.Formatting = Formatting.Indented;
-                        xmlWriter.WriteStartDocument();
-                        xmlWriter.WriteComment("Creating an XML File.....");
-                        xmlWriter.WriteStartElement("Categories");
-
-                        foreach (CategoryViewModel category in Set)
+                        if (fldrDlg.ShowDialog() == DialogResult.OK)
                         {
-                            xmlWriter.WriteStartElement("Category");
-                            xmlWriter.WriteElementString("Name", category.Name);
-                            xmlWriter.WriteElementString("CreatedTime", category.CreatedTime);
-                            xmlWriter.WriteElementString("NumberOfCards", category.NumberOfCards.ToString());
-                            xmlWriter.WriteStartElement("Cards");
-                            for (var i = 0; i < category.Collections.Length; i++)
+                            this.Message = "";
+                            if (String.IsNullOrEmpty(fldrDlg.SelectedPath))
                             {
-                                for (var j = 0; j < category.Collections[i].Count; j++)
-                                {
-                                    xmlWriter.WriteStartElement("Card");
-                                    xmlWriter.WriteElementString("Name", category.Collections[i][j].Name);
-                                    xmlWriter.WriteElementString("CreatedTime", (category.Collections[i][j].Info.CreatedTime).ToString());
-                                    xmlWriter.WriteElementString("CreatedTimeAsString", category.Collections[i][j].Info.CreatedTimeAsString);
-                                    xmlWriter.WriteElementString("IsMarked", category.Collections[i][j].Info.Marked.ToString());
-                                    xmlWriter.WriteElementString("LastlernedColor", category.Collections[i][j].Info.LastLearnedColor);
-                                    xmlWriter.WriteElementString("LastLearnedTime", (category.Collections[i][j].Info.LastLearnedTime).ToString());
-                                    xmlWriter.WriteElementString("LastTimeUsed", (category.Collections[i][j].Info.LastTimeUsed).ToString());
-                                    xmlWriter.WriteStartElement("LearnHistory");
-                                    foreach (bool Lh in category.Collections[i][j].Info.LearnHistory)
-                                    {
-                                        xmlWriter.WriteElementString("LH", Lh.ToString());
-                                    }
+                                this.Message = "Bitte geben Sie Pfad ein: ";
+                            }
+                            else
+                            {
 
-                                    xmlWriter.WriteEndElement();
-                                    xmlWriter.WriteElementString("Question", category.Collections[i][j].Front.Text);
-                                    if (category.Collections[i][j].Front.Image != null)
+                                String path = fldrDlg.SelectedPath + "\\" + InsertedNameForXmlfile + ".xml";
+                                XmlTextWriter xmlWriter = new XmlTextWriter(path, System.Text.Encoding.UTF8);
+                                xmlWriter.Formatting = Formatting.Indented;
+                                xmlWriter.WriteStartDocument();
+                                xmlWriter.WriteComment("Creating an XML File.....");
+                                xmlWriter.WriteStartElement("Categories");
+
+                                foreach (CategoryViewModel category in Set)
+                                {
+                                    xmlWriter.WriteStartElement("Category");
+                                    xmlWriter.WriteElementString("Name", category.Name);
+                                    xmlWriter.WriteElementString("CreatedTime", category.CreatedTime);
+                                    xmlWriter.WriteElementString("NumberOfCards", category.NumberOfCards.ToString());
+                                    xmlWriter.WriteStartElement("Cards");
+                                    for (var i = 0; i < category.Collections.Length; i++)
                                     {
-                                        byte[] bImage = BitmapSourceToByte(category.Collections[i][j].Front.Image);
-                                        xmlWriter.WriteElementString("QuestionFoto", Convert.ToBase64String(bImage));
-                                    }
-                                    xmlWriter.WriteElementString("Answer", category.Collections[i][j].Back.Text);
-                                           if(category.Collections[i][j].Back.Image != null)
-                                    {
-                                        byte[] bImage = BitmapSourceToByte(category.Collections[i][j].Back.Image);
-                                        xmlWriter.WriteElementString("AnswerFoto",Convert.ToBase64String(bImage));
-                                    }
-                                      
-                                    xmlWriter.WriteStartElement("KeyWords");
-                                    foreach (String keyword in category.Collections[i][j].Keywords)
-                                    {
-                                        xmlWriter.WriteElementString("keyword", keyword);
+                                        for (var j = 0; j < category.Collections[i].Count; j++)
+                                        {
+                                            xmlWriter.WriteStartElement("Card");
+                                            xmlWriter.WriteElementString("Name", category.Collections[i][j].Name);
+                                            xmlWriter.WriteElementString("CreatedTime", (category.Collections[i][j].Info.CreatedTime).ToString());
+                                            xmlWriter.WriteElementString("CreatedTimeAsString", category.Collections[i][j].Info.CreatedTimeAsString);
+                                            xmlWriter.WriteElementString("IsMarked", category.Collections[i][j].Info.Marked.ToString());
+                                            xmlWriter.WriteElementString("LastlernedColor", category.Collections[i][j].Info.LastLearnedColor);
+                                            xmlWriter.WriteElementString("LastLearnedTime", (category.Collections[i][j].Info.LastLearnedTime).ToString());
+                                            xmlWriter.WriteElementString("LastTimeUsed", (category.Collections[i][j].Info.LastTimeUsed).ToString());
+                                            xmlWriter.WriteStartElement("LearnHistory");
+                                            foreach (bool Lh in category.Collections[i][j].Info.LearnHistory)
+                                            {
+                                                xmlWriter.WriteElementString("LH", Lh.ToString());
+                                            }
+
+                                            xmlWriter.WriteEndElement();
+                                            xmlWriter.WriteElementString("Question", category.Collections[i][j].Front.Text);
+                                            if (category.Collections[i][j].Front.Image != null)
+                                            {
+                                                byte[] bImage = BitmapSourceToByte(category.Collections[i][j].Front.Image);
+                                                xmlWriter.WriteElementString("QuestionFoto", Convert.ToBase64String(bImage));
+                                            }
+                                            xmlWriter.WriteElementString("Answer", category.Collections[i][j].Back.Text);
+                                            if (category.Collections[i][j].Back.Image != null)
+                                            {
+                                                byte[] bImage = BitmapSourceToByte(category.Collections[i][j].Back.Image);
+                                                xmlWriter.WriteElementString("AnswerFoto", Convert.ToBase64String(bImage));
+                                            }
+
+                                            xmlWriter.WriteStartElement("KeyWords");
+                                            foreach (String keyword in category.Collections[i][j].Keywords)
+                                            {
+                                                xmlWriter.WriteElementString("keyword", keyword);
+                                            }
+
+                                            xmlWriter.WriteEndElement();
+                                            xmlWriter.WriteEndElement();
+                                        }
                                     }
 
                                     xmlWriter.WriteEndElement();
                                     xmlWriter.WriteEndElement();
                                 }
+                                //xmlWriter.WriteEndElement();
+                                xmlWriter.WriteEndDocument();
+                                xmlWriter.Flush();
+                                xmlWriter.Close();
+
+                                this.Message = "Fertig!\n Pfad: " + path;
+
+
                             }
-
-                            xmlWriter.WriteEndElement();
-                            xmlWriter.WriteEndElement();
                         }
-                        //xmlWriter.WriteEndElement();
-                        xmlWriter.WriteEndDocument();
-                        xmlWriter.Flush();
-                        xmlWriter.Close();
-
-                        this.Message = "Fertig!\n Pfad: " + path;
-
                     }
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-      /* }catch (Exception)
+            else
             {
-                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+                this.Message = "Zum Exportieren geben Sie bitte einen Dateinamen ein!";
+            }
         }
         private String message;
         public String Message
@@ -135,94 +147,94 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         public void ImportFunction(String path)
         {
-            this.Set.Clear(); 
-            
+            this.Set.Clear();
+
             XmlDocument doc = new XmlDocument();
             doc.Load(path);
             foreach (XmlElement Category in doc.GetElementsByTagName("Category"))
             {
-            
+
                 CategoryViewModel categoryObject = new CategoryViewModel();
-              
+
                 foreach (XmlNode categoryElements in Category)
                 {
-                
-                   
-                   switch (categoryElements.Name)
+
+
+                    switch (categoryElements.Name)
                     {
                         case "Name":
-                            categoryObject.Name = categoryElements.InnerText; 
+                            categoryObject.Name = categoryElements.InnerText;
                             break;
 
                         case "CreatedTime":
                             categoryObject.CreatedTime = categoryElements.InnerText;
                             break;
                         case "NumberOfCards":
-                            categoryObject.NumberOfCards =  Convert.ToInt32(categoryElements.InnerText);
+                            categoryObject.NumberOfCards = Convert.ToInt32(categoryElements.InnerText);
                             break;
                         case "Cards":
-                            
+
                             foreach (XmlElement Card in Category.GetElementsByTagName("Card"))
                             {
-                                CardViewModel cardVM = new CardViewModel(); 
-                              
+                                CardViewModel cardVM = new CardViewModel();
+
                                 foreach (XmlNode node in Card)
                                 {
 
-                                   switch (node.Name)
+                                    switch (node.Name)
                                     {
                                         case "Name":
-                                            cardVM.Name = node.InnerText; 
+                                            cardVM.Name = node.InnerText;
                                             break;
 
                                         case "CreatedTime":
                                             cardVM.Info.CreatedTime = Convert.ToInt64(node.InnerText);
                                             break;
                                         case "CreatedTimeAsString":
-                                            cardVM.Info.CreatedTimeAsString = node.InnerText; 
+                                            cardVM.Info.CreatedTimeAsString = node.InnerText;
                                             break;
 
                                         case "IsMarked":
-                                            cardVM.Info.Marked = Convert.ToBoolean(node.InnerText); 
+                                            cardVM.Info.Marked = Convert.ToBoolean(node.InnerText);
                                             break;
                                         case "LastlernedColor":
-                                            cardVM.Info.LastLearnedColor = node.InnerText; 
+                                            cardVM.Info.LastLearnedColor = node.InnerText;
                                             break;
                                         case "Question":
-                                            cardVM.Front.Text = node.InnerText; 
+                                            cardVM.Front.Text = node.InnerText;
                                             break;
                                         case "QuestionFoto":
                                             byte[] BytesFront = Convert.FromBase64String(node.InnerText);
                                             cardVM.Back.Image = ByteToBitmapSource(BytesFront);
-                                            break; 
+                                            break;
                                         case "Answer":
-                                            cardVM.Back.Text = node.InnerText; 
+                                            cardVM.Back.Text = node.InnerText;
                                             break;
                                         case "AnswerFoto":
                                             byte[] BytesBack = Convert.FromBase64String(node.InnerText);
-                                            cardVM.Back.Image = ByteToBitmapSource(BytesBack); 
-                                            break; 
+                                            cardVM.Back.Image = ByteToBitmapSource(BytesBack);
+                                            break;
                                         case "KeyWords":
-                                            XmlNodeList keyWords = Card.GetElementsByTagName("keyword"); 
-                                            
-                                                foreach (XmlNode Kw in keyWords)
-                                                {
-                                               
-                                                    cardVM.Keywords.Add(Kw.InnerText);
-                                                } 
-                                            
+                                            XmlNodeList keyWords = Card.GetElementsByTagName("keyword");
+
+                                            foreach (XmlNode Kw in keyWords)
+                                            {
+
+                                                cardVM.Keywords.Add(Kw.InnerText);
+                                            }
+
                                             break;
                                         case "LearnHistory":
                                             XmlNodeList learnHistory = Card.GetElementsByTagName("LH");
 
                                             foreach (XmlNode lH in learnHistory)
                                             {
-                                                   
-                                                cardVM.Info.LearnHistory.Add(Convert.ToBoolean( lH.InnerText));
+
+                                                cardVM.Info.LearnHistory.Add(Convert.ToBoolean(lH.InnerText));
                                             }
                                             break;
                                         case "LastTimeUsed":
-                                            cardVM.Info.LastTimeUsed =Convert.ToInt64(node.InnerText); 
+                                            cardVM.Info.LastTimeUsed = Convert.ToInt64(node.InnerText);
                                             break;
                                         case "LastLearnedTime":
                                             cardVM.Info.LastLearnedTime = Convert.ToInt64(node.InnerText);
@@ -232,33 +244,33 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
                                     }
                                 }
-                                categoryObject.Collections[0].Add(cardVM); 
+                                categoryObject.Collections[0].Add(cardVM);
                             }
                             break;
                         default:
-                            break; 
+                            break;
                     }
                 }
 
-                this.Set.Add(categoryObject); 
-           }
-
-            this.Message = "Die Datei wurde importiert."; 
+                this.Set.Add(categoryObject);
             }
-   
+
+            this.Message = "Die Datei wurde importiert.";
+        }
+
         private void SelectXMlFile()
         {
-            this.Message = ""; 
+            this.Message = "";
             try
             {
 
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "XML Files (*.xml)|*.xml"; 
+                dialog.Filter = "XML Files (*.xml)|*.xml";
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     this.Message = dialog.FileName;
-                   
-                    this.ImportFunction(dialog.FileName); 
+
+                    this.ImportFunction(dialog.FileName);
                 }
 
             }
