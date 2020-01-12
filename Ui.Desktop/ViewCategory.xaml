@@ -84,7 +84,7 @@
 
         </Grid>
 
-        <Button Content="Karte Löschen" Command="{Binding GetRemoveCardCommand,  Mode=OneWay }" Height="28" Margin="155,373,511,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-        <Button Content="Karte Bearbeiten" Height="28" Command="{Binding OpenEditCardWindowCommand}" Margin="462,373,204,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+        <Button Content="Karte löschen" Command="{Binding GetRemoveCardCommand,  Mode=OneWay }" Height="28" Margin="155,373,511,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+        <Button Content="Karte bearbeiten" Height="28" Command="{Binding OpenEditCardWindowCommand}" Margin="462,373,204,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
     </Grid>
 </Window>

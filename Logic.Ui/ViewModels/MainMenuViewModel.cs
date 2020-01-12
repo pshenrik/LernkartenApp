@@ -129,8 +129,6 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
 
         public MainMenuViewModel()
         {
-
-            //   testMethodVar = new RelayCommand(this.Test, this.getTrue);
             OpenCreateCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCategoryWindow()));
             OpenExamModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
             OpenStatisticsWindowCommand = new RelayCommand(() => OpenWindow(new OpenStatisticsWindow()));

@@ -3,6 +3,7 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void Exportfunction()
         {
+         //   try
+           // {
             using (var fldrDlg = new FolderBrowserDialog())
             {
                 if (fldrDlg.ShowDialog() == DialogResult.OK)
@@ -74,7 +77,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
                                     xmlWriter.WriteEndElement();
                                     xmlWriter.WriteElementString("Question", category.Collections[i][j].Front.Text);
+                                    if (category.Collections[i][j].Front.Image != null)
+                                    {
+                                        byte[] bImage = BitmapSourceToByte(category.Collections[i][j].Front.Image);
+                                        xmlWriter.WriteElementString("QuestionFoto", Convert.ToBase64String(bImage));
+                                    }
                                     xmlWriter.WriteElementString("Answer", category.Collections[i][j].Back.Text);
+                                           if(category.Collections[i][j].Back.Image != null)
+                                    {
+                                        byte[] bImage = BitmapSourceToByte(category.Collections[i][j].Back.Image);
+                                        xmlWriter.WriteElementString("AnswerFoto",Convert.ToBase64String(bImage));
+                                    }
+                                      
                                     xmlWriter.WriteStartElement("KeyWords");
                                     foreach (String keyword in category.Collections[i][j].Keywords)
                                     {
@@ -99,6 +113,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     }
                 }
             }
+
+      /* }catch (Exception)
+            {
+                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
         }
         private String message;
         public String Message
@@ -171,10 +190,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                                             break;
                                         case "Question":
                                             cardVM.Front.Text = node.InnerText; 
-                                            break;                 
+                                            break;
+                                        case "QuestionFoto":
+                                            byte[] BytesFront = Convert.FromBase64String(node.InnerText);
+                                            cardVM.Back.Image = ByteToBitmapSource(BytesFront);
+                                            break; 
                                         case "Answer":
                                             cardVM.Back.Text = node.InnerText; 
                                             break;
+                                        case "AnswerFoto":
+                                            byte[] BytesBack = Convert.FromBase64String(node.InnerText);
+                                            cardVM.Back.Image = ByteToBitmapSource(BytesBack); 
+                                            break; 
                                         case "KeyWords":
                                             XmlNodeList keyWords = Card.GetElementsByTagName("keyword"); 
                                             
@@ -240,6 +267,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+        private static System.Windows.Media.Imaging.BitmapSource ByteToBitmapSource(byte[] bytes)
+        {
+            var stream = new MemoryStream(bytes);
+            return System.Windows.Media.Imaging.BitmapFrame.Create(stream);
+        }
+
+        private static byte[] BitmapSourceToByte(System.Windows.Media.Imaging.BitmapSource source)
+        {
+            var encoder = new System.Windows.Media.Imaging.JpegBitmapEncoder();
+            var frame = System.Windows.Media.Imaging.BitmapFrame.Create(source);
+            encoder.Frames.Add(frame);
+            var stream = new MemoryStream();
+
+            encoder.Save(stream);
+            return stream.ToArray();
         }
         private bool GetBoolean()
         {
