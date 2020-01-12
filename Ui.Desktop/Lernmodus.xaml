@@ -11,9 +11,7 @@
     <Window.DataContext>
         <Binding Path="LernmodusVM" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
-    <Window.Resources>
-        <BitmapImage x:Key="MyImageSource" UriSource="../Logic.Ui/Resources/marked.png" />
-    </Window.Resources>
+
 
 
     <Grid Margin="0,0,2,0">
@@ -63,7 +61,7 @@
             <Rectangle x:Name="AnswerIndicator" Fill="{Binding AnswerIndicatorFillColor, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="-191,435,-4,0" Stroke="Black" VerticalAlignment="Top" Width="986" StrokeThickness="0"/>
             <TextBlock HorizontalAlignment="Left" Margin="197,403,0,0" TextWrapping="Wrap" Text="{Binding HelpMessage, Mode=OneWay}" Visibility="Visible" VerticalAlignment="Top" Height="32" Width="334"/>
 
-            <Rectangle Visibility="{Binding CurrentCardMarked, Mode=OneWay}" HorizontalAlignment="Left"  Height="14" Margin="199,124,0,0" VerticalAlignment="Top" Width="14" Fill="#FFF0F010"/>
+            <Rectangle Visibility="{Binding CurrentCardMarked, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  Height="14" Margin="199,124,0,0" VerticalAlignment="Top" Width="14" Fill="#FFF0F010"/>
 
 
         </Grid>
