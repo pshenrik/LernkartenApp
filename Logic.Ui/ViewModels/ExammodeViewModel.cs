@@ -156,7 +156,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             {
                 
                 this.collections = value;
-                Console.WriteLine(collections);
+   
                 
                 int counter = 0;
                 for (int i = 0; i < collections.Length; i++)
@@ -258,6 +258,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 Console.WriteLine(this.answer);
             }
         }
+
+        public CardViewModel CurrentCard
+        {
+            get
+            {
+                return this.currentCard;
+            }
+            set
+            {
+                this.currentCard = value;
+                OnPropertyChanged();
+            }
+        }
         public bool CanStart
         {
             get
@@ -328,7 +341,14 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.cardCounter = value;
-                this.CardAmount = value/2 ;
+                if(cardCounter > 1)
+                {
+                    this.CardAmount = value / 2;
+                }
+                else
+                {
+                    this.CardAmount = value;
+                }
                 OnPropertyChanged();
             }
 
@@ -451,10 +471,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             EnableSettings = false;
             CanStart = false;
             CanStop = true;
-            examThread = new Thread(new ThreadStart(() => exam()));
+            examThread = new Thread(new ThreadStart(() => Exam()));
             examThread.Start();
         }
-        private void exam()
+        private void Exam()
         {
             usedCards = new bool[5][];
             usedCards[0] = new bool[Collections[0].Count];
@@ -508,7 +528,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             ExamStarted = false;
             ProgressString = "";
             Question = "";        
-            statistics(initialCardAmount);
+            Statistics(initialCardAmount);
         }
         
         private void startTime(long timeForQuestion)
@@ -525,7 +545,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             
         }
 
-        private void statistics(int initialCardAmount)
+        private void Statistics(int initialCardAmount)
         {
             double rightAnswers = initialCardAmount - WrongAnswers.Count;
             double percentCorrect = (rightAnswers / initialCardAmount) * 100;
@@ -580,7 +600,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                             j--;
                         }else
                         {
-                            currentCard = Collections[collection].ElementAt(questionSelector);
+                            CurrentCard = Collections[collection].ElementAt(questionSelector);
                             usedCards[collection][questionSelector] = true;
                         }
                     }
