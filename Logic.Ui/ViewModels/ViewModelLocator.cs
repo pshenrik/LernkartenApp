@@ -9,6 +9,7 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using System.Xml;
 using System.IO;
 using System.Xml.Serialization;
+using System.Web.Script.Serialization;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
@@ -21,6 +22,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             Set = new SetViewModel();
             generateCards();
+            //loadCardsFromDisc();
 
             MainMenuVM = new MainMenuViewModel(Set);
             ImportVM = new ImportViewModel(Set); 
@@ -81,12 +83,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
                 Set.Add(cat);
+                storeSetOnDisc();
             }
         }
 
-        private void loadCardsFromDisc() { 
+        private void storeSetOnDisc()
+        {
+            var json = new JavaScriptSerializer().Serialize(Set);
+            System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
+        }
 
-            string path = "SetCards.xml";
+        /*private void loadCardsFromDisc() { 
+
+            string path = "C:/tmp/SetCards.xml";
             if (File.Exists(path))
             {
                 SetViewModel setFromDisc = null;
@@ -98,6 +107,25 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
                 Set = setFromDisc;
             }
+        }*/
+
+        private void loadCardsFromDisc(){
+            //try{
+            string path = @"C:\tmp\SetCards.json";
+            if (File.Exists(path))
+            {
+                using (StreamReader r = new StreamReader(path))
+                {
+                    string json = r.ReadToEnd();
+                    SetViewModel setFromDisc = new JavaScriptSerializer().Deserialize<SetViewModel>(json);
+                    Console.WriteLine(setFromDisc);
+                    //Set = setFromDisc;
+                    //List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);
+                }
+            }
+            //}catch(System.IO.IOException){
+            //    loadCardsFromDisc();
+            //}
         }
     }
 }
