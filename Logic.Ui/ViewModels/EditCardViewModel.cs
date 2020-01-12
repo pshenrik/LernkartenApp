@@ -3,17 +3,21 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
     public class EditCardViewModel : AbstractViewModel
     {
-
+        #region ICommands
         //relayCommand
         private ICommand editedCardCommand;
         public ICommand EditedCardCommand { get { return editedCardCommand; } }
@@ -35,37 +39,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         
         private ICommand moveCardCommand;
         public ICommand MoveCardCommand { get { return moveCardCommand; } }
+        #endregion
 
-
-        public String quesImgeLocation = "";
-        public String QuesImgeLocation
-        {
-            get
-            {
-                return this.quesImgeLocation;
-            }
-            set
-            {
-                this.quesImgeLocation = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public String answerImgeLocation = "";
-        public String AnswerImgeLocation
-        {
-            get
-            {
-                return this.answerImgeLocation;
-            }
-            set
-            {
-                this.answerImgeLocation = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string checkEditedCard = "";
+        private string checkEditedCard;
         public string CheckEditedCard
         {
             get
@@ -78,22 +54,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 OnPropertyChanged();
             }
         }
-        //keywords
-        private ObservableCollection<String> keywords;
-        public ObservableCollection<String> Keywords
-        {
-            get
-            {
-                return this.keywords;
-            }
-            set
-            {
-                this.keywords = value;
-                OnPropertyChanged();
-            }
-        }
 
-        private String newKeyword = "";
+
+        private String newKeyword;
         public String NewKeyword
         {
             get
@@ -163,7 +126,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
-        private String selectedStack = "";
+        private String selectedStack;
         public String SelectedStack
         {
             get
@@ -180,23 +143,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private SetViewModel set;
         public EditCardViewModel(SetViewModel set)
         {
-            //  this.Card = set.CARD;
             Card = new CardViewModel();
             Card.Name = "Keine Ahnung";
             Card.Front.Text = "Irgendwas hieeer";
             Card.Back.Text = "Irgendwas dooort";
-            this.QuesImgeLocation = "C:\\Users\\Khaled\\Desktop\\Bilder\\images (4).jpg";
-            this.AnswerImgeLocation= "C:\\Users\\Khaled\\Desktop\\Bilder\\images (2).jpg";
-            Console.WriteLine(this.AnswerImgeLocation);
-            //
+
             this.set = set;
             this.QuestionVisibility = "Visible";
             this.AnswerVisibility = "Hidden";
-            //
-            this.keywords = new ObservableCollection<String>();
-            this.keywords.Add("hallo");
-            this.keywords.Add("hi");
+
+            checkEditedCard = "";
             this.newKeyword = "Neues Wort";
+            selectedStack = "";
             //stacks
             this.stacks = new ObservableCollection<String>();
             this.stacks.Add("Erster Stapel");
@@ -204,15 +162,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.stacks.Add("Dritter Stapel");
             this.stacks.Add("Vierter Stapel");
             this.stacks.Add("Fünfter Stapel");
+
             //relayCommand
             editedCardCommand = new RelayCommand(this.editedCard, this.ReturnTrue);
-
             addQuestionImgCommand = new RelayCommand(this.addQuestionImg, this.ReturnTrue);
             addAnswerImgCommand = new RelayCommand(this.addAnswerImg, this.ReturnTrue);
-
             addNewKeywordCommand = new RelayCommand(this.addNewKeyword, this.ReturnTrue);
             removeKeywordCommand = new RelayCommand(this.removeKeyword, this.ReturnTrue);
-
             moveCardCommand = new RelayCommand(this.moveCard, this.ReturnTrue);
             flipCardCommand = new RelayCommand(this.flipCard, this.ReturnTrue);
         }
@@ -220,7 +176,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void editedCard()
         {
-            this.checkEditedCard = "Karte wurde aktualisiert";
+            this.CheckEditedCard = "Karte wurde aktualisiert";
         }
 
         private void addQuestionImg()
@@ -232,9 +188,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.QuesImgeLocation = dialog.FileName;
-                    Card.Front.ImageSourece = this.QuesImgeLocation;
-                    Console.WriteLine(Card.Back.ImageSourece);
+                    Image newImage = Image.FromFile(dialog.FileName);
+                    Card.Front.Image = GetImageStream(newImage);
                 }
 
             }
@@ -253,9 +208,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.AnswerImgeLocation = dialog.FileName;
-                    Card.Back.ImageSourece = this.AnswerImgeLocation;
-                    Console.WriteLine(Card.Front.ImageSourece);
+                    Image newImage = Image.FromFile(dialog.FileName);
+                    Card.Back.Image = GetImageStream(newImage);
                 }
 
             }
@@ -266,13 +220,36 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         }
 
+        public static BitmapSource GetImageStream(Image myImage)
+        {
+            var bitmap = new Bitmap(myImage);
+            IntPtr bmpPt = bitmap.GetHbitmap();
+            BitmapSource bitmapSource =
+             System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                   bmpPt,
+                   IntPtr.Zero,
+                   Int32Rect.Empty,
+                   BitmapSizeOptions.FromEmptyOptions());
+
+            //freeze bitmapSource and clear memory to avoid memory leaks
+            bitmapSource.Freeze();
+            DeleteObject(bmpPt);
+
+            return bitmapSource;
+        }
+
+        [DllImport("gdi32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool DeleteObject(IntPtr value);
+
         private void addNewKeyword()
         {
-            this.keywords.Add(this.newKeyword);
+           Card.Keywords.Add(this.newKeyword);
+           this.NewKeyword = "Neues Wort";
         }
         private void removeKeyword()
         {
-            this.keywords.Remove(this.selectedKeyword);
+            Card.Keywords.Remove(this.selectedKeyword);
         }
         private void flipCard()
         {
@@ -291,13 +268,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void moveCard()
         {
             int indexOfSelectedStack = this.stacks.IndexOf(this.selectedStack);
-            Console.WriteLine(indexOfSelectedStack);
-           
+            
             //finde Kategorie dieser Karte 
             int indexOfStackInCategory =0;
             int indexOfCategory = 0;
             //findCard ist die übergebene Karte vom MainManu
-            CardViewModel findCard = this.set[2].Collections[0][1];
+            //CardViewModel findCard = this.set[2].Collections[0][1];
 
             for (int i=0; i<this.set.Count;i++)
             {
@@ -306,7 +282,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     {
                         foreach (CardViewModel card in this.set[i].Collections[j])
                         {
-                             if (card.Equals(findCard))
+                             if (card.Equals(Card))
                              {
                             indexOfCategory = i;
                             indexOfStackInCategory = j;
@@ -322,8 +298,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             if (indexOfCategory!=-1)
             {
-                this.set[indexOfCategory].Collections[indexOfSelectedStack].Add(findCard);
-                this.set[indexOfCategory].Collections[indexOfStackInCategory].Remove(findCard);
+                this.set[indexOfCategory].Collections[indexOfSelectedStack].Add(Card);
+                this.set[indexOfCategory].Collections[indexOfStackInCategory].Remove(Card);
             }
    
         }

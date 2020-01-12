@@ -77,7 +77,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 if(value != null) {
                    
                     CurrentCardPage = value.Front;
+                    if (value.Info.Marked)
+                    {
+                        Console.WriteLine("true");
+                        CurrentCardMarked = "Visible";
+                    } else
+                    {
+                        CurrentCardMarked = "Hidden";
+                    }
+                
+                    
                 }
+                
                 ShowHelpMessage = "Hidden";
                 OnPropertyChanged();
             }
@@ -225,6 +236,30 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     hideLearningInterface = false;
                 }
                 
+                OnPropertyChanged();
+            }
+        }
+        private bool currentCardMarked;
+        public string CurrentCardMarked
+        {
+            get
+            {
+                if (CurrentCard != null && CurrentCard.Info.Marked)
+                {
+                    Console.WriteLine("visible");
+                    return "Visible";
+                }
+                Console.WriteLine("hidden");
+                return "Hidden";
+            }
+
+            set
+            {
+                if (value == "Visible")
+                {
+                    currentCardMarked = true;
+                } 
+                currentCardMarked = false;
                 OnPropertyChanged();
             }
         }
@@ -386,7 +421,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 AnswerIndicatorFillColor = red;
                 currentCard.Info.LearnHistory.Add(false);
             }
-            
+            AnswerInputText = "";
+
+
 
         }
         private void CardToNextLevel(CardViewModel card)
@@ -421,7 +458,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 FinishedCards.Add(currentCard);
             }
             
+            
             CurrentCard = GetNextCard();
+            
             cardBuffer = null;
         }
         
@@ -475,7 +514,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 {
                     nextCard = FindCard(index, 1);
                 }
-
                 return nextCard;
             }
            
@@ -505,7 +543,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void MarkCard()
         {
-            currentCard.Info.Marked = true;
+            CurrentCard.Info.Marked = true;
+            CurrentCardMarked = "Visible";
         }
 
         private void RequestHelp()
