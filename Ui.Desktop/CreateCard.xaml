@@ -32,15 +32,15 @@
         <Label Content="Forderseite" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="242,120,0,0" Height="36" Width="216" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
         <Label Content="Rückseite:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="644,116,0,0" Height="36" Width="216" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
 
-        <Viewbox Stretch="Fill" Margin="219,157,491,108">
-            <Image Source="{Binding QuesImgeLocation}"/>
+        <Viewbox  Margin="219,157,491,108">
+            <Image Source="{Binding  QuestionImage}"/>
         </Viewbox>
-        <Viewbox Stretch="Fill" Margin="623,152,76,108">
-            <Image Source="{Binding AnswerImgeLocation}"/>
+        <Viewbox  Margin="623,152,76,108">
+            <Image Source="{Binding AnswerImage}"/>
         </Viewbox>
         <Label  Content="{ Binding  CheckAddNewCard}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="298,15,0,0" Height="36" Width="424" FontFamily="Verdana" FontSize="16" Foreground="#FF761F1F"/>
         <Label Content="Schlüsselwörter:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-2,152,0,0" Height="33" Width="184" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
-        <ListBox Margin="10,185,892,72" ItemsSource="{Binding Keywords}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" >
+        <ListBox Margin="10,185,892,72" ItemsSource="{Binding Card.Keywords}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" >
             <ListBox.ItemTemplate>
                 <DataTemplate >
                     <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="171" Background="LightGray" RenderTransformOrigin="0.5,0.547" Height="41">

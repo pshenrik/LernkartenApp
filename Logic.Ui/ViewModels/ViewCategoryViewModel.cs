@@ -16,8 +16,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
     public class ViewCategoryViewModel: AbstractViewModel
     {
        
-           #region Ohne Static 
-            /*
+    /*       #region Ohne Static 
+            
               public SetViewModel Categories { get; set; }
                private  CategoryViewModel Category;
                public String NameOfCategory { get; set; }
@@ -92,20 +92,28 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                    }
                }
 
-               */
+               
             #endregion
+        */
             //******************************************************************************************************************************************
 
 
-
+            
         public static ObservableCollection<CardViewModel> Cards;
 
 
         private static CategoryViewModel selectedCategoryInMainMenu;
-        public String SearchedCard { get; set; }
+
+        private String searchedCard; 
+        public String SearchedCard { get { return this.searchedCard;  }
+                set{
+                this.searchedCard = value;
+                this.FindCardFunction(this.searchedCard); 
+                } }
         public RelayCommand OpenCreateCardWindowCommand { get; }
+        public RelayCommand OpenEditCardWindowCommand { get; }
         public CardViewModel SelectedCard { get; set; }
-        public ICommand FindCardCommand { get; }
+ 
         private ICommand RemoveCardCommand;
         public static string NameOfCategory { get; set; }
 
@@ -128,7 +136,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         }
            private String selctedComboBoxItem;
            public String SelectedcomboBoxItem
-           {
+        {
                get
                {
                    return this.selctedComboBoxItem;
@@ -143,73 +151,92 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                }
            }
 
-      
 
+        public String[] ComboboxItemslist { get; set; }
         public SetViewModel setViewModel;
         public ViewCategoryViewModel(SetViewModel setViewModel)
         {
             this.setViewModel = setViewModel;
 
             OpenCreateCardWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCardWindow()));
+            OpenEditCardWindowCommand = new RelayCommand(() => OpenOpenEditCardWindowFunction(new OpenEditCardWindow())); 
             RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.getBoolean);
-            FindCardCommand = new RelayCommand(this.FindCardFunction, this.getBoolean);
+           this.ComboboxItemslist = new String[2];
+            this.ComboboxItemslist[0] = "Name";
+            this.ComboboxItemslist[1] = "Datum"; 
+        }
+
+        private void OpenOpenEditCardWindowFunction(OpenEditCardWindow openEditCardWindow)
+        {
+            NotFoundMessage = "";
+            if (this.SelectedCard != null)
+            {
+                EditCardViewModel.Card = this.SelectedCard; 
+                ServiceBus.Instance.Send(openEditCardWindow);
+            }
+            
+            
         }
 
         public ViewCategoryViewModel()
         {
             OpenCreateCardWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCardWindow()));
             RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.getBoolean);
-            FindCardCommand = new RelayCommand(this.FindCardFunction, this.getBoolean);
-
+        
         }
           private void CardsSorting(String selectedType)
-          {
-              //TODO: SelctedType bekommt keinen Wert: Die Elemente von ComboBox sollen gelesen werden!
-
-
-              if (selectedType == "Name")
-              {
-                  var sortableList = Cards.OrderBy(category => category.Name).ToList();
-
-                  Cards.Clear();
-                  foreach (var item in sortableList)
-                  {
-                      Cards.Add(item);
-                  }
-              }
-              else if (selectedType == "Datum")
-              {
-                  var sortableList = Cards.OrderBy(category => Convert.ToDateTime(category.Info.CreatedTime)).ToList();
-
-                  Cards.Clear();
-                  foreach (var item in sortableList)
-                  {
-                      Cards.Add(item);
-                  }
-              }
-              else
-              {
-
-              }
-          }
-        private void FindCardFunction()
         {
-            if (this.SearchedCard != "")
+            NotFoundMessage = "";
+            if (selectedType == "Name")
+              {
+                  var sortableList = Cards.OrderBy(card => card.Name).ToList();
+
+                  Cards.Clear();
+                  foreach (var item in sortableList)
+                  {
+                      Cards.Add(item);
+                  }
+              }
+              else 
+              {
+                  var sortableList = Cards.OrderBy(category =>category.Info.CreatedTime).ToList();
+
+                  Cards.Clear();
+                  foreach (var item in sortableList)
+                  {
+                      Cards.Add(item);
+                  }
+              }
+
+
+
+        }
+        private void FindCardFunction(String searchedCard)
+        {
+            if (!String.IsNullOrEmpty(searchedCard))
             {
-                bool isFound = false;
-                for (var i = 0; i < Cards.Count && !isFound; i++)
+
+                List<CardViewModel> list;
+                searchedCard = searchedCard.ToLower(); 
+                list = Cards.Where(card => card.Name.ToLower().Contains(searchedCard)).ToList();
+                if (list.Count > 0)
                 {
-                    if (Cards[i].Name == this.SearchedCard)
+                    this.NotFoundMessage = ""; 
+                    for(int i =0; i< list.Count; i++)
                     {
-                        isFound = true;
-                        Cards.Move(i, 0);
-                        NotFoundMessage = "";
-                    }
-                    else
-                    {
-                        NotFoundMessage = "Die gesuchte Karte konnte nicht gefunden werden";
+                        Cards.Move(Cards.IndexOf(list[i]), i); 
                     }
                 }
+                else
+                {
+                    this.NotFoundMessage = "Nicht gefunden!"; 
+                }
+            }
+            else
+            {
+                
+                this.NotFoundMessage = "";
+                this.CardsSorting("Name"); 
             }
 
         }
@@ -244,7 +271,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void OpenWindow<TNotification>(TNotification notification)
         {
-
+            NotFoundMessage = "";
 
             ServiceBus.Instance.Send(notification);
         }
@@ -265,6 +292,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         }
         public void RemoveCardFunction()
         {
+            NotFoundMessage = "";
             if (SelectedCard != null)
             {
                 Console.WriteLine(SelectedCard.Name);

@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
+using System.Xml;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
@@ -20,12 +23,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             generateCards();
 
             MainMenuVM = new MainMenuViewModel(Set);
+            ImportVM = new ImportViewModel(Set); 
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel(Set);
             CreateCategoryVM = new CreateCategoryViewModel(Set);
             CreateCardVM = new CreateCardViewModel(Set);
             ExamModeVM = new ExamModeViewModel(Set);
             LernmodusVM = new LernmodusViewModel(Set);
-           
+            
             ViewCategoryVM = new ViewCategoryViewModel(Set);
             ExportVM = new ExportViewModel(Set);
             StatisticsVM = new StatisticsViewModel(Set);
@@ -44,7 +48,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public LernmodusViewModel LernmodusVM { get; }
 
         public MainMenuViewModel MainMenuVM { get; }
-
+        public ImportViewModel ImportVM { get; }
         public ViewCategoryViewModel ViewCategoryVM { get; }
         public ExportViewModel ExportVM { get; }
 
@@ -77,6 +81,22 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
                 Set.Add(cat);
+            }
+        }
+
+        private void loadCardsFromDisc() { 
+
+            string path = "SetCards.xml";
+            if (File.Exists(path))
+            {
+                SetViewModel setFromDisc = null;
+                XmlSerializer serializer = new XmlSerializer(typeof(SetViewModel));
+
+                StreamReader reader = new StreamReader(path);
+                setFromDisc = (SetViewModel)serializer.Deserialize(reader);
+                reader.Close();
+
+                Set = setFromDisc;
             }
         }
     }
