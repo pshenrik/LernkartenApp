@@ -16,7 +16,7 @@
 
     <Grid Margin="0,0,2,0">
 
-        <Grid Margin="191,0,2,0" Visibility="{Binding HideLearningInterface}"  >
+        <Grid Margin="207,4,-14,-5" Visibility="{Binding HideLearningInterface}"  >
             <TextBox HorizontalAlignment="Left" Height="46" Margin="197,352,0,0" TextWrapping="Wrap" Text="{Binding Path=AnswerInputText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="334" SpellCheck.IsEnabled="True" Cursor="IBeam"/>
             <Button Content="Hilfe" IsEnabled="{Binding Path=SubmitButtonEnabled, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="101,362,0,0" VerticalAlignment="Top" Width="68" Height="30" Command="{Binding RequestHelpCommand, Mode=OneWay}" />
             <Button HorizontalAlignment="Left" Margin="10,362,0,0" VerticalAlignment="Top" Width="72" Height="30" Command="{Binding MarkCardCommand, Mode=OneWay}">
@@ -26,14 +26,14 @@
 
             <Label Content="Merken" IsHitTestVisible="False" HorizontalAlignment="Left" Margin="10,364,0,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.68,0.231"/>
             <Button Content="Fertig" IsEnabled="{Binding Path=SubmitButtonEnabled, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="550,362,0,0" VerticalAlignment="Top" Width="62" Height="30" Command="{Binding SubmitAnswerCommand, Mode=OneWay}" RenderTransformOrigin="1.687,0.467" />
-            <Image HorizontalAlignment="Left" Height="158" VerticalAlignment="Top" Width="336" Margin="197,120,0,0"/>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="158" Stroke="Black" VerticalAlignment="Top" Width="336" Margin="195,120,0,0"/>
-            <TextBlock HorizontalAlignment="Left" Margin="195,278,0,0" 
+            <Image Source="{Binding CurrentCardPage.Image, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="188" VerticalAlignment="Top" Width="188" Margin="274,90,0,0"/>
+
+            <TextBlock HorizontalAlignment="Left" Margin="195,283,0,0" 
                    TextWrapping="Wrap" Text="{Binding Path=CurrentCardPage.Text, UpdateSourceTrigger=PropertyChanged}"
                    VerticalAlignment="Top" Width="336" Height="50" FontSize="14"/>
-            <TextBlock HorizontalAlignment="Left" 
+            <TextBlock HorizontalAlignment="Left"
                    TextWrapping="Wrap" Text="{Binding Path=CurrentCard.Name, UpdateSourceTrigger=PropertyChanged}"
-                   VerticalAlignment="Top" FontSize="18" Width="336" Margin="195,90,260,0" TextAlignment="Center">
+                   VerticalAlignment="Top" FontSize="18" Width="280" Margin="226,61,0,0" TextAlignment="Center">
 
             </TextBlock>
             <Rectangle HorizontalAlignment="Left"  Height="14" Margin="62,370,0,0" VerticalAlignment="Top" Width="14" Fill="#FFF0F010"/>
@@ -47,10 +47,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate >
                         <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" Width="139"  Background="{Binding Info.LastLearnedColor}" RenderTransformOrigin="0.5,0.547" Height="27">
-                            <Rectangle IsEnabled="{Binding Info.Marked, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0" HorizontalAlignment="Right" Height="26" VerticalAlignment="Center" Width="26"/>
+                            <Rectangle  Margin="0,0,5,0" HorizontalAlignment="Right" Height="26" VerticalAlignment="Center" Width="26"/>
                             <Label Content="{Binding Name}"  HorizontalAlignment="Left" Height="27" Width="117"  Margin="0,-27,0,0" RenderTransformOrigin="0.503,0.52"/>
-
-
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -58,10 +56,11 @@
 
             <Label Content="Letzte Karten&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Width="82" Height="26"/>
             <Button Content="Nächste Karte" IsEnabled="{Binding Path=NextButtonEnabled, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="633,362,0,0" VerticalAlignment="Top" Width="92" Height="30" Command="{Binding NextCardCommand, Mode=OneWay}" RenderTransformOrigin="1.687,0.467"/>
-            <Rectangle x:Name="AnswerIndicator" Fill="{Binding AnswerIndicatorFillColor, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="-191,435,-4,0" Stroke="Black" VerticalAlignment="Top" Width="986" StrokeThickness="0"/>
             <TextBlock HorizontalAlignment="Left" Margin="197,403,0,0" TextWrapping="Wrap" Text="{Binding HelpMessage, Mode=OneWay}" Visibility="Visible" VerticalAlignment="Top" Height="32" Width="334"/>
 
-            <Rectangle Visibility="{Binding CurrentCardMarked, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  Height="14" Margin="199,124,0,0" VerticalAlignment="Top" Width="14" Fill="#FFF0F010"/>
+            <Rectangle Visibility="{Binding CurrentCardMarked, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  Height="14" Margin="587,144,0,0" VerticalAlignment="Top" Width="14" Fill="#FFF0F010"/>
+            <Label Visibility="{Binding CurrentCardMarked, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Content="Karte wurde markiert" HorizontalAlignment="Left" Margin="601,138,0,0" VerticalAlignment="Top"/>
+
 
 
         </Grid>
