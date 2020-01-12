@@ -143,12 +143,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private SetViewModel set;
         public EditCardViewModel(SetViewModel set)
         {
-
             Card = new CardViewModel();
             Card.Name = "Keine Ahnung";
             Card.Front.Text = "Irgendwas hieeer";
             Card.Back.Text = "Irgendwas dooort";
-            //
+
             this.set = set;
             this.QuestionVisibility = "Visible";
             this.AnswerVisibility = "Hidden";

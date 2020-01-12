@@ -32,7 +32,7 @@
         <Image Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="112" Margin="111,139,0,0" IsEnabled="{Binding ExamStarted, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="229" Grid.Column="1"/>
         <Label Content="Frage:" Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="26,28,0,0" VerticalAlignment="Top" Height="41" Width="83" FontSize="20" Grid.Column="1"/>
 
-        <TextBox Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="34" Margin="26,297,0,0" TextWrapping="Wrap" Text="{Binding Answer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ExamStarted, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="438"  FontSize="20" Grid.Column="1"/>
+        <TextBox Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" BorderThickness="2" Background="{Binding BoxColor, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="34" Margin="26,297,0,0" TextWrapping="Wrap" Text="{Binding Answer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ExamStarted, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="438"  FontSize="20" Grid.Column="1"/>
         <Label Content="Antwort:" Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="26,265,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="20" Grid.Column="1" Height="30" Width="83"/>
         <ProgressBar Visibility="{Binding VisabilityExamUi, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="10" Margin="26.4,345,0,0" VerticalAlignment="Top" Width="438" Value="{Binding QuestionProgress, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Color, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left" Height="32" Margin="26,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" FontSize="20" Grid.Column="1"><Run Text="{Binding Question, UpdateSourceTrigger=PropertyChanged}"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
@@ -54,7 +54,17 @@
                 </TransformGroup>
             </Border.RenderTransform>
         </Border>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="16" Margin="26,56,0,0" TextWrapping="Wrap" Text="{Binding StatString,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}" Height="31" Width="438"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="16" Margin="26,98,0,0" TextWrapping="Wrap" Text="{Binding PercentString,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}" Height="46" Width="479"/>
+        <Label Content="Unbeantwortete Fragen:" Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="26,164,0,0" VerticalAlignment="Top" Width="235"/>
+        <ComboBox HorizontalAlignment="Left" Margin="220,175,0,0" ItemsSource="{Binding WrongAnswers, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedWrongCard}" VerticalAlignment="Top" Width="120" Grid.Column="1">
 
+        </ComboBox>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="16" Margin="26,223,0,0" TextWrapping="Wrap"   Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedWrongQuestion, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="414" Height="37"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="16" Margin="26,297,0,0" TextWrapping="Wrap"    Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedWrongAnswer, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="36" Width="414"/>
+        <Label Content="Frage:" Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}"  FontSize="16" Grid.Column="1" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top" Width="85" Height="31"/>
+        <Label Content="Richtige Antwort:"  Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}"  FontSize="16" Grid.Column="1" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" Height="37" Width="142"/>
+        <Border BorderBrush="Black" Visibility="{Binding VisabilityStatUi, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="1" Margin="10,149,0,0" VerticalAlignment="Top" Width="527"/>
 
     </Grid>
 </Window>

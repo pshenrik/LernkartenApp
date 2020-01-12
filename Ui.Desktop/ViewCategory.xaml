@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
    
     mc:Ignorable="d"
-        Title="View Category" Height="450" Width="800" Background="#FFF3F3F3">
+        Title="View Category" Height="458" Width="800" Background="#FFF3F3F3">
     <Window.DataContext>
         <!--<viewModel:ViewCategoryViewModel></viewModel:ViewCategoryViewModel>-->
         <Binding Path="ViewCategoryVM" Source="{StaticResource ViewModelLocator}"/>
@@ -33,37 +33,20 @@
                 <ColumnDefinition Width="400"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <Label Content="{Binding NameOfCategory}" Grid.Column="0" FontSize="30" FontFamily="Showcard Gothic" Background="{x:Null}" IsHitTestVisible="False" RenderTransformOrigin="2,0.5" Margin="0,0,0,-14"/>
+            <Label Content="{Binding NameOfCategory}" Grid.Column="0" FontSize="20" FontFamily="Showcard Gothic" Background="{x:Null}" IsHitTestVisible="False" RenderTransformOrigin="2,0.5" Margin="0,41,0,-32" Grid.ColumnSpan="2"/>
 
-            <ComboBox  Grid.Row="0" Grid.Column="1"  Margin="5,0,0,25"  SelectedItem="{Binding SelectedcomboBoxItem, Mode=OneWayToSource}">
-                <ComboBoxItem Content="Name"></ComboBoxItem>
-                <ComboBoxItem Content="Datum"></ComboBoxItem>
+            <ComboBox ItemsSource="{Binding ComboboxItemslist}" SelectedItem="{Binding SelectedcomboBoxItem, Mode=OneWayToSource}" Grid.Row="0" Grid.Column="1"  Margin="5,0,0,25"  >
+               
 
             </ComboBox>
-            <Button  Grid.Row="0" Grid.Column="2" Content="finden"  Margin="321,0,5,25" FontSize="20" Command="{Binding FindCardCommand, Mode=OneWay}" />
-            <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="{Binding SearchedCard}" Margin="10,0,79,25" Background="White" SelectionOpacity="13" FontSize="25"  />
+            <Label Content="Suche: " FontSize="20" Grid.Column="2" Margin="10,0,321,25" Background="White"/>
+            <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="{Binding SearchedCard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="79,-1,10,25" Background="White" SelectionOpacity="13" FontSize="25"  />
             <Label Content="{Binding NotFoundMessage}" FontSize="12" HorizontalAlignment="Center" RenderTransformOrigin="0.483,0.493" Margin="10,51,5,-27" Grid.Column="2" Width="385" FontWeight="Bold" FontStyle="Italic" Foreground="Red" />
             <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"  FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding OpenCreateCardWindowCommand, Mode=OneWay}"/>
         </Grid>
-        <!--   <Grid Margin="0,100,0,275">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-            </Grid.RowDefinitions>
-          <Label Grid.Row="0" Content="{Binding NumberOfCards, Mode=TwoWay}" HorizontalAlignment="Left"  VerticalAlignment="Bottom"   FontSize="30" Width="792" Margin="0,0,0,-3" Height="44" Foreground="#FFFFFDFD" >
-                <Label.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFCCD3F0" Offset="1"/>
-                    </LinearGradientBrush>
-                </Label.Background>
-            </Label>
-        </Grid>-->
+
 
         <Grid>
-
-
-
-
             <TextBlock Text=" Karte"  HorizontalAlignment="Center" FontSize="20"  VerticalAlignment="Top" Height="35" Width="177" RenderTransformOrigin="-0.855,0.69" Margin="71,108,544,0"  >
 
             </TextBlock>
@@ -71,7 +54,7 @@
             <TextBlock Text=" Erstellzeit" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Height="35" Width="130" RenderTransformOrigin="0.487,-2.828" Margin="516,108,146,276"  >
 
             </TextBlock>
-            <!--ItemsSource="{Binding Source={x:Static viewModel:ViewCategoryViewModel.Cards}}"-->
+          
             <ListBox Margin="0,143,0,56"  ItemsSource="{Binding Source={x:Static viewModel:ViewCategoryViewModel.Cards}}"   ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" SelectedItem="{Binding SelectedCard , Mode=OneWayToSource}">
 
                 <ListBox.ItemTemplate>
@@ -82,11 +65,12 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Name}" Grid.Column="0" HorizontalAlignment="Center" FontSize="20"  VerticalAlignment="Top" Height="29" Width="194"  Margin="0" RenderTransformOrigin="1.17,0.517">
 
                             </TextBlock>
-                            <TextBlock Text="{Binding Info.CreatedTime}" Grid.Column="1" HorizontalAlignment="Center" FontSize="20"  VerticalAlignment="Top" Height="29" Width="194"  Margin="0" >
+                            <TextBlock Text="{Binding Info.CreatedTimeAsString}" Grid.Column="3" HorizontalAlignment="Center" FontSize="20"  VerticalAlignment="Top" Height="29" Width="194"  Margin="0" >
 
                             </TextBlock>
                         </Grid>
@@ -100,8 +84,7 @@
 
         </Grid>
 
-        <!--   <Button Content="Öffnen" Command="{Binding DataContext.OpenViewCategoryWindowCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Height="28" Margin="308,381,358,10" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>-->
         <Button Content="Karte Löschen" Command="{Binding GetRemoveCardCommand,  Mode=OneWay }" Height="28" Margin="155,373,511,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
-        <Button Content="Karte Bearbeiten"  Height="28" Margin="462,373,204,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
+        <Button Content="Karte Bearbeiten" Height="28" Command="{Binding OpenEditCardWindowCommand}" Margin="462,373,204,18" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"></Button>
     </Grid>
 </Window>
