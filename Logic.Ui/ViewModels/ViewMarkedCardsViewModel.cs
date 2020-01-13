@@ -8,6 +8,8 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
     public class ViewMarkedCardsViewModel : AbstractViewModel
@@ -24,7 +26,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private string uiVisable;
         private string info;
         private string cardName;
-
+        private BitmapSource currentImage;
         private ObservableCollection<CardViewModel> markedCards;
         public ViewMarkedCardsViewModel(SetViewModel set)
         {
@@ -40,6 +42,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
         #region Propertys
+        public BitmapSource CurrentImage
+        {
+            get
+            {
+                return this.currentImage;
+            }
+            set
+            {
+                this.currentImage = value;
+                OnPropertyChanged();
+            }
+        }
         public String CardName
         {
             get
@@ -208,6 +222,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             {
                 this.Info = "In dieser Kategorie sind " + this.markedCards.Count + " Karten markiert";
                 this.UiVisable = "Visable";
+                this.CurrentImage = this.markedCards.ElementAt(0).Front.Image;
                 this.CardName = this.markedCards.ElementAt(0).Name;
                 this.CurrentQuestion = this.markedCards.ElementAt(0).Front.Text;
                 this.CurrentAnswer = this.markedCards.ElementAt(0).Back.Text;
@@ -222,6 +237,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void getNextCard()
         {
             this.CurrentCardIndex++;
+            this.CurrentImage = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Image;
             this.CardName = this.markedCards.ElementAt(this.CurrentCardIndex).Name;
             this.CurrentQuestion = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Text;
             this.CurrentAnswer = this.markedCards.ElementAt(this.CurrentCardIndex).Back.Text;
@@ -232,6 +248,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void getPrevCard()
         {
             this.CurrentCardIndex--;
+            this.CurrentImage = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Image;
             this.CardName = this.markedCards.ElementAt(this.CurrentCardIndex).Name;
             this.CurrentQuestion = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Text;
             this.CurrentAnswer = this.markedCards.ElementAt(this.CurrentCardIndex).Back.Text;
@@ -251,6 +268,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 this.CurrentAnswer = "";
                 this.CurrentCardIndex = 0;
                 this.CardName = "";
+                this.CurrentImage = null;
             }
             else 
             {
@@ -261,7 +279,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                     this.CardName = this.markedCards.ElementAt(this.CurrentCardIndex).Name;
                     this.CurrentQuestion = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Text;
                     this.CurrentAnswer = this.markedCards.ElementAt(this.CurrentCardIndex).Back.Text;
-
+                    this.CurrentImage = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Image;
 
                 }
                 else if (this.CurrentCardIndex > 0)

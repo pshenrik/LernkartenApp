@@ -13,107 +13,111 @@ using System.Windows.Input;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    public class ViewCategoryViewModel: AbstractViewModel
+    public class ViewCategoryViewModel : AbstractViewModel
     {
-       
-    /*       #region Ohne Static 
-            
-              public SetViewModel Categories { get; set; }
-               private  CategoryViewModel Category;
-               public String NameOfCategory { get; set; }
-               public String NumberOfCards { get; set; }
-               public RelayCommand OpenCreateCardWindowCommand { get; }
-               public CardViewModel SelectedCard { get; set; }
-               private ICommand RemoveCardCommand;
-               public ObservableCollection<CardViewModel> Cards { get; set; }
 
-               public ViewCategoryViewModel(CategoryViewModel category)
-               {
+        /*       #region Ohne Static 
 
-                this.Category = category;
+                  public SetViewModel Categories { get; set; }
+                   private  CategoryViewModel Category;
+                   public String NameOfCategory { get; set; }
+                   public String NumberOfCards { get; set; }
+                   public RelayCommand OpenCreateCardWindowCommand { get; }
+                   public CardViewModel SelectedCard { get; set; }
+                   private ICommand RemoveCardCommand;
+                   public ObservableCollection<CardViewModel> Cards { get; set; }
 
-                   this.NameOfCategory = this.Category.Name;
-                   this.NumberOfCards = "                                   " + this.Category.NumberOfCards + " Karten in " + this.Category.Name;
-                   OpenCreateCardWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCardWindow()));
-                   RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.GetBoolean);
-
-                   this.Cards = new ObservableCollection<CardViewModel>();
-
-                   for (var i = 0; i < this.Category.Collections.Length; i++)
+                   public ViewCategoryViewModel(CategoryViewModel category)
                    {
-                       for (var j = 0; j < this.Category.Collections[i].Count; j++)
-                       {
-                           this.Cards.Add(this.Category.Collections[i][j]);
-                           Console.WriteLine(this.Cards[i].Name);
 
+                    this.Category = category;
+
+                       this.NameOfCategory = this.Category.Name;
+                       this.NumberOfCards = "                                   " + this.Category.NumberOfCards + " Karten in " + this.Category.Name;
+                       OpenCreateCardWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCardWindow()));
+                       RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.GetBoolean);
+
+                       this.Cards = new ObservableCollection<CardViewModel>();
+
+                       for (var i = 0; i < this.Category.Collections.Length; i++)
+                       {
+                           for (var j = 0; j < this.Category.Collections[i].Count; j++)
+                           {
+                               this.Cards.Add(this.Category.Collections[i][j]);
+                               Console.WriteLine(this.Cards[i].Name);
+
+                           }
+                       }
+
+
+                      Console.WriteLine("FAAAAT"); 
+                   }
+
+                   public ViewCategoryViewModel(SetViewModel setViewModel)
+                   {
+                       this.Categories = setViewModel;
+
+
+                   }
+
+
+
+                   private void OpenWindow<TNotification>(TNotification notification)
+                   {
+
+
+                       ServiceBus.Instance.Send(notification);
+                   }
+
+
+                   private bool GetBoolean()
+                   {
+                       return true;
+                   }
+
+                   public ICommand getRemoveCardCommand
+                   {
+                       get
+                       {
+
+                           return RemoveCardCommand;
+                       }
+                   }
+                   public void RemoveCardFunction()
+                   {
+
+                       if (Cards.Contains(SelectedCard))
+                       {
+                           Cards.Remove(SelectedCard);
                        }
                    }
 
 
-                  Console.WriteLine("FAAAAT"); 
-               }
-
-               public ViewCategoryViewModel(SetViewModel setViewModel)
-               {
-                   this.Categories = setViewModel;
-
-
-               }
+                #endregion
+            */
+        //******************************************************************************************************************************************
 
 
 
-               private void OpenWindow<TNotification>(TNotification notification)
-               {
-
-
-                   ServiceBus.Instance.Send(notification);
-               }
-
-
-               private bool GetBoolean()
-               {
-                   return true;
-               }
-
-               public ICommand getRemoveCardCommand
-               {
-                   get
-                   {
-
-                       return RemoveCardCommand;
-                   }
-               }
-               public void RemoveCardFunction()
-               {
-
-                   if (Cards.Contains(SelectedCard))
-                   {
-                       Cards.Remove(SelectedCard);
-                   }
-               }
-
-               
-            #endregion
-        */
-            //******************************************************************************************************************************************
-
-
-            
         public static ObservableCollection<CardViewModel> Cards;
 
 
         private static CategoryViewModel selectedCategoryInMainMenu;
 
-        private String searchedCard; 
-        public String SearchedCard { get { return this.searchedCard;  }
-                set{
+        private String searchedCard;
+        public String SearchedCard
+        {
+            get { return this.searchedCard; }
+            set
+            {
                 this.searchedCard = value;
-                this.FindCardFunction(this.searchedCard); 
-                } }
+                this.FindCardFunction(this.searchedCard);
+            }
+        }
         public RelayCommand OpenCreateCardWindowCommand { get; }
         public RelayCommand OpenEditCardWindowCommand { get; }
         public CardViewModel SelectedCard { get; set; }
- 
+
         private ICommand RemoveCardCommand;
         public static string NameOfCategory { get; set; }
 
@@ -121,35 +125,35 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public static String NumberOfCards { get { return numberOfCards; } set { numberOfCards = value; } }
 
 
-        private String notFoundMessage;
-        public String NotFoundMessage
+        private String message;
+        public String Message
         {
             get
             {
-                return this.notFoundMessage;
+                return this.message;
             }
             set
             {
-                this.notFoundMessage = value;
+                this.message = value;
                 OnPropertyChanged();
             }
         }
-           private String selctedComboBoxItem;
-           public String SelectedcomboBoxItem
+        private String selctedComboBoxItem;
+        public String SelectedcomboBoxItem
         {
-               get
-               {
-                   return this.selctedComboBoxItem;
+            get
+            {
+                return this.selctedComboBoxItem;
 
-               }
-               set
-               {
-                   this.selctedComboBoxItem = value;
-                   // selctedComboBoxItem = " :name";
+            }
+            set
+            {
+                this.selctedComboBoxItem = value;
+                // selctedComboBoxItem = " :name";
 
-                   CardsSorting(this.selctedComboBoxItem);
-               }
-           }
+                CardsSorting(this.selctedComboBoxItem);
+            }
+        }
 
 
         public String[] ComboboxItemslist { get; set; }
@@ -159,54 +163,54 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.setViewModel = setViewModel;
 
             OpenCreateCardWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCardWindow()));
-            OpenEditCardWindowCommand = new RelayCommand(() => OpenOpenEditCardWindowFunction(new OpenEditCardWindow())); 
+            OpenEditCardWindowCommand = new RelayCommand(() => OpenOpenEditCardWindowFunction(new OpenEditCardWindow()));
             RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.getBoolean);
-           this.ComboboxItemslist = new String[2];
+            this.ComboboxItemslist = new String[2];
             this.ComboboxItemslist[0] = "Name";
-            this.ComboboxItemslist[1] = "Datum"; 
+            this.ComboboxItemslist[1] = "Datum";
         }
 
         private void OpenOpenEditCardWindowFunction(OpenEditCardWindow openEditCardWindow)
         {
-            NotFoundMessage = "";
+            Message = "";
             if (this.SelectedCard != null)
             {
-                EditCardViewModel.Card = this.SelectedCard; 
+                EditCardViewModel.Card = this.SelectedCard;
                 ServiceBus.Instance.Send(openEditCardWindow);
             }
-            
-            
+
+
         }
 
         public ViewCategoryViewModel()
         {
             OpenCreateCardWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCardWindow()));
             RemoveCardCommand = new RelayCommand(this.RemoveCardFunction, this.getBoolean);
-        
+
         }
-          private void CardsSorting(String selectedType)
+        private void CardsSorting(String selectedType)
         {
-            NotFoundMessage = "";
+            Message = "";
             if (selectedType == "Name")
-              {
-                  var sortableList = Cards.OrderBy(card => card.Name).ToList();
+            {
+                var sortableList = Cards.OrderBy(card => card.Name).ToList();
 
-                  Cards.Clear();
-                  foreach (var item in sortableList)
-                  {
-                      Cards.Add(item);
-                  }
-              }
-              else 
-              {
-                  var sortableList = Cards.OrderBy(category =>category.Info.CreatedTime).ToList();
+                Cards.Clear();
+                foreach (var item in sortableList)
+                {
+                    Cards.Add(item);
+                }
+            }
+            else
+            {
+                var sortableList = Cards.OrderBy(category => category.Info.CreatedTime).ToList();
 
-                  Cards.Clear();
-                  foreach (var item in sortableList)
-                  {
-                      Cards.Add(item);
-                  }
-              }
+                Cards.Clear();
+                foreach (var item in sortableList)
+                {
+                    Cards.Add(item);
+                }
+            }
 
 
 
@@ -217,26 +221,26 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             {
 
                 List<CardViewModel> list;
-                searchedCard = searchedCard.ToLower(); 
+                searchedCard = searchedCard.ToLower();
                 list = Cards.Where(card => card.Name.ToLower().Contains(searchedCard)).ToList();
                 if (list.Count > 0)
                 {
-                    this.NotFoundMessage = ""; 
-                    for(int i =0; i< list.Count; i++)
+                    this.Message = "";
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        Cards.Move(Cards.IndexOf(list[i]), i); 
+                        Cards.Move(Cards.IndexOf(list[i]), i);
                     }
                 }
                 else
                 {
-                    this.NotFoundMessage = "Nicht gefunden!"; 
+                    this.Message = "Nicht gefunden!";
                 }
             }
             else
             {
-                
-                this.NotFoundMessage = "";
-                this.CardsSorting("Name"); 
+
+                this.Message = "";
+                this.CardsSorting("Name");
             }
 
         }
@@ -271,7 +275,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void OpenWindow<TNotification>(TNotification notification)
         {
-            NotFoundMessage = "";
+            Message = "";
 
             ServiceBus.Instance.Send(notification);
         }
@@ -292,7 +296,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         }
         public void RemoveCardFunction()
         {
-            NotFoundMessage = "";
+            Message = "";
             if (SelectedCard != null)
             {
                 Console.WriteLine(SelectedCard.Name);

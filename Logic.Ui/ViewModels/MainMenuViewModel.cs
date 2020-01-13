@@ -25,26 +25,33 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public RelayCommand OpenViewCategoryWindowCommand { get; }
         public RelayCommand OpenViewMarkedCardsWindowCommand { get; }
         public RelayCommand OpenImportWindowCommand { get; }
-        
+
         public CategoryViewModel SelectedCategory { get; set; }
 
-        private String searchedCategory; 
-        public String SearchedCategory { get {
-                return this.searchedCategory;
-            } set { this.searchedCategory = value;
-                this.FindCategoryfunction(this.searchedCategory); 
-            } }
-        public String InsertedNewNameForCategory { get; set; }
-        private String notFoundMessage;
-        public String NotFoundMessage
+        private String searchedCategory;
+        public String SearchedCategory
         {
             get
             {
-                return this.notFoundMessage;
+                return this.searchedCategory;
             }
             set
             {
-                this.notFoundMessage = value;
+                this.searchedCategory = value;
+                this.FindCategoryfunction(this.searchedCategory);
+            }
+        }
+        public String InsertedNewNameForCategory { get; set; }
+        private String message;
+        public String Message
+        {
+            get
+            {
+                return this.message;
+            }
+            set
+            {
+                this.message = value;
                 OnPropertyChanged();
             }
         }
@@ -59,7 +66,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             set
             {
                 this.selctedComboBoxItem = value;
-              
+
                 CollectoinSorting(this.selctedComboBoxItem);
             }
         }
@@ -79,7 +86,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
 
         }
-    
+
         public String[] ComboboxItemslist { get; set; }
         public SetViewModel Categories { get; set; }
         public MainMenuViewModel(SetViewModel setViewModel)
@@ -87,8 +94,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
             this.Categories = setViewModel;
-           
-         
+
+
             OpenCreateCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCategoryWindow()));
             OpenExamModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
             OpenStatisticsWindowCommand = new RelayCommand(() => OpenWindow(new OpenStatisticsWindow()));
@@ -96,41 +103,39 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             OpenLearnModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenLearnModeWindow()));
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
             OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow()));
-            OpenImportWindowCommand = new RelayCommand(()=> OpenWindow(new OpenImportWindow())); 
- 
+            OpenImportWindowCommand = new RelayCommand(() => OpenWindow(new OpenImportWindow()));
+
             RemoveCategoryCommand = new RelayCommand(this.RemoveCategoryfunction, this.GetBoolean);
-            ChangingNameOfCategoryCommand = new RelayCommand(this.ChangingNameOfCategoryFunction, this.GetBoolean); 
+            ChangingNameOfCategoryCommand = new RelayCommand(this.ChangingNameOfCategoryFunction, this.GetBoolean);
             NumberOfCategories = "                                   " + Categories.Count() + " Kategorien";
 
             ComboboxItemslist = new String[3];
             ComboboxItemslist[0] = "Name";
             ComboboxItemslist[1] = "Datum";
             ComboboxItemslist[2] = "Anzahl der Karten";
-         
+
         }
 
         private void ChangingNameOfCategoryFunction()
         {
-            if(this.SelectedCategory != null)
+            if (this.SelectedCategory != null)
 
             {
-                if(this.InsertedNewNameForCategory != null)
+                if (this.InsertedNewNameForCategory != null)
                 {
-this.SelectedCategory.Name = this.InsertedNewNameForCategory;
-                    this.NotFoundMessage = ""; 
+                    this.SelectedCategory.Name = this.InsertedNewNameForCategory;
+                    this.Message = "";
                 }
                 else
                 {
-                    this.NotFoundMessage = "Bitte geben Sie einen Namen ein"; 
+                    this.Message = "Bitte geben Sie einen Namen ein";
                 }
-                
+
             }
         }
 
         public MainMenuViewModel()
         {
-
-            //   testMethodVar = new RelayCommand(this.Test, this.getTrue);
             OpenCreateCategoryWindowCommand = new RelayCommand(() => OpenWindow(new OpenCreateCategoryWindow()));
             OpenExamModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
             OpenStatisticsWindowCommand = new RelayCommand(() => OpenWindow(new OpenStatisticsWindow()));
@@ -153,8 +158,8 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
         private void CollectoinSorting(String selectedType)
         {
 
-            this.NotFoundMessage = "";
-           
+            this.Message = "";
+
             if (selectedType == "Name")
             {
                 var sortableList = this.Categories.OrderBy(category => category.Name).ToList();
@@ -177,49 +182,49 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
             }
             else
             {
-                 var sortableList = this.Categories.OrderBy(category => category.NumberOfCards).ToList();
+                var sortableList = this.Categories.OrderBy(category => category.NumberOfCards).ToList();
 
-                  this.Categories.Clear();
+                this.Categories.Clear();
                 foreach (var item in sortableList)
                 {
                     this.Categories.Add(item);
                 }
             }
         }
-        
+
         private void FindCategoryfunction(String searchedCategory)
         {
-            
+
 
             if (!String.IsNullOrEmpty(searchedCategory))
-             {
-                
+            {
+
                 List<CategoryViewModel> list;
                 searchedCategory = searchedCategory.ToLower();
-                list = this.Categories.Where(cate => cate.Name.ToLower().Contains(searchedCategory)).ToList();  
-                if(list.Count > 0)
+                list = this.Categories.Where(cate => cate.Name.ToLower().Contains(searchedCategory)).ToList();
+                if (list.Count > 0)
                 {
-                    this.NotFoundMessage = ""; 
-             
-                for(int i =0; i< list.Count; i++)
+                    this.Message = "";
+
+                    for (int i = 0; i < list.Count; i++)
                     {
-                            this.Categories.Move(this.Categories.IndexOf(list[i]), i); 
+                        this.Categories.Move(this.Categories.IndexOf(list[i]), i);
                     }
                 }
                 else
                 {
-                    this.NotFoundMessage = "Nicht gefunden!";
+                    this.Message = "Nicht gefunden!";
                 }
             }
             else
             {
-                this.NotFoundMessage = "";
-                this.CollectoinSorting("Name"); 
+                this.Message = "";
+                this.CollectoinSorting("Name");
             }
-          
+
         }
-      
-        
+
+
         private bool GetBoolean()
         {
             return true;
@@ -227,9 +232,9 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
 
         private void RemoveCategoryfunction()
         {
-            this.NotFoundMessage = "";
+            this.Message = "";
             if (SelectedCategory != null)
-            { 
+            {
                 Console.WriteLine(SelectedCategory.Name);
                 Categories.Remove(SelectedCategory);
                 NumberOfCategories = "                                   " + Categories.Count + " Kategorien";
@@ -239,8 +244,8 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
 
         private void OpenWindow<TNotification>(TNotification notification)
         {
-            this.NotFoundMessage = "";
-            
+            this.Message = "";
+
             ServiceBus.Instance.Send(notification);
 
         }
@@ -249,8 +254,8 @@ this.SelectedCategory.Name = this.InsertedNewNameForCategory;
 
         private void OpenViewCategoryWindowFunc<TNotification>(TNotification ViewCategoryWindow)
         {
-            this.NotFoundMessage = "";
-          
+            this.Message = "";
+
             if (SelectedCategory != null)
             {
                 ViewCategoryViewModel.SelectedCategoryInMainMenu = this.SelectedCategory;
