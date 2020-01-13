@@ -34,7 +34,7 @@
             <Label Content="Suche: " FontSize="20" Grid.Column="2" Margin="10,0,321,25" Background="White"/>
             <TextBox Grid.Row="0" Grid.Column="2"  TextWrapping="Wrap" Text="{Binding SearchedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="79,0,10,25"  Background="White" SelectionOpacity="13" FontSize="25" />
 
-            <Label Content="{Binding NotFoundMessage}" FontSize="12" HorizontalAlignment="Center" RenderTransformOrigin="0.483,0.493" Margin="10,51,5,-27" Grid.Column="2" Width="385" FontWeight="Bold" FontStyle="Italic" Foreground="Red" />
+            <Label Content="{Binding Message}" FontSize="12" HorizontalAlignment="Center" RenderTransformOrigin="0.483,0.493" Margin="10,51,5,-27" Grid.Column="2" Width="385" FontWeight="Bold" FontStyle="Italic" Foreground="Red" />
 
             <Button Grid.Column="3" Grid.Row="0" x:Name="AddCardButt" Content="+"   FontSize="60" FontFamily="Segoe Print" Margin="0,0,8,-24" Command="{Binding OpenCreateCategoryWindowCommand, Mode=OneWay}"/>
         </Grid>
@@ -70,7 +70,7 @@
             <Button Grid.Row="1" Command="{Binding OpenImportWindowCommand, Mode=OneWay}">Import/Export XML</Button>
             <Button Grid.Row="2" Command="{Binding OpenExamModeWindowCommand, Mode=OneWay}">Prüfungsmode</Button>
             <Button Grid.Row="3" Command="{Binding OpenStatisticsWindowCommand, Mode=OneWay}">Statistik</Button>
-            <Button Grid.Row="4" Command="{Binding OpenLernmodusWindowCommand, Mode=OneWay}">Lernen-Modus</Button>
+            <Button Grid.Row="4" Command="{Binding OpenLernmodusWindowCommand, Mode=OneWay}">Lernenmodus</Button>
             <Button Grid.Row="5" Command="{Binding OpenViewMarkedCardsWindowCommand, Mode=OneWay}">Markierte Karten</Button>
         </Grid>
 

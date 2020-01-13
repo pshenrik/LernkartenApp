@@ -15,15 +15,13 @@ using System.Windows.Shapes;
 namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
 {
     /// <summary>
-    /// Interaktionslogik für Lernmodus.xaml
+    /// Interaktionslogik für LearnMode.xaml
     /// </summary>
-    public partial class Lernmodus : Window
+    public partial class LearnMode : Window
     {
-        public Lernmodus()
+        public LearnMode()
         {
             InitializeComponent();
         }
-
-       
     }
 }

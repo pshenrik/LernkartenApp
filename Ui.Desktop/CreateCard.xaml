@@ -19,9 +19,9 @@
         <Border x:Name="header" BorderThickness="1" HorizontalAlignment="Left" Height="73" VerticalAlignment="Top" Width="1084" Background="#FF4094EB"/>
         <Label x:Name="newCard" Content="Neue Karte " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,18,0,0" Height="41" Width="176" FontFamily="Verdana" FontSize="20" FontWeight="Bold" Foreground="#FFFAFAFA" RenderTransformOrigin="0.804,0.695"/>
         <Button x:Name="create" Content="Erstellen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="931,15,0,0" Height="41"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" Command="{Binding CreateCardCommand, Mode=OneWay}"/>
-        <TextBox x:Name="tilte" HorizontalAlignment="Left" Height="37"  Text="{ Binding  Card.Name}" VerticalAlignment="Top" Width="240" Margin="482,79,0,0"  FontSize="30" FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" />
-        <TextBox x:Name="question" HorizontalAlignment="Left" Height="78" TextWrapping="Wrap" Text="{ Binding Card.Front.Text}" VerticalAlignment="Top" Width="325" Margin="219,383,0,0" Foreground="#FF8B8787" FontSize="20" BorderBrush="#FF0040FF"/>
-        <TextBox x:Name="answer" HorizontalAlignment="Left" Height="78" TextWrapping="Wrap" Text="{ Binding  Card.Back.Text}" VerticalAlignment="Top" Width="382" Margin="626,383,0,0" FontSize="20" Foreground="#FF8B8787" BorderBrush="#FF0040FF"/>
+        <TextBox x:Name="tilte" HorizontalAlignment="Left" Height="37"  Text="{ Binding  Title}" VerticalAlignment="Top" Width="240" Margin="482,79,0,0"  FontSize="30" FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" />
+        <TextBox x:Name="question" HorizontalAlignment="Left" Height="78" TextWrapping="Wrap"  Text="{ Binding Question}" VerticalAlignment="Top" Width="325" Margin="219,383,0,0" Foreground="#FF8B8787" FontSize="20" BorderBrush="#FF0040FF"/>
+        <TextBox x:Name="answer" HorizontalAlignment="Left" Height="78" TextWrapping="Wrap" Text="{ Binding Answer}" VerticalAlignment="Top" Width="382" Margin="626,383,0,0" FontSize="20" Foreground="#FF8B8787" BorderBrush="#FF0040FF"/>
         <Button x:Name="image1"  Content="Bild" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="549,406,0,0" Height="40" BorderBrush="{x:Null}" Foreground="#FF736E6E" FontSize="20" FontStyle="Italic" Background="#FFA9B2F4" Command="{Binding AddQuestionImgCommand, Mode=OneWay}" RenderTransformOrigin="0.232,0.5" />
         <Button x:Name="image2" Content="Bild" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="1018,406,0,0" Height="40" BorderBrush="{x:Null}" Foreground="#FF736E6E" FontSize="20" FontStyle="Italic" Background="#FFA9B2F4" Command="{Binding AddAnswerImgCommand, Mode=OneWay}" RenderTransformOrigin="1.884,0.525"/>
         <ComboBox HorizontalAlignment="Left" Margin="10,107,0,0"  DisplayMemberPath="Name" ItemsSource="{Binding Set}"  SelectedItem="{Binding SelectedCategory}"  VerticalAlignment="Top" Width="120" Height="30" >
@@ -40,7 +40,7 @@
         </Viewbox>
         <Label  Content="{ Binding  CheckAddNewCard}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="298,15,0,0" Height="36" Width="424" FontFamily="Verdana" FontSize="16" Foreground="#FF761F1F"/>
         <Label Content="Schlüsselwörter:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-2,152,0,0" Height="33" Width="184" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF3E3E3E"/>
-        <ListBox Margin="10,185,892,72" ItemsSource="{Binding Card.Keywords}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" >
+        <ListBox Margin="10,185,892,72" ItemsSource="{Binding Keywords}" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.485,0.44" >
             <ListBox.ItemTemplate>
                 <DataTemplate >
                     <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="171" Background="LightGray" RenderTransformOrigin="0.5,0.547" Height="41">

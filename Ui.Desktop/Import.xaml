@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.LernkartenApp001.Ui.Desktop"
         mc:Ignorable="d"
-        Title="Import" Height="450" Width="800">
+        Title="Import/Export als Xml" Height="450" Width="800">
 
     <Window.DataContext>
         <Binding Path="ImportVM" Source="{StaticResource ViewModelLocator}"/>
@@ -16,12 +16,13 @@
 
     </Window.IsEnabled>
     <Grid>
-
-        <Label Content="Bitte Pfad auswählen:" Margin="136,68,0,282" HorizontalAlignment="Left" FontSize="20" Width="215" RenderTransformOrigin="0.512,0.503"></Label>
-        <Button  Content="XML Exportieren" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding ExportCommand, Mode=OneWay}" Width="174" Margin="401,68,0,0" Height="37"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" RenderTransformOrigin="-0.173,3.899"/>
-        
-        <Label Content="{Binding Message}" VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center" Margin="10,242,32,0" Height="177" Width="750"></Label>
-        <Label Content="Bitte XML-Datei auswählen:" Margin="136,137,0,226" HorizontalAlignment="Left" FontSize="20" Width="260" RenderTransformOrigin="0.512,0.503"></Label>
-        <Button  Content="XML Importieren" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding ImportCommand, Mode=OneWay}" Width="174" Margin="401,137,0,0" Height="37"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" RenderTransformOrigin="-0.173,3.899"/>
+        <Label Content="Beim Importieren von Kategorien und Lernkarten werden die vorhandenen Kategorien&#10;und Lernkarten gelöscht.&#10;Um die vorhandenen Daten wieder verwenden zu können, exportieren Sie&#10;diese bitte vor dem Import." HorizontalAlignment="Center" FontSize="19" VerticalAlignment="Center" Margin="12,7,12,292" Height="120"></Label>
+        <Label Content="Pfad auswählen und Lernkarten exportieren:" Margin="10,150,0,200" HorizontalAlignment="Left" FontSize="20" Width="397" RenderTransformOrigin="0.512,0.503"></Label>
+        <Button  Content="XML Exportieren" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding ExportCommand, Mode=OneWay}" Width="174" Margin="618,150,0,0" Height="37"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" RenderTransformOrigin="-0.173,3.899"/>
+        <TextBox x:Name="tilte" HorizontalAlignment="Left"   Text="{Binding InsertedNameForXmlfile}" VerticalAlignment="Top" Width="190" Margin="428,150,0,0"   FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" Height="37"  />
+        <Label  HorizontalAlignment="Left"   Content="Dateiname eingeben: " VerticalAlignment="Top" Width="190" Margin="428,127,0,0"   FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" Height="23"  />
+        <Label Content="{Binding Message}" VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center" Margin="12,285,30,0" Height="134" Width="750"></Label>
+        <Label Content="XML-Datei auswählen und Lernkarten importieren:" Margin="10,214,0,149" HorizontalAlignment="Left" FontSize="20" Width="468" RenderTransformOrigin="0.512,0.503"></Label>
+        <Button  Content="XML Importieren" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding ImportCommand, Mode=OneWay}" Width="174" Margin="618,214,0,0" Height="37"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" RenderTransformOrigin="-0.173,3.899"/>
     </Grid>
 </Window>
