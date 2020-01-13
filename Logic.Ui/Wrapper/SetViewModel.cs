@@ -11,6 +11,7 @@ using System.Collections.Specialized;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
+using System.Web.Script.Serialization;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
 {
@@ -42,11 +43,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         {
             get
             {
-                return this.set; 
+                return this.set;
             }
         }
-
-       
+        
         private void ViewModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (syncDisabled) return;
@@ -67,6 +67,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                     break;
             }
             syncDisabled = false;
+            storeSetOnDisc();
         }
         private void ModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -97,10 +98,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
             return null;
         }
-     
 
-        private void storeSetOnDisc() {
-            XmlSerializer xsSubmit = new XmlSerializer(typeof(Set));
+
+        /*private void storeSetOnDisc() {
+            XmlSerializer xsSubmit = new XmlSerializer(typeof(SetViewModel));
             var xml = "";
 
             using (var sww = new StringWriter())
@@ -111,9 +112,20 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                     xml = sww.ToString();
                     XmlDocument xdoc = new XmlDocument();
                     xdoc.LoadXml(xml);
-                    xdoc.Save("SetCards.xml");
+                    xdoc.Save("C:/tmp/SetCards.xml");
                 }
             }
+        }*/
+
+        private void storeSetOnDisc()
+        {
+            var json = new JavaScriptSerializer().Serialize(Set);
+            System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
+            
+            //XmlDocument xdoc = new XmlDocument();     
+            //xdoc.Save("C:/tmp/SetCards.xml");
+              
         }
+      
     }
 }
