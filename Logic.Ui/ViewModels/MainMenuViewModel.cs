@@ -21,7 +21,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public RelayCommand OpenExamModeWindowCommand { get; }
         public RelayCommand OpenStatisticsWindowCommand { get; }
         public RelayCommand OpenExportWindowCommand { get; }
-        public RelayCommand OpenLernmodusWindowCommand { get; }
+        public RelayCommand OpenLearnModeWindowCommand { get; }
         public RelayCommand OpenViewCategoryWindowCommand { get; }
         public RelayCommand OpenViewMarkedCardsWindowCommand { get; }
         public RelayCommand OpenImportWindowCommand { get; }
@@ -100,7 +100,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             OpenExamModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
             OpenStatisticsWindowCommand = new RelayCommand(() => OpenWindow(new OpenStatisticsWindow()));
             OpenExportWindowCommand = new RelayCommand(() => OpenWindow(new OpenExportWindow()));
-            OpenLernmodusWindowCommand = new RelayCommand(() => OpenWindow(new OpenLernmodusWindow()));
+            OpenLearnModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenLearnModeWindow()));
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
             OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow()));
             OpenImportWindowCommand = new RelayCommand(() => OpenWindow(new OpenImportWindow()));
@@ -140,7 +140,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             OpenExamModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenExamModeWindow()));
             OpenStatisticsWindowCommand = new RelayCommand(() => OpenWindow(new OpenStatisticsWindow()));
             OpenExportWindowCommand = new RelayCommand(() => OpenWindow(new OpenExportWindow()));
-            OpenLernmodusWindowCommand = new RelayCommand(() => OpenWindow(new OpenLernmodusWindow()));
+            OpenLearnModeWindowCommand = new RelayCommand(() => OpenWindow(new OpenLearnModeWindow()));
             OpenViewCategoryWindowCommand = new RelayCommand(() => OpenViewCategoryWindowFunc(new OpenViewCategoryWindow()));
             OpenViewMarkedCardsWindowCommand = new RelayCommand(() => OpenWindow(new OpenViewMarkedCardsWindow()));
 

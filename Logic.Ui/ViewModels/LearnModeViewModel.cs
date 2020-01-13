@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
@@ -17,7 +18,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
      CheckStartRequirements in die Bedingung mit ReturnTrue einbinden
      Properties so richtig mit private Backendfield?
      */
-    public class LernmodusViewModel : AbstractViewModel
+    public class LearnModeViewModel : AbstractViewModel
     {
         #region ICommand
         private ICommand submitAnswerCommand;
@@ -63,6 +64,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
+   
         private CardViewModel currentCard;
         public CardViewModel CurrentCard
         {
@@ -77,6 +79,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 if(value != null) {
                    
                     CurrentCardPage = value.Front;
+
                     if (value.Info.Marked)
                     {
                         Console.WriteLine("true");
@@ -122,6 +125,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             set
             {
+                Console.WriteLine(value);
                 currentCardPage = value;
                 OnPropertyChanged();
             }
@@ -143,6 +147,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             
         }
+
+
+
+
         private string answerIndicatorFillColor;
         public string AnswerIndicatorFillColor
         {
@@ -327,10 +335,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private int currentCardIndex;
     
 
-        public LernmodusViewModel(SetViewModel set)
+        public LearnModeViewModel(SetViewModel set)
         {
             this.Set = set;
-
+            Console.WriteLine("TEST");
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             nextCardCommand = new RelayCommand(this.NextCard, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
@@ -401,11 +409,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void SubmitAnswer()
         {
             LearnedCardsCounter++;
-
+            Console.WriteLine(Set.Count);
             //Antwort anzeigen
             CurrentCardPage = currentCard.Back;
             SubmitButtonEnabled = false;
             NextButtonEnabled = true;
+          
 
             //Wenn die eingegebene Antwort richtig ist
             if (currentCard.Card.CheckAnswer(answerInputText))

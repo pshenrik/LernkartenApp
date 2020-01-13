@@ -117,18 +117,70 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
+        private String title;
+        public String Title
+        {
+            get
+            {
+                return this.title;
+            }
+            set
+            {
+                this.title = value;
+                OnPropertyChanged();
+            }
+        }
+        private String question;
+        public String Question
+        {
+            get
+            {
+                return this.question;
+            }
+            set
+            {
+                this.question = value;
+                OnPropertyChanged();
+            }
+        }
+        private String answer;
+        public String Answer
+        {
+            get
+            {
+                return this.answer;
+            }
+            set
+            {
+                this.answer = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<String> keywords;
+        public ObservableCollection<String> Keywords
+        {
+            get
+            {
+                return this.keywords;
+            }
+            set
+            {
+                this.keywords = value;
+                OnPropertyChanged();
+            }
+        }
         public CreateCardViewModel(SetViewModel set)
         {
             this.set = set;
             this.Card = new CardViewModel();
-            this.Card.Name= "Überschrift";
-            this.Card.Front.Text= "Frage eingeben";
-            this.Card.Back.Text = "Antwort eingeben";
+            this.keywords = new ObservableCollection<String>();
+            this.title = "Überschrift";
+            this.question = "Frage eingeben";
+            this.answer = "Antwort eingeben";
 
             this.newKeyword = "Neues Wort";
             checkAddNewCard = "";
-            this.Card.Keywords.Add("Hallo");
-
             //relayCommand
             createCardCommand = new RelayCommand(this.CreateCard, this.ReturnTrue);
             addQuestionImgCommand = new RelayCommand(this.addQuestionImg, this.ReturnTrue);
@@ -145,15 +197,19 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             else
             {
-
+                this.Card.Name = this.title;
+                this.Card.Front.Text = this.question;
+                this.Card.Back.Text = this.answer;
                 this.set[categoryIndex].Collections[0].Add(this.Card);
                 this.CheckAddNewCard = "Karte wurde erfolgreich erstellt";
             }
-            this.Card.Name = "Überschrift";
-            this.Card.Front.Text = "Frage eingeben";
-            this.Card.Back.Text = "Antwort eingeben";
+            this.Title = "Überschrift";
+            this.Question = "Frage eingeben";
+            this.Answer = "Antwort eingeben";
             this.AnswerImage = null;
             this.QuestionImage = null;
+            this.Keywords = new ObservableCollection<String>();
+            this.Card = new CardViewModel();
         }
 
         private void addQuestionImg()
@@ -177,7 +233,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             catch(Exception)
             {
-                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -198,7 +254,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             catch (Exception)
             {
-                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            
         }
@@ -227,7 +283,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private void addNewKeyword()
         {
-            this.Card.Keywords.Add(this.newKeyword);
+            this.Keywords.Add(this.newKeyword);
+            this.Card.Keywords=this.keywords;
             this.NewKeyword = "Neues Wort";
            // this.keywords.Add(this.newKeyword);
         }
