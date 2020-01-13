@@ -120,7 +120,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
         private void storeSetOnDisc()
         {
             var json = new JavaScriptSerializer().Serialize(Set);
-            System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
+           // System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
             
             //XmlDocument xdoc = new XmlDocument();     
             //xdoc.Save("C:/tmp/SetCards.xml");
