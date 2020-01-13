@@ -432,8 +432,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void CardToNextLevel(CardViewModel card)
         {
            int index = currentCardIndex + 1;
-           if (currentCardIndex == 4) {
-                index = 0;
+           if (currentCardIndex >= 4) {
+                index = 4;
            }
            //Aus dem akutellen Level entfernen
            category.Collections[currentCardIndex].Remove(card);
