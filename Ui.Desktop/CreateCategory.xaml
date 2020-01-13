@@ -18,7 +18,7 @@
         <Border x:Name="header" BorderThickness="1" HorizontalAlignment="Left" Height="95" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" Background="#FF4094EB"/>
         <Label x:Name="newCategory" Content="Neue Kategorie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="79,25,0,0" Height="41" Width="250" FontFamily="Verdana" FontSize="20" FontWeight="Bold" Foreground="#FFFAFAFA"/>
         <Button x:Name="createCategory" Content="Erstellen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="651,25,0,0" Height="41"  FontSize="20" BorderBrush="#FF4094EB" Background="#FF2139EE" Foreground="White" Command="{Binding CreateCategoryCommand, Mode=OneWay}"/>
-        <TextBox x:Name="categoryName" HorizontalAlignment="Left" Height="56" TextWrapping="Wrap" Text="{ Binding Category.Name}" VerticalAlignment="Top" Width="383" Margin="191,151,0,0" Foreground="#FF8B8787" FontSize="30" BorderBrush="#FF0040FF"/>
+        <TextBox x:Name="categoryName" HorizontalAlignment="Left" Height="56" TextWrapping="Wrap" Text="{ Binding CategoryName}" VerticalAlignment="Top" Width="383" Margin="191,151,0,0" Foreground="#FF8B8787" FontSize="30" BorderBrush="#FF0040FF"/>
         <Label Content="{ Binding  AddedSuccessful}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="191,253,0,0"  Width="532" Height="41" FontSize="20" FontFamily="Arial" Foreground="#FF4094EB"/>
 
     </Grid>
