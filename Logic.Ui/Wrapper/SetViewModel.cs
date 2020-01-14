@@ -116,11 +116,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }*/
 
+
         /*private void storeSetOnDisc()
         {
             var json = new JavaScriptSerializer().Serialize(Set);
             System.IO.File.WriteAllText(@"SetCards.json", json
         }*/
-      
     }
 }

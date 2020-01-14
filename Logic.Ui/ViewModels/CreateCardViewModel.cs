@@ -20,6 +20,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         
         public CardViewModel Card { get; set; }
 
+        #region ICommads
         //relayCommand
         private ICommand createCardCommand;
         public ICommand CreateCardCommand { get { return createCardCommand; } }
@@ -32,7 +33,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         private ICommand addNewKeywordCommand;
         public ICommand AddNewKeywordCommand { get { return addNewKeywordCommand; } }
+        #endregion
 
+        #region properties
         private CategoryViewModel selectedCategory;
         public CategoryViewModel SelectedCategory
         {
@@ -170,6 +173,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
         public CreateCardViewModel(SetViewModel set)
         {
             this.set = set;
@@ -188,6 +192,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             addNewKeywordCommand = new RelayCommand(this.addNewKeyword, this.ReturnTrue);
         }
 
+        #region Methods
         private void CreateCard()
         {
            int categoryIndex= this.set.IndexOf(this.selectedCategory);
@@ -292,5 +297,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             return true;
         }
+        #endregion
     }
 }
