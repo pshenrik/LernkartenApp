@@ -67,7 +67,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                     break;
             }
             syncDisabled = false;
-            //storeSetOnDisc();
         }
         private void ModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -112,20 +111,16 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                     xml = sww.ToString();
                     XmlDocument xdoc = new XmlDocument();
                     xdoc.LoadXml(xml);
-                    xdoc.Save("C:/tmp/SetCards.xml");
+                    xdoc.Save(@"SetCards.xml");
                 }
             }
         }*/
 
-        private void storeSetOnDisc()
+
+        /*private void storeSetOnDisc()
         {
             var json = new JavaScriptSerializer().Serialize(Set);
-            System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
-            
-            //XmlDocument xdoc = new XmlDocument();     
-            //xdoc.Save("C:/tmp/SetCards.xml");
-              
-        }
-      
+            System.IO.File.WriteAllText(@"SetCards.json", json
+        }*/
     }
 }

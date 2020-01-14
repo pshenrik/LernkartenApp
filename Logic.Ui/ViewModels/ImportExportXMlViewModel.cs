@@ -13,7 +13,7 @@ using System.Xml;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-    public class ImportViewModel : AbstractViewModel
+    public class ImportExportXMlViewModel : AbstractViewModel
 
     {
         public ICommand ImportCommand { get; }
@@ -21,7 +21,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public String InsertedNameForXmlfile { get; set; }
         private SetViewModel Set;
 
-        public ImportViewModel(SetViewModel set)
+        public ImportExportXMlViewModel(SetViewModel set)
         {
             this.Set = set;
             ImportCommand = new RelayCommand(this.SelectXMlFile, this.GetBoolean);
@@ -280,12 +280,15 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
 
         }
+        // Quelle: https://social.msdn.microsoft.com/Forums/vstudio/en-US/ede44031-ca95-4ffb-bec6-462d1f91897c/convert-and-save-bitmapsource-as-byte?forum=wpf 
+
+        //Hilfsmethode: Die Methode ByteToBitmapSource wandelt ein Byte-Array in eine Bitmap um
         private static System.Windows.Media.Imaging.BitmapSource ByteToBitmapSource(byte[] bytes)
         {
             var stream = new MemoryStream(bytes);
             return System.Windows.Media.Imaging.BitmapFrame.Create(stream);
         }
-
+        //Hilfsmethode: transferiert ein Foto (Bitmap) in ein Byte-Array
         private static byte[] BitmapSourceToByte(System.Windows.Media.Imaging.BitmapSource source)
         {
             var encoder = new System.Windows.Media.Imaging.JpegBitmapEncoder();

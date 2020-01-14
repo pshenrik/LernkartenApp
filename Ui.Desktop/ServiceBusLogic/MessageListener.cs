@@ -23,7 +23,7 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                 this,
                 msg =>
                 {
-                    Window1 mainmenu = new Window1();
+                    MainMenu mainmenu = new MainMenu();
                     mainmenu.Show();
                     
                 });
@@ -103,8 +103,17 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
             this,
             msg =>
             {
-                Import import = new Import();
-                import.Show();
+                ImportExportXML importExportxml = new ImportExportXML();
+                importExportxml.Show();
+
+            });
+
+            ServiceBus.Instance.Register<OpenCreateCategoryWindow>(
+            this,
+            msg =>
+            {
+                CreateCategory createCategory = new CreateCategory();
+                createCategory.Show();
 
             });
 
