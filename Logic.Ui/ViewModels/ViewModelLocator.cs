@@ -9,6 +9,7 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using System.Xml;
 using System.IO;
 using System.Xml.Serialization;
+using System.Web.Script.Serialization;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
@@ -21,14 +22,16 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             Set = new SetViewModel();
             generateCards();
+            //loadCardsFromDisc();
 
             MainMenuVM = new MainMenuViewModel(Set);
-            ImportVM = new ImportViewModel(Set); 
+            ImportExportXmlVM = new ImportExportXMlViewModel(Set); 
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel(Set);
             CreateCategoryVM = new CreateCategoryViewModel(Set);
             CreateCardVM = new CreateCardViewModel(Set);
             ExamModeVM = new ExamModeViewModel(Set);
-            LernmodusVM = new LernmodusViewModel(Set);
+            
+            LearnModeVM = new LearnModeViewModel(Set);
             
             ViewCategoryVM = new ViewCategoryViewModel(Set);
             ExportVM = new ExportViewModel(Set);
@@ -45,10 +48,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public CreateCardViewModel CreateCardVM { get; }
         public ExamModeViewModel ExamModeVM { get; }
 
-        public LernmodusViewModel LernmodusVM { get; }
+        public LearnModeViewModel LearnModeVM { get; }
 
         public MainMenuViewModel MainMenuVM { get; }
-        public ImportViewModel ImportVM { get; }
+        public ImportExportXMlViewModel ImportExportXmlVM { get; }
         public ViewCategoryViewModel ViewCategoryVM { get; }
         public ExportViewModel ExportVM { get; }
 
@@ -76,17 +79,25 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                         card.Info.Marked = true;
                     }
 
-                    cat.Collections[0].Add(card);
+                    cat.Collections[(i * j) % 5].Add(card);
+
                 }
 
 
                 Set.Add(cat);
+              //  storeSetOnDisc();
             }
         }
 
-        private void loadCardsFromDisc() { 
+        private void storeSetOnDisc()
+        {
+            var json = new JavaScriptSerializer().Serialize(Set);
+            //System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
+        }
 
-            string path = "SetCards.xml";
+        /*private void loadCardsFromDisc() { 
+
+            string path = "C:/tmp/SetCards.xml";
             if (File.Exists(path))
             {
                 SetViewModel setFromDisc = null;
@@ -97,6 +108,20 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 reader.Close();
 
                 Set = setFromDisc;
+            }
+        }*/
+
+
+        private void loadCardsFromDisc(){
+            string path = @"SetCards.json";
+            if (File.Exists(path))
+            {
+                using (StreamReader r = new StreamReader(path))
+                {
+                    string json = r.ReadToEnd();
+                    Set setFromDisc = new JavaScriptSerializer().Deserialize<Set>(json);
+                    Console.WriteLine(setFromDisc);
+                }
             }
         }
     }

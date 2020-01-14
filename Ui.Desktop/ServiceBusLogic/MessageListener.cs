@@ -23,7 +23,7 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                 this,
                 msg =>
                 {
-                    Window1 mainmenu = new Window1();
+                    MainMenu mainmenu = new MainMenu();
                     mainmenu.Show();
                     
                 });
@@ -36,14 +36,7 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    statWindow.Show();
                    
                });
-            ServiceBus.Instance.Register<OpenCreateCategoryWindow>(
-               this,
-               msg =>
-               {
-                   CreateCategory createCategory = new CreateCategory();
-                   createCategory.Show();
-                   
-               });
+            
             ServiceBus.Instance.Register<OpenViewCategoryWindow>(
                this,
                msg =>
@@ -62,12 +55,13 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
                    
                });
 
-            ServiceBus.Instance.Register<OpenLernmodusWindow>(
+            ServiceBus.Instance.Register<OpenLearnModeWindow>(
                this,
                msg =>
                {
-                   Lernmodus lernmodus = new Lernmodus();
-                   lernmodus.Show();
+                   LearnMode learnmode = new LearnMode();
+                   
+                   learnmode.Show();
 
                });
             ServiceBus.Instance.Register<OpenExportWindow>(
@@ -109,8 +103,17 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
             this,
             msg =>
             {
-                Import import = new Import();
-                import.Show();
+                ImportExportXML importExportxml = new ImportExportXML();
+                importExportxml.Show();
+
+            });
+
+            ServiceBus.Instance.Register<OpenCreateCategoryWindow>(
+            this,
+            msg =>
+            {
+                CreateCategory createCategory = new CreateCategory();
+                createCategory.Show();
 
             });
 

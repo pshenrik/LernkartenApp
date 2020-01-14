@@ -71,11 +71,12 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
             {
                 return false;
             }
+            //Alles zu Kleinbuchstaben, damit der String abgleich leichter ist
             string input = answer.ToLower();
             string[] words = input.Split(' ');
 
             //Wenn die Eingabe 100% mit der Antwort übereinstimmt
-            if (input.Equals(Back.Text))
+            if (answer.Equals(Back.Text))
             {
                 return true;
             }

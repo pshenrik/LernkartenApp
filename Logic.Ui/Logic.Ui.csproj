@@ -35,9 +35,11 @@
       <HintPath>..\packages\IronPdf.2019.8.9\lib\net40\IronPdf.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -55,7 +57,7 @@
     <Compile Include="Messages\OpenExamModeWindow.cs" />
     <Compile Include="Messages\OpenExportWindow.cs" />
     <Compile Include="Messages\OpenImportWindow.cs" />
-    <Compile Include="Messages\OpenLernmodusWindow.cs" />
+    <Compile Include="Messages\OpenLearnModeWindow.cs" />
     <Compile Include="Messages\OpenMainMenuWindow.cs" />
     <Compile Include="Messages\OpenStatisticsWindow.cs" />
     <Compile Include="Messages\OpenViewCategoryWindow.cs" />
@@ -66,7 +68,8 @@
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\EditCardViewModel.cs" />
     <Compile Include="ViewModels\ExamModeViewModel.cs" />
-    <Compile Include="ViewModels\ImportViewModel.cs" />
+    <Compile Include="ViewModels\ImportExportXMlViewModel.cs" />
+    <Compile Include="ViewModels\LearnModeViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -77,7 +80,6 @@
     <Compile Include="ViewModels\CreateCardViewModel.cs" />
     <Compile Include="ViewModels\CreateCategoryViewModel.cs" />
     <Compile Include="ViewModels\ExportViewModel.cs" />
-    <Compile Include="ViewModels\LernmodusViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ViewMarkedCardsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
@@ -115,9 +117,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\CardPictures\" />
-    <Folder Include="Resources\PDF-Export\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

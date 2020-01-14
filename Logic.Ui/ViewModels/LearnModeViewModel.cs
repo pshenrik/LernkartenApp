@@ -5,19 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-
-    /*
-     Methodennamen so richtig ? Klein/Großschreibung
-     CheckStartRequirements in die Bedingung mit ReturnTrue einbinden
-     Properties so richtig mit private Backendfield?
-     */
-    public class LernmodusViewModel : AbstractViewModel
+    
+    public class LearnModeViewModel : AbstractViewModel
     {
         #region ICommand
         private ICommand submitAnswerCommand;
@@ -63,6 +59,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }
 
+   
         private CardViewModel currentCard;
         public CardViewModel CurrentCard
         {
@@ -77,6 +74,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 if(value != null) {
                    
                     CurrentCardPage = value.Front;
+
                     if (value.Info.Marked)
                     {
                         Console.WriteLine("true");
@@ -122,6 +120,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             set
             {
+                Console.WriteLine(value);
                 currentCardPage = value;
                 OnPropertyChanged();
             }
@@ -143,6 +142,10 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             
         }
+
+
+
+
         private string answerIndicatorFillColor;
         public string AnswerIndicatorFillColor
         {
@@ -200,7 +203,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public SetViewModel Set { get; set; }
   
 
-        public CategoryViewModel category;
+        private CategoryViewModel category;
         public CategoryViewModel Category
         {
             get
@@ -327,10 +330,9 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private int currentCardIndex;
     
 
-        public LernmodusViewModel(SetViewModel set)
+        public LearnModeViewModel(SetViewModel set)
         {
             this.Set = set;
-
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             nextCardCommand = new RelayCommand(this.NextCard, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
@@ -401,11 +403,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void SubmitAnswer()
         {
             LearnedCardsCounter++;
-
+            Console.WriteLine(Set.Count);
             //Antwort anzeigen
             CurrentCardPage = currentCard.Back;
             SubmitButtonEnabled = false;
             NextButtonEnabled = true;
+          
 
             //Wenn die eingegebene Antwort richtig ist
             if (currentCard.Card.CheckAnswer(answerInputText))
@@ -429,8 +432,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void CardToNextLevel(CardViewModel card)
         {
            int index = currentCardIndex + 1;
-           if (currentCardIndex == 4) {
-                index = 0;
+           if (currentCardIndex >= 4) {
+                index = 4;
            }
            //Aus dem akutellen Level entfernen
            category.Collections[currentCardIndex].Remove(card);
@@ -522,12 +525,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         //Durchsucht andere Collections nach Karten
         private CardViewModel FindCard(int startIndex, int tryCounter)
         {
+            
             int index = startIndex + 1;
             if (startIndex == 4)
             {
                 index = 0;
             }
-
+            //Wenn die Collection leer ist, dann wird die selbe Funktion nochmal aufgerufen, mit dem startIndex + 1
             if (category.Collections[index].Count == 0)
             {
                 return FindCard(index, tryCounter + 1);

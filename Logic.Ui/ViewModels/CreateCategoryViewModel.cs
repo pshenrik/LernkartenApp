@@ -12,7 +12,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
     public class CreateCategoryViewModel : AbstractViewModel
     {
-        //public CategoryCollectionViewModel Categorys { get; set; }
+
         public CategoryViewModel Category { get; set; }
 
         //relayCommand
@@ -33,21 +33,36 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private String categoryName;
+        public String CategoryName
+        {
+            get
+            {
+                return this.categoryName;
+            }
+            set
+            {
+                this.categoryName = value;
+                OnPropertyChanged();
+            }
+        }
         public CreateCategoryViewModel(SetViewModel set)
         {
             this.set = set;
             Category = new CategoryViewModel();
-            Category.Name = "Kategorienname eingeben";
+            this.categoryName = "Kategorienname eingeben";
             //relayCommand
             createCategoryCommand = new RelayCommand(this.CreateCategory, this.ReturnTrue);
         }
 
         private void CreateCategory()
         {
+            this.Category.Name = this.categoryName;
             this.set.Add(this.Category);
-            AddedSuccessful = Category.Name + " erfolgreich hizugefügt";
-            Console.WriteLine(Category.Name);
-            Category.Name = "Kategorienname eingeben";
+            this.AddedSuccessful = "Kategorie "+Category.Name + " erfolgreich hizugefügt";
+            this.CategoryName = "Kategorienname eingeben";
+            this.Category = new CategoryViewModel();
         }
         private bool ReturnTrue()
         {
