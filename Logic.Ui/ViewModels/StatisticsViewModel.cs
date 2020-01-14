@@ -78,6 +78,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private int cHeight = 200;
         private int offset = 5;
 
+        public string Test = "blaBla";
+
         /*
         *   drawCanvas leert das übergebene Canvas und füllt es mit 
         *   anzahl balken (sum) und den dazu passenden werten aus dem
