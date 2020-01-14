@@ -91,7 +91,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void storeSetOnDisc()
         {
             var json = new JavaScriptSerializer().Serialize(Set);
-            System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
+            //System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
         }
 
         /*private void loadCardsFromDisc() { 

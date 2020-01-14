@@ -12,12 +12,7 @@ using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
-
-    /*
-     Methodennamen so richtig ? Klein/Großschreibung
-     CheckStartRequirements in die Bedingung mit ReturnTrue einbinden
-     Properties so richtig mit private Backendfield?
-     */
+    
     public class LearnModeViewModel : AbstractViewModel
     {
         #region ICommand
@@ -208,7 +203,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public SetViewModel Set { get; set; }
   
 
-        public CategoryViewModel category;
+        private CategoryViewModel category;
         public CategoryViewModel Category
         {
             get
@@ -338,7 +333,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public LearnModeViewModel(SetViewModel set)
         {
             this.Set = set;
-            Console.WriteLine("TEST");
             submitAnswerCommand = new RelayCommand(this.SubmitAnswer, this.ReturnTrue);
             nextCardCommand = new RelayCommand(this.NextCard, this.ReturnTrue);
             markCardCommand = new RelayCommand(this.MarkCard, this.ReturnTrue);
@@ -438,8 +432,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private void CardToNextLevel(CardViewModel card)
         {
            int index = currentCardIndex + 1;
-           if (currentCardIndex == 4) {
-                index = 0;
+           if (currentCardIndex >= 4) {
+                index = 4;
            }
            //Aus dem akutellen Level entfernen
            category.Collections[currentCardIndex].Remove(card);
@@ -531,12 +525,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         //Durchsucht andere Collections nach Karten
         private CardViewModel FindCard(int startIndex, int tryCounter)
         {
+            
             int index = startIndex + 1;
             if (startIndex == 4)
             {
                 index = 0;
             }
-
+            //Wenn die Collection leer ist, dann wird die selbe Funktion nochmal aufgerufen, mit dem startIndex + 1
             if (category.Collections[index].Count == 0)
             {
                 return FindCard(index, tryCounter + 1);

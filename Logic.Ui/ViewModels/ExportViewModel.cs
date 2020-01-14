@@ -23,7 +23,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         #region Properties
         public SetViewModel Set { get; set; }
 
-        public CategoryViewModel category;
+        private CategoryViewModel category;
         public CategoryViewModel Category
         {
             get
@@ -66,13 +66,12 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
        
         private void ExportPDF()
         {
-            //Quelle: https://ironpdf.com/
-            Console.WriteLine("tew");
-
+            //Quelle: https://ironpdf.com
             string categoryName = category.Name;
        
             string html = "";
             
+            //Jede Karte in jeder Collection durchgehen und auf die PDF zeichnen
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < category.Collections[i].Count; j++)
