@@ -35,13 +35,13 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.Set = set;
             this.markedCards = new ObservableCollection<CardViewModel>(); 
             this.CurrentCardIndex = 0;
-            this.nextCard = new RelayCommand(this.getNextCard, this.ReturnTrue);
-            this.prevCard = new RelayCommand(this.getPrevCard, this.ReturnTrue);
-            this.remove = new RelayCommand ( this.removeMarker, this.ReturnTrue);
+            this.nextCard = new RelayCommand(this.GetNextCard, this.ReturnTrue);
+            this.prevCard = new RelayCommand(this.GetPrevCard, this.ReturnTrue);
+            this.remove = new RelayCommand ( this.RemoveMarker, this.ReturnTrue);
         }
 
 
-        #region Propertys
+        #region Properties
         public BitmapSource CurrentImage
         {
             get
@@ -180,7 +180,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 
                 this.collections = value;
                 
-                this.refreshMarkedCards();
+                this.RefreshMarkedCards();
                 
                 OnPropertyChanged();
 
@@ -202,7 +202,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         #region Methods
 
-        private void refreshMarkedCards()
+        private void RefreshMarkedCards()
         {
             markedCards.Clear();
 
@@ -234,7 +234,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
             
         }
-        private void getNextCard()
+        private void GetNextCard()
         {
             this.CurrentCardIndex++;
             this.CurrentImage = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Image;
@@ -245,7 +245,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         }
 
-        private void getPrevCard()
+        private void GetPrevCard()
         {
             this.CurrentCardIndex--;
             this.CurrentImage = this.markedCards.ElementAt(this.CurrentCardIndex).Front.Image;
@@ -255,7 +255,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
         }
 
-        private void removeMarker()
+        private void RemoveMarker()
         {
             this.markedCards.ElementAt(this.CurrentCardIndex).Info.Marked = false;
             this.markedCards.RemoveAt(this.CurrentCardIndex);
@@ -284,7 +284,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 }
                 else if (this.CurrentCardIndex > 0)
                 {
-                    this.getPrevCard();
+                    this.GetPrevCard();
 
                 }
 

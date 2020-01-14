@@ -71,7 +71,7 @@ namespace De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects
             {
                 return false;
             }
-
+            //Alles zu Kleinbuchstaben, damit der String abgleich leichter ist
             string input = answer.ToLower();
             string[] words = input.Split(' ');
 
