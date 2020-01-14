@@ -340,7 +340,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             startLearningCommand = new RelayCommand(this.StartLearning, this.ReturnTrue);
             stopLearningCommand = new RelayCommand(this.StopLearning, this.ReturnTrue);
             this.FinishedCards = new ObservableCollection<CardViewModel>();
-
+            Console.WriteLine("tes2wt");
         
         }
 
