@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using De.HsFlensburg.LernkartenApp001.Business.Model.BusinessObjects;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper;
 using De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels.Common;
-using System.Windows.Input;
-using De.HsFlensburg.LernkartenApp001.Services.ServiceBus;
-using De.HsFlensburg.LernkartenApp001.Logic.Ui.Messages;
-using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Windows.Media;
-using System.Windows.Documents;
 
 namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
@@ -78,8 +69,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         private int cHeight = 200;
         private int offset = 5;
 
-        public string Test = "blaBla";
-
         /*
         *   drawCanvas leert das übergebene Canvas und füllt es mit 
         *   anzahl balken (sum) und den dazu passenden werten aus dem
@@ -91,7 +80,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             for (int i = 0; i < count.Length; i++)
             {
-                Console.WriteLine(this.cHeight / sum * count[i]);
                 Rectangle rect = new Rectangle();
                 rect.Stroke = new SolidColorBrush(Colors.LightBlue);
                 rect.Fill = new SolidColorBrush(Colors.LightBlue);

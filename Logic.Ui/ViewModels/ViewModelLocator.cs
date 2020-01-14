@@ -30,7 +30,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             CreateCategoryVM = new CreateCategoryViewModel(Set);
             CreateCardVM = new CreateCardViewModel(Set);
             ExamModeVM = new ExamModeViewModel(Set);
-            
+            Console.WriteLine("test");
             LearnModeVM = new LearnModeViewModel(Set);
             
             ViewCategoryVM = new ViewCategoryViewModel(Set);
