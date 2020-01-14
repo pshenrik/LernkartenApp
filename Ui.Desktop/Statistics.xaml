@@ -78,5 +78,19 @@
                 </TransformGroup>
             </GridSplitter.RenderTransform>
         </GridSplitter>
+        <Label Content="Ungelernt" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,360,0,0"/>
+        <Label Content="1x Richtig" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,360,0,0"/>
+        <Label Content="2x Richtig" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="163,360,0,0"/>
+        <Label Content="3x Richtig" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="238,360,0,0"/>
+        <Label Content="4x Richtig" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="310,360,0,0"/>
+        <Label Content="Ungelernt" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="419,357,0,0"/>
+        <Label Content="1x Richtig" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="487,357,0,0"/>
+        <Label Content="2x Richtig" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="560,357,0,0"/>
+        <Label Content="3x Richtig" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="635,357,0,0"/>
+        <Label Content="4x Richtig" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="707,357,0,0"/>
+        <Label Content="100%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-5,141,0,0" Height="29" Width="50" FontSize="6"/>
+        <Label Content="  0%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-5,344,0,0" Height="29" Width="50" FontSize="6"/>
+        <Label Content=" 100%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="390,140,0,0" Height="29" Width="38" FontSize="6" RenderTransformOrigin="0.185,0.5"/>
+        <Label Content="  0%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,341,0,0" Height="29" Width="50" FontSize="6"/>
     </Grid>
 </Window>
