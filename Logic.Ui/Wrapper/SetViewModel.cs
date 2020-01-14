@@ -67,7 +67,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                     break;
             }
             syncDisabled = false;
-            storeSetOnDisc();
+            //storeSetOnDisc();
         }
         private void ModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
