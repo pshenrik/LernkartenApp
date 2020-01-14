@@ -11,146 +11,72 @@
     </Window.DataContext>
 
     <Grid>
-
-        <ProgressBar HorizontalAlignment="Left" Height="38" Value="70"  Margin="111,280,0,0" VerticalAlignment="Top" Width="225" Foreground="Red">
-            <ProgressBar.Background>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                    <GradientStop Color="#FFBABABA" Offset="0"/>
-                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
-                    <GradientStop Color="#FFBABABA" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.Background>
-            <ProgressBar.BorderBrush>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFB2B2B2"/>
-                    <GradientStop Color="Gray" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.BorderBrush>
-        </ProgressBar>
-        <Label Content="Fortschritt Gesamt" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="215" Height="35" FontSize="20"/>
+        <Label Content="Fortschritt Gesamt" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="215" Height="35" FontSize="20"/>
         <Label Content="Statistik&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="47" Width="101" FontSize="24" FontWeight="Bold"/>
-        <GridSplitter HorizontalAlignment="Left" Height="322" Margin="390,98,0,0" VerticalAlignment="Top" Width="5"/>
-        <GridSplitter HorizontalAlignment="Left" Height="808" Margin="388,-309,0,-79" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+        <GridSplitter HorizontalAlignment="Left" Height="344" Margin="390,76,0,0" VerticalAlignment="Top" Width="5"/>
+        <GridSplitter HorizontalAlignment="Left" Height="808" Margin="395,-331,0,-57" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
             <GridSplitter.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="89.53"/>
+                    <RotateTransform Angle="90"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </GridSplitter.RenderTransform>
         </GridSplitter>
-        <Label Content="1x richtig:&#xA;" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <ProgressBar HorizontalAlignment="Left" Height="38" Value="35"  Margin="111,323,0,0" VerticalAlignment="Top" Width="225" Foreground="Yellow">
-            <ProgressBar.Background>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                    <GradientStop Color="#FFBABABA" Offset="0"/>
-                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
-                    <GradientStop Color="#FFBABABA" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.Background>
-            <ProgressBar.BorderBrush>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFB2B2B2"/>
-                    <GradientStop Color="Gray" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.BorderBrush>
-        </ProgressBar>
-        <Label Content="2x richtig:" HorizontalAlignment="Left" Margin="10,323,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <ProgressBar HorizontalAlignment="Left" Height="38" Value="10"  Margin="111,366,0,0" VerticalAlignment="Top" Width="225" Foreground="Lime" >
-            <ProgressBar.Background>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                    <GradientStop Color="#FFBABABA" Offset="0"/>
-                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
-                    <GradientStop Color="#FFBABABA" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.Background>
-            <ProgressBar.BorderBrush>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFB2B2B2"/>
-                    <GradientStop Color="Gray" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.BorderBrush>
-        </ProgressBar>
-        <Label Content="3x richtig:&#xA;" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <Label Content="Kategorie:&#xA;" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <Label Content="Lernmodus:&#xA;" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
-        <Label Content="Prüfungsmodus:" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
-        <Label Content="1:36&#xA;" HorizontalAlignment="Left" Margin="162,168,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
-        <Label Content="0:45&#xA;" HorizontalAlignment="Left" Margin="162,215,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
-        <ProgressBar HorizontalAlignment="Left" Height="38" Value="35"  Margin="513,280,0,0" VerticalAlignment="Top" Width="225" Foreground="Red">
-            <ProgressBar.Background>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                    <GradientStop Color="#FFBABABA" Offset="0"/>
-                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
-                    <GradientStop Color="#FFBABABA" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.Background>
-            <ProgressBar.BorderBrush>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFB2B2B2"/>
-                    <GradientStop Color="Gray" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.BorderBrush>
-        </ProgressBar>
-        <Label Content="Fortschritt Englisch" HorizontalAlignment="Left" Margin="412,103,0,0" VerticalAlignment="Top" Width="215" Height="60" FontSize="20"/>
-        <Label Content="1x richtig:&#xA;" HorizontalAlignment="Left" Margin="412,280,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <ProgressBar HorizontalAlignment="Left" Height="38" Value="16"  Margin="513,323,0,0" VerticalAlignment="Top" Width="225" Foreground="Yellow">
-            <ProgressBar.Background>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                    <GradientStop Color="#FFBABABA" Offset="0"/>
-                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
-                    <GradientStop Color="#FFBABABA" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.Background>
-            <ProgressBar.BorderBrush>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFB2B2B2"/>
-                    <GradientStop Color="Gray" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.BorderBrush>
-        </ProgressBar>
-        <Label Content="2x richtig:" HorizontalAlignment="Left" Margin="412,323,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <ProgressBar HorizontalAlignment="Left" Height="38" Value="1"  Margin="513,366,0,0" VerticalAlignment="Top" Width="225" Foreground="Lime" >
-            <ProgressBar.Background>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                    <GradientStop Color="#FFBABABA" Offset="0"/>
-                    <GradientStop Color="#FFC7C7C7" Offset="0.493"/>
-                    <GradientStop Color="#FFBABABA" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.Background>
-            <ProgressBar.BorderBrush>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFB2B2B2"/>
-                    <GradientStop Color="Gray" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.BorderBrush>
-        </ProgressBar>
-        <Label Content="3x richtig:&#xA;" HorizontalAlignment="Left" Margin="412,366,0,0" VerticalAlignment="Top" Height="38" Width="101" FontSize="18"/>
-        <Label Content="Lernmodus:&#xA;" HorizontalAlignment="Left" Margin="412,168,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
-        <Label Content="Prüfungsmodus:" HorizontalAlignment="Left" Margin="412,215,0,0" VerticalAlignment="Top" Height="47" Width="147" FontSize="18"/>
-        <Label Content="0:48" HorizontalAlignment="Left" Margin="564,168,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
-        <Label Content="0:12&#xA;" HorizontalAlignment="Left" Margin="564,215,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18"/>
-        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding Set, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValue="{Binding Category}" Margin="111,62,0,0" VerticalAlignment="Top" Width="136" Height="24"/>
-        <!--Canvas HorizontalAlignment="Left" Height="60" Margin="412,23,0,0" VerticalAlignment="Top" Width="245"/-->
+        <Label Content="Fortschritt " HorizontalAlignment="Left" Margin="400,80,0,0" VerticalAlignment="Top" Width="215" Height="60" FontSize="20"/>
+        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding Set, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValue="{Binding Category}" Margin="524,90,0,0" VerticalAlignment="Top" Width="136" Height="24"/>
 
-        <ItemsControl HorizontalAlignment="Left" Height="60" Margin="412,23,0,0" VerticalAlignment="Top" Width="245" ItemsSource="{Binding Canvas}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="Black">
-                        <Rectangle.RenderTransform>
-                            <TranslateTransform X="{Binding X}" Y="{Binding Y}"/>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <Canvas HorizontalAlignment="Left" Height="200" Margin="419,152,0,0" VerticalAlignment="Top" Width="350">
+            <ContentPresenter Content="{Binding CanvasDyn}" />
+        </Canvas>
 
-
+        <GridSplitter HorizontalAlignment="Left" Height="208" Margin="414,144,0,0" VerticalAlignment="Top" Width="5"/>
+        <GridSplitter HorizontalAlignment="Left" Height="208" Margin="769,144,0,0" VerticalAlignment="Top" Width="5"/>
+        <GridSplitter HorizontalAlignment="Left" Height="358" Margin="590,-32,0,0" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <GridSplitter HorizontalAlignment="Left" Height="360" Margin="591,174,0,-114" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Canvas HorizontalAlignment="Left" Height="200" Margin="22,155,0,0" VerticalAlignment="Top" Width="350">
+            <ContentPresenter Content="{Binding CanvasStat}" />
+        </Canvas>
+        <GridSplitter HorizontalAlignment="Left" Height="208" Margin="16,147,0,0" VerticalAlignment="Top" Width="6"/>
+        <GridSplitter HorizontalAlignment="Left" Height="208" Margin="372,147,0,0" VerticalAlignment="Top" Width="4"/>
+        <GridSplitter HorizontalAlignment="Left" Height="358" Margin="192,-29,0,0" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <GridSplitter HorizontalAlignment="Left" Height="360" Margin="194,177,0,-117" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
     </Grid>
 </Window>

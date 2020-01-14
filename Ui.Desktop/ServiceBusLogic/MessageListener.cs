@@ -108,6 +108,15 @@ namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop.ServiceBusLogic
 
             });
 
+            ServiceBus.Instance.Register<OpenCreateCategoryWindow>(
+            this,
+            msg =>
+            {
+                CreateCategory createCategory = new CreateCategory();
+                createCategory.Show();
+
+            });
+
         }
 
 

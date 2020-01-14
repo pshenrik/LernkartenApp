@@ -79,7 +79,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                         card.Info.Marked = true;
                     }
 
-                    cat.Collections[0].Add(card);
+                    cat.Collections[(i * j) % 5].Add(card);
+
                 }
 
 
@@ -110,23 +111,18 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }*/
 
-       private void loadCardsFromDisc(){
-            //try{
-            string path = @"C:\tmp\SetCards.json";
+
+        private void loadCardsFromDisc(){
+            string path = @"SetCards.json";
             if (File.Exists(path))
             {
                 using (StreamReader r = new StreamReader(path))
                 {
                     string json = r.ReadToEnd();
-                    SetViewModel setFromDisc = new JavaScriptSerializer().Deserialize<SetViewModel>(json);
+                    Set setFromDisc = new JavaScriptSerializer().Deserialize<Set>(json);
                     Console.WriteLine(setFromDisc);
-                    //Set = setFromDisc;
-                    //List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);
                 }
             }
-            //}catch(System.IO.IOException){
-            //    loadCardsFromDisc();
-            //}
         }
     }
 }
