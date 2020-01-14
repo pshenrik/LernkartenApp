@@ -1,5 +1,5 @@
-﻿<Window x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.Window1"
-          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.MainMenu"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -70,7 +70,7 @@
             <Button Grid.Row="1" Command="{Binding OpenImportWindowCommand, Mode=OneWay}">Import/Export XML</Button>
             <Button Grid.Row="2" Command="{Binding OpenExamModeWindowCommand, Mode=OneWay}">Prüfungsmode</Button>
             <Button Grid.Row="3" Command="{Binding OpenStatisticsWindowCommand, Mode=OneWay}">Statistik</Button>
-            <Button Grid.Row="4" Command="{Binding OpenLearnModeWindowCommand, Mode=OneWay}">Lernenmodus</Button>
+            <Button Grid.Row="4" Command="{Binding OpenLernmodusWindowCommand, Mode=OneWay}">Lernmodus</Button>
             <Button Grid.Row="5" Command="{Binding OpenViewMarkedCardsWindowCommand, Mode=OneWay}">Markierte Karten</Button>
         </Grid>
 
@@ -119,8 +119,8 @@
 
         <TextBox x:Name="tilte" HorizontalAlignment="Left"   Text="{Binding InsertedNewNameForCategory}" VerticalAlignment="Top" Width="240" Margin="185,384,0,0"   FontFamily="Arial"  FontWeight="Bold" Foreground="#FF8B8787" BorderBrush="#FF0040FF" Height="19"  />
         <Button Content="Umbenennen" Command="{Binding ChangingNameOfCategoryCommand, Mode=OneWay}" Margin="425,384,272,19"></Button>
-        <Button Content="Karten Anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Margin="537,384,129,19" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"/>
-        <Button Content="Kategorie Löschen" Command="{Binding GetRemoveCategoryCommand,  Mode=OneWay }" Margin="666,384,0,19" RenderTransformOrigin="0.525,-0.393" Foreground="#FF6A1D1D"/>
+        <Button Content="Karten anzeigen" Command="{Binding OpenViewCategoryWindowCommand, Mode=OneWay}" Margin="537,384,129,19" RenderTransformOrigin="0.519,0.429" Foreground="#FF6A1D1D"/>
+        <Button Content="Kategorie löschen" Command="{Binding GetRemoveCategoryCommand,  Mode=OneWay }" Margin="666,384,0,19" RenderTransformOrigin="0.525,-0.393" Foreground="#FF6A1D1D"/>
 
     </Grid>
 </Window>

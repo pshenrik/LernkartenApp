@@ -1,5 +1,5 @@
-﻿<Window x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.Import"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="De.HsFlensburg.LernkartenApp001.Ui.Desktop.ImportExportXML"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,7 +8,7 @@
         Title="Import/Export als Xml" Height="450" Width="800">
 
     <Window.DataContext>
-        <Binding Path="ImportVM" Source="{StaticResource ViewModelLocator}"/>
+        <Binding Path="ImportExportXmlVM" Source="{StaticResource ViewModelLocator}"/>
     </Window.DataContext>
     <Window.IsEnabled>
 

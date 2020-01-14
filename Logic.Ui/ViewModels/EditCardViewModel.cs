@@ -41,6 +41,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public ICommand MoveCardCommand { get { return moveCardCommand; } }
         #endregion
 
+        #region Properties
         private string checkEditedCard;
         public string CheckEditedCard
         {
@@ -139,14 +140,11 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
         public static CardViewModel Card { get; set; }
         private SetViewModel set;
         public EditCardViewModel(SetViewModel set)
         {
-            Card = new CardViewModel();
-            Card.Name = "Keine Ahnung";
-            Card.Front.Text = "Irgendwas hieeer";
-            Card.Back.Text = "Irgendwas dooort";
 
             this.set = set;
             this.QuestionVisibility = "Visible";
@@ -174,6 +172,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         }
 
 
+        #region Methods
         private void editedCard()
         {
             this.CheckEditedCard = "Karte wurde aktualisiert";
@@ -269,11 +268,8 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             int indexOfSelectedStack = this.stacks.IndexOf(this.selectedStack);
             
-            //finde Kategorie dieser Karte 
             int indexOfStackInCategory =0;
             int indexOfCategory = 0;
-            //findCard ist die übergebene Karte vom MainManu
-            //CardViewModel findCard = this.set[2].Collections[0][1];
 
             for (int i=0; i<this.set.Count;i++)
             {
@@ -308,5 +304,6 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         {
             return true;
         }
+        #endregion
     }
 }

@@ -12,7 +12,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 {
     public class CreateCategoryViewModel : AbstractViewModel
     {
-        //public CategoryCollectionViewModel Categorys { get; set; }
+
         public CategoryViewModel Category { get; set; }
 
         //relayCommand
@@ -62,6 +62,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             this.set.Add(this.Category);
             this.AddedSuccessful = "Kategorie "+Category.Name + " erfolgreich hizugefügt";
             this.CategoryName = "Kategorienname eingeben";
+            this.Category = new CategoryViewModel();
         }
         private bool ReturnTrue()
         {
