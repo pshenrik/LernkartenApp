@@ -162,7 +162,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
             if (selectedType == "Name")
             {
-                var sortableList = this.Categories.OrderBy(category => category.Name).ToList();
+              var sortableList = this.Categories.OrderBy(category => category.Name).ToList();
 
                 this.Categories.Clear();
                 foreach (var item in sortableList)
