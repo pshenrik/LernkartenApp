@@ -68,7 +68,7 @@
     <Compile Include="ViewModels\Common\AbstractViewModel.cs" />
     <Compile Include="ViewModels\EditCardViewModel.cs" />
     <Compile Include="ViewModels\ExamModeViewModel.cs" />
-    <Compile Include="ViewModels\ImportViewModel.cs" />
+    <Compile Include="ViewModels\ImportExportXMlViewModel.cs" />
     <Compile Include="ViewModels\LearnModeViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="RelayCommand.cs" />

@@ -25,7 +25,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             //loadCardsFromDisc();
 
             MainMenuVM = new MainMenuViewModel(Set);
-            ImportVM = new ImportViewModel(Set); 
+            ImportExportXmlVM = new ImportExportXMlViewModel(Set); 
             ViewMarkedCardsVM = new ViewMarkedCardsViewModel(Set);
             CreateCategoryVM = new CreateCategoryViewModel(Set);
             CreateCardVM = new CreateCardViewModel(Set);
@@ -51,7 +51,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
         public LearnModeViewModel LearnModeVM { get; }
 
         public MainMenuViewModel MainMenuVM { get; }
-        public ImportViewModel ImportVM { get; }
+        public ImportExportXMlViewModel ImportExportXmlVM { get; }
         public ViewCategoryViewModel ViewCategoryVM { get; }
         public ExportViewModel ExportVM { get; }
 
@@ -84,7 +84,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
 
 
                 Set.Add(cat);
-                storeSetOnDisc();
+              //  storeSetOnDisc();
             }
         }
 
@@ -110,7 +110,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.ViewModels
             }
         }*/
 
-        private void loadCardsFromDisc(){
+       private void loadCardsFromDisc(){
             //try{
             string path = @"C:\tmp\SetCards.json";
             if (File.Exists(path))
