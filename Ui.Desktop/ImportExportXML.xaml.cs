@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace De.HsFlensburg.LernkartenApp001.Ui.Desktop
 {
     /// <summary>
-    /// Interaktionslogik für Import.xaml
+    /// Interaktionslogik für ImportExportXML.xaml
     /// </summary>
-    public partial class Import : Window
+    public partial class ImportExportXML : Window
     {
-        public Import()
+        public ImportExportXML()
         {
             InitializeComponent();
         }

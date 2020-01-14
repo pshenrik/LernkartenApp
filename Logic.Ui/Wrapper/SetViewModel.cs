@@ -67,7 +67,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
                     break;
             }
             syncDisabled = false;
-            storeSetOnDisc();
+           // storeSetOnDisc();
         }
         private void ModelCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -117,7 +117,7 @@ namespace De.HsFlensburg.LernkartenApp001.Logic.Ui.Wrapper
             }
         }*/
 
-        private void storeSetOnDisc()
+       private void storeSetOnDisc()
         {
             var json = new JavaScriptSerializer().Serialize(Set);
             System.IO.File.WriteAllText(@"C:\tmp\SetCards.json", json);
